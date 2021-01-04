@@ -1,0 +1,7 @@
+.form-field__error {
+  position: absolute;
+  left: 5px;
+  bottom: -25px;
+  font-size: 14px;
+  color: #ff6859;
+}

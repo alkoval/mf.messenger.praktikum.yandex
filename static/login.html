@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatApp | Login</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <!--BEM common.blocks-->
+    <link rel="stylesheet" href="common.blocks/page/page.css">
+    <link rel="stylesheet" href="common.blocks/page/page_theme_dark.css">
+    <link rel="stylesheet" href="common.blocks/login/login.css">
+    <link rel="stylesheet" href="common.blocks/card/card.css">
+    <link rel="stylesheet" href="common.blocks/card/__header/card__header.css">
+    <link rel="stylesheet" href="common.blocks/card/__body/card__body.css">
+    <link rel="stylesheet" href="common.blocks/card/__footer/card_footer.css">
+    <link rel="stylesheet" href="common.blocks/card/__title/card__title.css">
+    <link rel="stylesheet" href="common.blocks/form-field/form-field.css">
+    <link rel="stylesheet" href="common.blocks/form-field/__label/form-field__label.css">
+    <link rel="stylesheet" href="common.blocks/form-field/__error/form-field__error.css">
+    <link rel="stylesheet" href="common.blocks/form-field/__input/form-field__input.css">    
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page_theme_dark">
+    <div class="login">
+        <form action="" class="card">
+            <div class="card__header">
+                <div class="card__title">Вход</div>
+            </div>
+            <div class="card__body">
+                <div class="form-field">
+                    <input class="form-field__input" type="text" id="login" required>
+                    <label class="form-field__label" for="login"> Логин </label>
+                </div>
+                <div class="form-field">
+                    <input class="form-field__input" type="text" id="password" required>
+                    <label class="form-field__label" for="password"> Пароль </label>
+                    <span class="form-field__error">Message error!</span>
+                </div>
+            </div>
+            <div class="card__footer"></div>
+        </form>
+    </div>
+</body>
+
+</html>

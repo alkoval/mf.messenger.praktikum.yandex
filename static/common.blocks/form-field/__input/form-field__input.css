@@ -1,0 +1,31 @@
+.form-field__input {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 80%;
+  border: none;
+  border-bottom: 1px solid #adadad;
+  background-color: transparent;
+  color: #fff;
+}
+
+.form-field__input:focus {
+  outline: none;
+  border-bottom: 1px solid #1eb980;
+}
+
+.form-field__input:valid + .form-field__label {
+  top: -16px;
+  font-size: 14px;
+  color: #adadad;
+}
+
+.form-field__input:focus + .form-field__label {
+  top: -16px;
+  font-size: 14px;
+  color: #1eb980;
+}
+
+.form-field__input:invalid + .form-field__error {
+  font-size: 25px;
+}
