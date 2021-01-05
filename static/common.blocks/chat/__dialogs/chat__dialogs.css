@@ -1,0 +1,6 @@
+.chat__dialogs {
+  height: calc(100vh - 100px);
+  overflow-x: auto;
+  margin-left: 15px;
+  margin-right: 15px;
+}

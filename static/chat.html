@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatApp | Login</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!--Fontsawesome-->
+    <script src="https://kit.fontawesome.com/f5cf5df5b4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <!--BEM common.blocks-->
+    <link rel="stylesheet" href="common.blocks/page/page.css">
+    <link rel="stylesheet" href="common.blocks/page/page_theme_dark.css">
+    <link rel="stylesheet" href="common.blocks/chat/chat.css">
+    <link rel="stylesheet" href="common.blocks/chat/__sidebar/chat_sidebar.css">
+    <link rel="stylesheet" href="common.blocks/chat/__content/chat__content.css">
+    <link rel="stylesheet" href="common.blocks/chat/__panel/chat__panel.css">
+    <link rel="stylesheet" href="common.blocks/chat/__toolbar/chat__toolbar.css">
+    <link rel="stylesheet" href="common.blocks/chat/__toolbar/_content_center/chat__toolbar_content_center.css">
+    <link rel="stylesheet" href="common.blocks/chat/__toolbar/_content_right/chat__toolbar_content_right.css">
+    <link rel="stylesheet" href="common.blocks/chat/__dialogs/chat__dialogs.css">
+    <link rel="stylesheet" href="common.blocks/chat/__dialog/chat__dialog.css">
+    <link rel="stylesheet" href="common.blocks/single-field/single-field.css">
+    <link rel="stylesheet" href="common.blocks/single-field/__input/single-field__input.css">
+    <link rel="stylesheet" href="common.blocks/single-field/__button/single-filed__button.css">
+    <link rel="stylesheet" href="common.blocks/single-field/__icon/single-field__icon.css">
+</head>
+
+<body class="page page_theme_dark">
+    <div class="chat">
+        <div class="chat__sidebar">
+            <div class="chat__toolbar chat__toolbar_content_right chat__toolbar_content_center">
+                <a class="chat__link" href="./profile.html">Профиль ></a>
+            </div>
+            <div class="chat__toolbar chat__toolbar_content_center">
+                <div class="single-field">
+                    <input class="single-field__input fas" type="text" id="search" placeholder="&#xf002; Поиск" required>
+                </div>
+            </div>
+            <div class="chat__dialogs">
+                <div class="chat__dialog"></div>
+                <div class="chat__dialog"></div>
+                <div class="chat__dialog"></div>
+                <div class="chat__dialog"></div>
+                <div class="chat__dialog"></div>
+                <div class="chat__dialog"></div>
+                <div class="chat__dialog"></div>
+                <div class="chat__dialog"></div>
+                <div class="chat__dialog"></div>
+                <div class="chat__dialog"></div>
+                <div class="chat__dialog"></div>
+            </div>
+        </div>
+        <div class="chat__content"></div>
+    </div>
+    <!--Scripts-->
+    <script src="js/chat.js"></script>
+</body>
+
+</html>
