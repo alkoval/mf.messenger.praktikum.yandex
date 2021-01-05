@@ -1,8 +1,8 @@
 .form-field__input {
-  font-size: 18px;
-  padding: 10px 10px 10px 5px;
+  font-size: 1rem;
+  padding: 10px 0 10px 0;
   display: block;
-  width: 80%;
+  width: 280px;
   border: none;
   border-bottom: 1px solid #adadad;
   background-color: transparent;
@@ -16,16 +16,16 @@
 
 .form-field__input:valid + .form-field__label {
   top: -16px;
-  font-size: 14px;
+  font-size: 0.8rem;
   color: #adadad;
 }
 
 .form-field__input:focus + .form-field__label {
   top: -16px;
-  font-size: 14px;
+  font-size: 0.8rem;
   color: #1eb980;
 }
 
-.form-field__input:invalid + .form-field__error {
-  font-size: 25px;
+.form-field__input:invalid ~ .form-field__error {
+  display: block;
 }

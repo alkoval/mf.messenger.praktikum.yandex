@@ -2,6 +2,7 @@
   position: absolute;
   left: 5px;
   bottom: -25px;
-  font-size: 14px;
+  font-size: 0.8rem;
   color: #ff6859;
+  display: none;
 }
