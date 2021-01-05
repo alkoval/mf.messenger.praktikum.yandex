@@ -1,6 +1,6 @@
 .form-field__input {
-  font-size: 1rem;
-  padding: 10px 0 10px 0;
+  font-size: 0.8rem;
+  padding: 8px 0 8px 0;
   display: block;
   width: 280px;
   border: none;
@@ -15,14 +15,14 @@
 }
 
 .form-field__input:valid + .form-field__label {
-  top: -16px;
-  font-size: 0.8rem;
+  top: -12px;
+  font-size: 0.7rem;
   color: #adadad;
 }
 
 .form-field__input:focus + .form-field__label {
-  top: -16px;
-  font-size: 0.8rem;
+  top: -12px;
+  font-size: 0.7rem;
   color: #1eb980;
 }
 
