@@ -1,6 +1,7 @@
 function onClick() {
   const user = {
-    login: document.getElementById("login").nodeValue,
-    password: document.getElementById("password").nodeValue,
+    login: document.getElementById("login").value,
+    password: document.getElementById("password").value,
   };
+  console.log(user);
 }
