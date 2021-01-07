@@ -1,0 +1,9 @@
+.chat__property-column {
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat__property-column > span:first-child {
+  margin-top: 10px;
+}

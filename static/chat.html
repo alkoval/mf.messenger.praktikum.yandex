@@ -24,10 +24,20 @@
     <link rel="stylesheet" href="common.blocks/chat/__toolbar/_content_right/chat__toolbar_content_right.css">
     <link rel="stylesheet" href="common.blocks/chat/__dialogs/chat__dialogs.css">
     <link rel="stylesheet" href="common.blocks/chat/__dialog/chat__dialog.css">
+    <link rel="stylesheet" href="common.blocks/chat/__dialog/_type/_type_selected.css">
+    <link rel="stylesheet" href="common.blocks/chat/__avatar-column/__avatar-column.css">
+    <link rel="stylesheet" href="common.blocks/chat/__avatar/__avatar.css">
+    <link rel="stylesheet" href="common.blocks/chat/__text-column/__text-column.css">
+    <link rel="stylesheet" href="common.blocks/chat/__property-column/__property-column.css">
+    <link rel="stylesheet" href="common.blocks/chat/__count-unread/__count-unread.css">
+    <link rel="stylesheet" href="common.blocks/chat/__message-preview/__message-preview.css">
+    <link rel="stylesheet" href="common.blocks/chat/__nickname/__nickname.css">
+    <link rel="stylesheet" href="common.blocks/chat/__time/chat__time.css">
     <link rel="stylesheet" href="common.blocks/single-field/single-field.css">
     <link rel="stylesheet" href="common.blocks/single-field/__input/single-field__input.css">
     <link rel="stylesheet" href="common.blocks/single-field/__button/single-filed__button.css">
     <link rel="stylesheet" href="common.blocks/single-field/__icon/single-field__icon.css">
+    <link rel="stylesheet" href="common.blocks/intro/intro.css">
 </head>
 
 <body class="page page_theme_dark">
@@ -38,24 +48,144 @@
             </div>
             <div class="chat__toolbar chat__toolbar_content_center">
                 <div class="single-field">
-                    <input class="single-field__input fas" type="text" id="search" placeholder="&#xf002; Поиск" required>
+                    <input class="single-field__input fas" type="text" id="search" placeholder="&#xf002; Поиск"
+                        required>
                 </div>
             </div>
             <div class="chat__dialogs">
-                <div class="chat__dialog"></div>
-                <div class="chat__dialog"></div>
-                <div class="chat__dialog"></div>
-                <div class="chat__dialog"></div>
-                <div class="chat__dialog"></div>
-                <div class="chat__dialog"></div>
-                <div class="chat__dialog"></div>
-                <div class="chat__dialog"></div>
-                <div class="chat__dialog"></div>
-                <div class="chat__dialog"></div>
-                <div class="chat__dialog"></div>
+                <div class="chat__dialog">
+                    <div class="chat__avatar-column">
+                        <img class="chat__avatar" src="images/avatar.png">
+                    </div>
+                    <div class="chat__text-column">
+                        <span class="chat__nickname">Lorem</span>
+                        <span class="chat__message-preview">Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit...</span>
+                    </div>
+                    <div class="chat__property-column">
+                        <span class="chat__time">12:00</span>
+                        <span class="chat__count-unread">4</span>
+                    </div>
+                </div>
+                <div class="chat__dialog">
+                    <div class="chat__avatar-column">
+                        <img class="chat__avatar" src="images/avatar.png">
+                    </div>
+                    <div class="chat__text-column">
+                        <span class="chat__nickname">Lorem</span>
+                        <span class="chat__message-preview">
+                            <span class="chat__nickname">Вы:</span>
+                            Lorem ipsum dolor sit amet, consectetur...
+                        </span>
+                    </div>
+                    <div class="chat__property-column">
+                        <span class="chat__time">12:00</span>
+                        <span class="chat__count-unread">4</span>
+                    </div>
+                </div>
+                <div class="chat__dialog chat__dialog_type_selected">
+                    <div class="chat__avatar-column">
+                        <img class="chat__avatar" src="images/avatar.png">
+                    </div>
+                    <div class="chat__text-column">
+                        <span class="chat__nickname">Lorem</span>
+                        <span class="chat__message-preview">Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit...</span>
+                    </div>
+                    <div class="chat__property-column">
+                        <span class="chat__time">12:00</span>
+                    </div>
+                </div>
+                <div class="chat__dialog">
+                    <div class="chat__avatar-column">
+                        <img class="chat__avatar" src="images/avatar.png">
+                    </div>
+                    <div class="chat__text-column">
+                        <span class="chat__nickname">Lorem</span>
+                        <span class="chat__message-preview">Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit...</span>
+                    </div>
+                    <div class="chat__property-column">
+                        <span class="chat__time">12:00</span>
+                    </div>
+                </div>
+                <div class="chat__dialog">
+                    <div class="chat__avatar-column">
+                        <img class="chat__avatar" src="images/avatar.png">
+                    </div>
+                    <div class="chat__text-column">
+                        <span class="chat__nickname">Lorem</span>
+                        <span class="chat__message-preview">Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit...</span>
+                    </div>
+                    <div class="chat__property-column">
+                        <span class="chat__time">12:00</span>
+                        <span class="chat__count-unread">4</span>
+                    </div>
+                </div>
+                <div class="chat__dialog">
+                    <div class="chat__avatar-column">
+                        <img class="chat__avatar" src="images/avatar.png">
+                    </div>
+                    <div class="chat__text-column">
+                        <span class="chat__nickname">Lorem</span>
+                        <span class="chat__message-preview">Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit...</span>
+                    </div>
+                    <div class="chat__property-column">
+                        <span class="chat__time">12:00</span>
+                        <span class="chat__count-unread">4</span>
+                    </div>
+                </div>
+                <div class="chat__dialog">
+                    <div class="chat__avatar-column">
+                        <img class="chat__avatar" src="images/avatar.png">
+                    </div>
+                    <div class="chat__text-column">
+                        <span class="chat__nickname">Lorem</span>
+                        <span class="chat__message-preview">Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit...</span>
+                    </div>
+                    <div class="chat__property-column">
+                        <span class="chat__time">12:00</span>
+                        <span class="chat__count-unread">4</span>
+                    </div>
+                </div>
+                <div class="chat__dialog">
+                    <div class="chat__avatar-column">
+                        <img class="chat__avatar" src="images/avatar.png">
+                    </div>
+                    <div class="chat__text-column">
+                        <span class="chat__nickname">Lorem</span>
+                        <span class="chat__message-preview">Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit...</span>
+                    </div>
+                    <div class="chat__property-column">
+                        <span class="chat__time">12:00</span>
+                        <span class="chat__count-unread">4</span>
+                    </div>
+                </div>
+                <div class="chat__dialog">
+                    <div class="chat__avatar-column">
+                        <img class="chat__avatar" src="images/avatar.png">
+                    </div>
+                    <div class="chat__text-column">
+                        <span class="chat__nickname">Lorem</span>
+                        <span class="chat__message-preview">Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit...</span>
+                    </div>
+                    <div class="chat__property-column">
+                        <span class="chat__time">12:00</span>
+                        <span class="chat__count-unread">4</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="chat__content"></div>
+        <div class="chat__content">
+            <div class="intro">
+                <span>Выберите чат чтобы отправить сообщение</span>
+            </div>
+        </div>
     </div>
     <!--Scripts-->
     <script src="js/chat.js"></script>
