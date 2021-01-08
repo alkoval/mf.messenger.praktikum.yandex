@@ -1,0 +1,7 @@
+.history{
+    width: calc(100% - 30px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+}
