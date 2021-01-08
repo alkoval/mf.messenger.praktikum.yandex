@@ -4,7 +4,3 @@
   height: 130px;
   margin: auto;
 }
-
-.profile__avatar:hover {
-  filter: grayscale(100%);
-}
