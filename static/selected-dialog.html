@@ -51,8 +51,15 @@
     <link rel="stylesheet" href="common.blocks/history/__button/_type_text/history__button_type_text.css">
     <link rel="stylesheet" href="common.blocks/history/__button/_bg_dark-green/history__button_bg_dark-green.css">
     <link rel="stylesheet" href="common.blocks/history/__message/history__message.css">
+    <link rel="stylesheet" href="common.blocks/history/__message/_type_text/history__message_type_text.css">
+    <link rel="stylesheet" href="common.blocks/history/__message/_type_image/history__message_type_image.css">
+    <link rel="stylesheet" href="common.blocks/history/__message/_position_left/history__message_position_left.css">
+    <link rel="stylesheet" href="common.blocks/history/__message/_position_right/history__message_position_right.css">
+    <link rel="stylesheet" href="common.blocks/history/__message/_bg_dark-green/history__message_bg_dark-green.css">
+    <link rel="stylesheet" href="common.blocks/history/__date/history__date.css">
     <link rel="stylesheet" href="common.blocks/history/__time/history__time.css">
     <link rel="stylesheet" href="common.blocks/history/__time/_bg_gray/history__time_bg_gray.css">
+    <link rel="stylesheet" href="common.blocks/history/__time/_position_right-end/history__time_position_right-end.css">
     <link rel="stylesheet" href="common.blocks/history/__text-column/history__text-column.css">
     <link rel="stylesheet" href="common.blocks/history/__avatar/history__avatar.css">
     <link rel="stylesheet" href="common.blocks/history/__dialog-name/history__dialog-name.css">
@@ -224,7 +231,37 @@
                     </div>
                 </div>
                 <div class="history__body">
-                    <div class="history__board"></div>
+                    <div class="history__board">
+                        <div class="history__date">
+                            <span>17 июля</span>
+                        </div>
+                        <div class="history__message history__message_type_text history__message_position_left">
+                            <div>
+                                <span>Lorem
+                                    ipsum dolor sit amet,
+                                    consectetur adipiscing elit, sed do
+                                    eiusmod tempor
+                                    incididunt
+                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco
+                                    laboris nisi ut aliquip ex ea commodo consequat.</span>
+                            </div>
+                            <div class="history__time">
+                                <span>12:00</span>
+                            </div>
+                        </div>
+                        <div class="history__message history__message_type_image history__message_position_left">
+                            <img src="images/rnm.png" alt="">
+                            <div class="history__time history__time_bg_gray history__time_position_right-end">
+                                <span>12:00</span>
+                            </div>
+                        </div>
+                        <div
+                            class="history__message history__message_type_text history__message_position_right history__message_bg_dark-green">
+                            <div><span>Lorem ipsum</span></div>
+                            <div class="history__time"><span><i class="fas fa-check-double"></i> 12:00</span></div>
+                        </div>
+                    </div>
                     <div class="modal modal_state_hide modal_position-right-top" id="mdDialog">
                         <div class="list">
                             <div class="list__item">
@@ -268,8 +305,7 @@
                         </div>
                     </div>
                     <div class="history__button-column">
-                        <button class="history__button history__button_type_round history__button_bg_dark-green"
-                            onclick="toggleModalDialog()">
+                        <button class="history__button history__button_type_round history__button_bg_dark-green">
                             <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
