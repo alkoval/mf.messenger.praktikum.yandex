@@ -1,13 +1,12 @@
-function onClick() {
-  const user = {
-    email: document.getElementById("email").value,
-    login: document.getElementById("login").value,
-    firstName: document.getElementById("firstName").value,
-    secondName: document.getElementById("secondName").value,
-    displayName: document.getElementById("displayName").value,
-    phone: document.getElementById("phone").value,
-  };
-  console.log(user);
+function updateProfile() {
+  const obj = {};
+  const properties = Array.from(document.querySelectorAll(".profile__input"));
+
+  for (let prop of properties) {
+    obj[prop.name] = prop.value;
+  }
+
+  console.log(obj);
 }
 
 function checkFile(o) {
@@ -38,18 +37,13 @@ function checkFile(o) {
 }
 
 function toggleModalFileUpload() {
-  if (
-    document
-      .getElementById("fileUploadError")
-      .classList.contains("modal__text_display_none")
-  ) {
-    const md = document.getElementById("mdFileUpload");
-    if (md.classList.contains("modal_state_hide")) {
-      md.classList.remove("modal_state_hide");
-      md.classList.add("modal_state_show");
+  const err = document.getElementById("fileUploadError");
+  const md = document.getElementById("mdFileUpload");
+  if (err.classList.contains("modal__text_display_none")) {
+    if (md.classList.contains("blackout_state_show")) {
+      md.classList.remove("blackout_state_show");
     } else {
-      md.classList.remove("modal_state_show");
-      md.classList.add("modal_state_hide");
+      md.classList.add("blackout_state_show");
     }
   }
 }

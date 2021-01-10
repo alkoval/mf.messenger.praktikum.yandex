@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="common.blocks/page/page.css">
     <link rel="stylesheet" href="common.blocks/page/page_theme_dark.css">
     <link rel="stylesheet" href="common.blocks/blackout/blackout.css">
-    <link rel="stylesheet" href="common.blocks/blackout/_display_none/blackout_display_none.css">
+    <link rel="stylesheet" href="common.blocks/blackout/_state_show/blackout_state_show.css">
     <link rel="stylesheet" href="common.blocks/modal/modal.css">
     <link rel="stylesheet" href="common.blocks/modal/_state_hide/modal_state_hide.css">
     <link rel="stylesheet" href="common.blocks/modal/_state_show/modal_state_show.css">
@@ -54,8 +54,8 @@
 </head>
 
 <body class="page page_theme_dark">
-    <div class="blackout modal_state_hide" id="mdFileUpload">
-        <div class="modal">
+    <div class="blackout blackout_state_show" id="mdFileUpload">
+        <div class="modal modal_state_show">
             <div class="modal__content">
                 <div class="modal__section">
                     <span class="modal__title">Загрузите файл</span>
@@ -89,52 +89,53 @@
                     <div class="profile__avatar-container">
                         <img class="profile__avatar" src="images/avatar.png" alt="">
                         <div class="profile__avatar-link" onclick="toggleModalFileUpload()">
-                            <span>Поменять<br>аватар</span></div>
+                            <span>Поменять<br>аватар</span>
+                        </div>
                     </div>
                     <span class="profile__nickname">Lorem</span>
                 </div>
-                <div class="profile__section">
-                    <div class="profile__group">
+                <ul class="profile__section">
+                    <li class="profile__group">
                         <span class="profile__group-text">Почта</span>
                         <span class="profile__group-text profile__group-text_color_white">pochta@yandex.ru</span>
-                    </div>
-                    <div class="profile__group">
+                    </li>
+                    <li class="profile__group">
                         <span class="profile__group-text">Логин</span>
                         <span class="profile__group-text profile__group-text_color_white">Lorem</span>
-                    </div>
-                    <div class="profile__group">
+                    </li>
+                    <li class="profile__group">
                         <span class="profile__group-text">Имя</span>
                         <span class="profile__group-text profile__group-text_color_white">Ipsum</span>
-                    </div>
-                    <div class="profile__group">
+                    </li>
+                    <li class="profile__group">
                         <span class="profile__group-text">Фамилия</span>
                         <span class="profile__group-text profile__group-text_color_white">Dolor</span>
-                    </div>
-                    <div class="profile__group">
+                    </li>
+                    <li class="profile__group">
                         <span class="profile__group-text">Имя в чате</span>
                         <span class="profile__group-text profile__group-text_color_white">Lorem</span>
-                    </div>
-                    <div class="profile__group">
+                    </li>
+                    <li class="profile__group">
                         <span class="profile__group-text">Телефон</span>
                         <span class="profile__group-text profile__group-text_color_white">+7 (909) 967 30 30</span>
-                    </div>
-                </div>
-                <div class="profile__section">
-                    <div class="profile__group">
+                    </li>
+                </ul>
+                <ul class="profile__section">
+                    <li class="profile__group">
                         <a class="profile__group-text profile__group-text_color_dark-green profile__group-link"
                             href="change-profile.html">Изменить
                             данные</a>
-                    </div>
-                    <div class="profile__group">
+                    </li>
+                    <li class="profile__group">
                         <a class="profile__group-text profile__group-text_color_dark-green profile__group-link"
                             href="change-password.html">Изменить
                             пароль</a>
-                    </div>
-                    <div class="profile__group profile__group_border_null">
+                    </li>
+                    <li class="profile__group profile__group_border_null">
                         <a class="profile__group-text profile__group-text_color_red profile__group-link"
                             href="index.html">Выйти</a>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
