@@ -8,6 +8,17 @@ a {
   color: #adadad;
 }
 
+p {
+  text-decoration: none;
+  margin: 0;
+}
+
+ul, li {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 5px;

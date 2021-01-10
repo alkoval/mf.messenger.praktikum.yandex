@@ -1,28 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatApp | Index</title>
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <!--Fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!--Fontsawesome-->
+    <script src="https://kit.fontawesome.com/f5cf5df5b4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
     <!--BEM common.blocks-->
     <link rel="stylesheet" href="common.blocks/page/page.css">
     <link rel="stylesheet" href="common.blocks/page/page_theme_dark.css">
+    <link rel="stylesheet" href="common.blocks/list/list.css">
+    <link rel="stylesheet" href="common.blocks/list/__item/list__item.css">
+    <link rel="stylesheet" href="common.blocks/list/__icon/list__icon.css">
+    <link rel="stylesheet" href="common.blocks/list/__text/list__text.css">
 </head>
 
 <body class="page page_theme_dark">
-    <ul>
-        <li><a href='./login.html'>Login</a></li>
-        <li><a href='./signin.html'>SignIn</a></li>
-        <li><a href='./chat.html'>Chat</a></li>
-        <li><a href='./selected-dialog.html'>Selected dialog</a></li>
-        <li><a href='./profile.html'>Profile</a></li>
-        <li><a href='./change-profile.html'>Change profile</a></li>
-        <li><a href='./change-password.html'>Change password</a></li>
+    <ul class="list">
+        <li class="list__item"><i class="far fa-file list__icon"></i><a class="list__text" href='./login.html'>Login</a>
+        </li>
+        <li class="list__item"><i class="far fa-file list__icon"></i><a class="list__text"
+                href='./signin.html'>SignIn</a></li>
+        <li class="list__item"><i class="far fa-file list__icon"></i><a class="list__text" href='./chat.html'>Chat</a>
+        </li>
+        <li class="list__item"><i class="far fa-file list__icon"></i><a class="list__text"
+                href='./selected-dialog.html'>Selected
+                dialog</a></li>
+        <li class="list__item"><i class="far fa-file list__icon"></i><a class="list__text"
+                href='./profile.html'>Profile</a></li>
+        <li class="list__item"><i class="far fa-file list__icon"></i><a class="list__text"
+                href='./change-profile.html'>Change
+                profile</a></li>
+        <li class="list__item"><i class="far fa-file list__icon"></i><a class="list__text"
+                href='./change-password.html'>Change
+                password</a></li>
     </ul>
 </body>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -52,37 +52,37 @@
                         </div>
                         <span class="profile__nickname">Lorem</span>
                     </div>
-                    <div class="profile__section">
-                        <div class="profile__group">
+                    <ul class="profile__section">
+                        <li class="profile__group">
                             <span class="profile__group-text">Почта</span>
-                            <input class="profile__input" type="text" placeholder="..." id="email"
+                            <input class="profile__input" type="text" placeholder="..." name="email"
                                 value="pochta@yandex.ru">
-                        </div>
-                        <div class="profile__group">
+                        </li>
+                        <li class="profile__group">
                             <span class="profile__group-text">Логин</span>
-                            <input class="profile__input" type="text" placeholder="..." id="login" value="Lorem">
-                        </div>
-                        <div class="profile__group">
+                            <input class="profile__input" type="text" placeholder="..." name="login" value="Lorem">
+                        </li>
+                        <li class="profile__group">
                             <span class="profile__group-text">Имя</span>
-                            <input class="profile__input" type="text" placeholder="..." id="firstName" value="Ipsum">
-                        </div>
-                        <div class="profile__group">
+                            <input class="profile__input" type="text" placeholder="..." name="firstName" value="Ipsum">
+                        </li>
+                        <li class="profile__group">
                             <span class="profile__group-text">Фамилия</span>
-                            <input class="profile__input" type="text" placeholder="..." id="secondName" value="Dolor">
-                        </div>
-                        <div class="profile__group">
+                            <input class="profile__input" type="text" placeholder="..." name="secondName" value="Dolor">
+                        </li>
+                        <li class="profile__group">
                             <span class="profile__group-text">Имя в чате</span>
-                            <input class="profile__input" type="text" placeholder="..." id="displayName" value="Lorem">
-                        </div>
-                        <div class="profile__group">
+                            <input class="profile__input" type="text" placeholder="..." name="displayName" value="Lorem">
+                        </li>
+                        <li class="profile__group">
                             <span class="profile__group-text">Телефон</span>
-                            <input class="profile__input" type="text" placeholder="..." id="phone"
+                            <input class="profile__input" type="text" placeholder="..." name="phone"
                                 value="+7 (909) 967 30 30">
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                     <div class="profile__section">
                         <button class="profile__button profile__button_bg_dark-green" type="button"
-                            onclick="onClick()">Сохранить</button>
+                            onclick="updateProfile()">Сохранить</button>
                     </div>
                 </div>
             </form>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -36,50 +36,50 @@
             </div>
             <div class="card__body">
                 <div class="form-field">
-                    <input class="form-field__input" type="text" id="email" required>
+                    <input class="form-field__input" type="text" name="email" required>
                     <label class="form-field__label" for="email"> Почта </label>
                     <span class="form-field__error">Поле не может быть пустым!</span>
                 </div>
                 <div class="form-field">
-                    <input class="form-field__input" type="text" id="login" required>
+                    <input class="form-field__input" type="text" name="login" required>
                     <label class="form-field__label" for="login"> Логин </label>
                     <span class="form-field__error">Поле не может быть пустым!</span>
                 </div>
                 <div class="form-field">
-                    <input class="form-field__input" type="text" id="firstName" required>
+                    <input class="form-field__input" type="text" name="firstName" required>
                     <label class="form-field__label" for="firstName"> Имя </label>
                     <span class="form-field__error">Поле не может быть пустым!</span>
                 </div>
                 <div class="form-field">
-                    <input class="form-field__input" type="text" id="secondName" required>
+                    <input class="form-field__input" type="text" name="secondName" required>
                     <label class="form-field__label" for="secondName"> Фамилия </label>
                     <span class="form-field__error">Поле не может быть пустым!</span>
                 </div>
                 <div class="form-field">
-                    <input class="form-field__input" type="text" id="phone" required>
+                    <input class="form-field__input" type="text" name="phone" required>
                     <label class="form-field__label" for="phone"> Телефон </label>
                     <span class="form-field__error">Поле не может быть пустым!</span>
                 </div>
                 <div class="form-field">
-                    <input class="form-field__input" type="password" id="password" required>
+                    <input class="form-field__input" type="password" name="password" required>
                     <label class="form-field__label" for="password"> Пароль </label>
                     <span class="form-field__error">Поле не может быть пустым!</span>
                 </div>
                 <div class="form-field">
-                    <input class="form-field__input" type="password" id="repassword" required>
+                    <input class="form-field__input" type="password" name="repassword" required>
                     <label class="form-field__label" for="repassword"> Пароль </label>
                     <span class="form-field__error">Пароли не совпадают!</span>
                 </div>
             </div>
             <div class="card__footer">
                 <button class="card__button card__button_bg_dark-green" type="button"
-                    onclick="onClick()">Зарегистрироваться</button>
+                    onclick="fillForm()">Зарегистрироваться</button>
                 <a class="card__link" href="./login.html">Войти</a>
             </div>
         </form>
     </div>
     <!--Scripts-->
-    <script src="js/signin.js"></script>
+    <script src="js/fill-form.js"></script>
 </body>
 
 </html>

@@ -4,6 +4,6 @@
   flex-direction: column;
 }
 
-.chat__property-column > span:first-child {
+.chat__property-column > time:first-child {
   margin-top: 10px;
 }
