@@ -1,0 +1,118 @@
+@import url(../common.blocks/page/page.css);
+@import url(../common.blocks/page/page_theme_dark.css);
+
+@import url(../common.blocks/blackout/blackout.css);
+@import url(../common.blocks/blackout/_state_show/blackout_state_show.css);
+
+@import url(../common.blocks/modal/modal.css);
+@import url(../common.blocks/modal/__section/modal__section.css);
+@import url(../common.blocks/modal/__content/modal__content.css);
+@import url(../common.blocks/modal/__text/modal__text.css);
+@import url(../common.blocks/modal/__text/_display_none/modal__text_display_none.css);
+@import url(../common.blocks/modal/__text/_bg_red/modal__text_bg_red.css);
+@import url(../common.blocks/modal/__title/modal__title.css);
+@import url(../common.blocks/modal/__button/modal__button.css);
+@import url(../common.blocks/modal/__button/_bg_dark-green/modal__button_bg_dark-green.css);
+@import url(../common.blocks/modal/__file-upload/modal__file-upload.css);
+@import url(../common.blocks/modal/__file-upload/__label/modal__file-upload__label.css);
+@import url(../common.blocks/modal/__file-upload/__input/modal__file-upload__input.css);
+@import url(../common.blocks/modal/_position_left-end/modal_position_left-end.css);
+@import url(../common.blocks/modal/_position_right-top/modal_position-right-top.css);
+@import url(../common.blocks/modal/_state_hide/modal_state_hide.css);
+@import url(../common.blocks/modal/_state_show/modal_state_show.css);
+
+@import url(../common.blocks/card/card.css);
+@import url(../common.blocks/card/__header/card__header.css);
+@import url(../common.blocks/card/__body/card__body.css);
+@import url(../common.blocks/card/__footer/card__footer.css);
+@import url(../common.blocks/card/__title/card__title.css);
+@import url(../common.blocks/card/__text/card__text.css);
+@import url(../common.blocks/card/__text/_center/card__text_center.css);
+@import url(../common.blocks/card/__link/card__link.css);
+@import url(../common.blocks/card/__button/card__button.css);
+@import url(../common.blocks/card/__button/_bg_dark-green/card__button_bg_dark-green.css);
+
+@import url(../common.blocks/single-field/single-field.css);
+@import url(../common.blocks/single-field/__input/single-field__input.css);
+@import url(../common.blocks/single-field/__icon/single-field__icon.css);
+@import url(../common.blocks/single-field/__button/single-filed__button.css);
+
+@import url(../common.blocks/form-field/form-field.css);
+@import url(../common.blocks/form-field/__label/form-field__label.css);
+@import url(../common.blocks/form-field/__input/form-field__input.css);
+@import url(../common.blocks/form-field/__error/form-field__error.css);
+
+@import url(../common.blocks/list/list.css);
+@import url(../common.blocks/list/__text/list__text.css);
+@import url(../common.blocks/list/__item/list__item.css);
+@import url(../common.blocks/list/__icon/list__icon.css);
+
+@import url(../common.blocks/intro/intro.css);
+
+@import url(../common.blocks/chat/chat.css);;
+@import url(../common.blocks/chat/__sidebar/chat_sidebar.css);
+@import url(../common.blocks/chat/__content/chat__content.css);
+@import url(../common.blocks/chat/__panel/chat__panel.css);
+@import url(../common.blocks/chat/__toolbar/chat__toolbar.css);
+@import url(../common.blocks/chat/__toolbar/_content_center/chat__toolbar_content_center.css);
+@import url(../common.blocks/chat/__toolbar/_content_right/chat__toolbar_content_right.css);
+@import url(../common.blocks/chat/__dialogs/chat__dialogs.css);
+@import url(../common.blocks/chat/__dialog/chat__dialog.css);
+@import url(../common.blocks/chat/__dialog/_type/_type_selected.css);
+@import url(../common.blocks/chat/__avatar-column/__avatar-column.css);
+@import url(../common.blocks/chat/__avatar/__avatar.css);
+@import url(../common.blocks/chat/__text-column/__text-column.css);
+@import url(../common.blocks/chat/__property-column/__property-column.css);
+@import url(../common.blocks/chat/__count-unread/__count-unread.css);
+@import url(../common.blocks/chat/__message-preview/__message-preview.css);
+@import url(../common.blocks/chat/__nickname/__nickname.css);
+@import url(../common.blocks/chat/__time/chat__time.css);
+
+@import url(../common.blocks/history/history.css);
+@import url(../common.blocks/history/__header/history__header.css);
+@import url(../common.blocks/history/__body/history__body.css);
+@import url(../common.blocks/history/__footer/history__footer.css);
+@import url(../common.blocks/history/__board/history__board.css);
+@import url(../common.blocks/history/__avatar-column/history__avatar-column.css);
+@import url(../common.blocks/history/__button-column/history__button-column.css);
+@import url(../common.blocks/history/__input-column/history__input-column.css);
+@import url(../common.blocks/history/__button/history__button.css);
+@import url(../common.blocks/history/__button/_active/history__button_active.css);
+@import url(../common.blocks/history/__button/_type_round/history__button_type_round.css);
+@import url(../common.blocks/history/__button/_type_text/history__button_type_text.css);
+@import url(../common.blocks/history/__button/_bg_dark-green/history__button_bg_dark-green.css);
+@import url(../common.blocks/history/__message/history__message.css);
+@import url(../common.blocks/history/__message/_type_text/history__message_type_text.css);
+@import url(../common.blocks/history/__message/_type_image/history__message_type_image.css);
+@import url(../common.blocks/history/__message/_position_left/history__message_position_left.css);
+@import url(../common.blocks/history/__message/_position_right/history__message_position_right.css);
+@import url(../common.blocks/history/__message/_bg_dark-green/history__message_bg_dark-green.css);
+@import url(../common.blocks/history/__date/history__date.css);
+@import url(../common.blocks/history/__time/history__time.css);
+@import url(../common.blocks/history/__time/_bg_gray/history__time_bg_gray.css);
+@import url(../common.blocks/history/__time/_position_right-end/history__time_position_right-end.css);
+@import url(../common.blocks/history/__text-column/history__text-column.css);
+@import url(../common.blocks/history/__avatar/history__avatar.css);
+@import url(../common.blocks/history/__dialog-name/history__dialog-name.css);
+
+@import url(../common.blocks/profile/profile.css);
+@import url(../common.blocks/profile/__sidebar/profile__sidebar.css);
+@import url(../common.blocks/profile/__content/profile__content.css);
+@import url(../common.blocks/profile/__back/profile__back.css);
+@import url(../common.blocks/profile/__card/profile__card.css);
+@import url(../common.blocks/profile/__section/profile__section.css);
+@import url(../common.blocks/profile/__avatar-container/profile__avatar-container.css);
+@import url(../common.blocks/profile/__avatar/profile__avatar.css);
+@import url(../common.blocks/profile/__avatar-link/profile__avatar-link.css);
+@import url(../common.blocks/profile/__nickname/profile__nickname.css);
+@import url(../common.blocks/profile/__group/profile__group.css);
+@import url(../common.blocks/profile/__group/_border_null/profile__group_border_null.css);
+@import url(../common.blocks/profile/__group-text/profile__group-text.css);
+@import url(../common.blocks/profile/__group-text/_color_white/profile__group-text_color_white.css);
+@import url(../common.blocks/profile/__group-text/_color_dark-green/profile__group-text_color_dark-green.css);
+@import url(../common.blocks/profile/__group-text/_color_red/profile__group-text_color_red.css);
+@import url(../common.blocks/profile/__group-link/profile__group-link.css);
+
+@import url(../common.blocks/signin/signin.css);
+
+@import url(../common.blocks/login/login.css);
