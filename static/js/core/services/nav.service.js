@@ -1,14 +1,12 @@
-import { NavItem } from '../../shared/interfaces/NavItem';
-
-export default class NavServise {
-    public navItems: NavItem[] = [];
-
+export default class NavService {
     constructor() {
+        this.navItems = [];
+        this.location = window.location.href;
         this.loadOfflineRoutes();
     }
-
-    private loadOfflineRoutes(): void {
+    loadOfflineRoutes() {
         this.navItems = [
+            { text: 'Интро', icon: 'far fa-file list__icon', route: '/intro.html' },
             { text: 'Логин', icon: 'far fa-file list__icon', route: '/login.html' },
             { text: 'Регистрация', icon: 'far fa-file list__icon', route: '/signin.html' },
             { text: 'Чат', icon: 'far fa-file list__icon', route: '/chat.html' },
@@ -18,4 +16,16 @@ export default class NavServise {
             { text: 'Изменить пароль', icon: 'far fa-file list__icon', route: '/change-password.html' },
         ];
     }
+    getNavItems() {
+        return this.navItems;
+    }
+    getActiveNavItem() {
+        for (let nav of this.navItems) {
+            if (this.location.endsWith(nav.route)) {
+                return nav;
+            }
+        }
+        return this.navItems[0];
+    }
 }
+//# sourceMappingURL=nav.service.js.map

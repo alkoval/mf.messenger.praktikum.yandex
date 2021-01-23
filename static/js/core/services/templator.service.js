@@ -1,6 +1,6 @@
 export default class Templator {
     constructor() {
-        this.hb = window.Handlebars;
+        this.hb = Handlebars;
     }
     compile(template, options) {
         const tmpl = this.hb.compile(template);

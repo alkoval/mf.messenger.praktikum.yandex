@@ -1,23 +1,13 @@
 import { EventBus } from '../event-bus/event-bus.js';
-import { PropsComponent } from '../../shared/interfaces/props-component.js';
-import { Component } from '../../shared/interfaces/component.js';
-import Templator from '../services/templator.service.js';
-
-export enum EVENTS {
-    INIT = "init",
-    FLOW_CDM = "flow:component-did-mount",
-    FLOW_RENDER = "flow:render",
-    FLOW_CDU = "flow:component-did-update",
-}
-export abstract class BaseComponent implements Component {
-    private eventBus: EventBus;
-    private elem: HTMLElement;
-    private tag: string;
-    private props: PropsComponent;
-    public templator: Templator;
-    public template: string;
-
-    constructor(tag: string, props: PropsComponent, templator: Templator, template: string) {
+export var EVENTS;
+(function (EVENTS) {
+    EVENTS["INIT"] = "init";
+    EVENTS["FLOW_CDM"] = "flow:component-did-mount";
+    EVENTS["FLOW_RENDER"] = "flow:render";
+    EVENTS["FLOW_CDU"] = "flow:component-did-update";
+})(EVENTS || (EVENTS = {}));
+export class BaseComponent {
+    constructor(tag, props, templator, template) {
         this.tag = tag;
         this.templator = templator;
         this.template = template;
@@ -27,53 +17,42 @@ export abstract class BaseComponent implements Component {
         this.registerEvents();
         this.eventBus.emit(EVENTS.INIT);
     }
-
-    private registerEvents(): void {
+    registerEvents() {
         this.eventBus.on(EVENTS.INIT, this.init.bind(this));
         this.eventBus.on(EVENTS.FLOW_CDM, this.componentDidMount.bind(this));
         this.eventBus.on(EVENTS.FLOW_RENDER, this.preRender.bind(this));
         this.eventBus.on(EVENTS.FLOW_CDU, this.componentDidUpdate.bind(this));
     }
-
-    public init(): void {
+    init() {
         this.eventBus.emit(EVENTS.FLOW_CDM);
     }
-
-    private componentDidMount(): void {
+    componentDidMount() {
         this.eventBus.emit(EVENTS.FLOW_RENDER);
     }
-
-    public componentDidUpdate(): void {
+    componentDidUpdate() {
         this.eventBus.emit(EVENTS.FLOW_RENDER);
     }
-
-    public setProps(props: PropsComponent): void {
+    setProps(props) {
         Object.assign(this.props, props);
     }
-
-    public getProps(): PropsComponent {
+    getProps() {
         return this.props;
     }
-
-    public getElement(): HTMLElement {
+    getElement() {
         return this.elem;
     }
-
-    public preRender(): void {
+    preRender() {
         this.elem.innerHTML = this.render();
     }
-
-    public render(): string { return ''; }
-
-    public getContent() {
+    render() { return ''; }
+    getContent() {
         return this.elem;
     }
-
-    private makePropsProxy(props: PropsComponent): PropsComponent {
+    makePropsProxy(props) {
         const self = this;
         props = new Proxy(props, {
-            set(target: any, prop: string, val: any) {
-                console.log('setProps')
+            set(target, prop, val) {
+                console.log('setProps');
                 target[prop] = val;
                 self.eventBus.emit(EVENTS.FLOW_CDU);
                 return true;
@@ -81,8 +60,8 @@ export abstract class BaseComponent implements Component {
         });
         return props;
     }
-
-    private createDocumentElement(): HTMLElement {
+    createDocumentElement() {
         return document.createElement(this.tag);
     }
 }
+//# sourceMappingURL=base-component.js.map

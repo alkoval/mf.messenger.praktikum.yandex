@@ -1,14 +1,16 @@
-import { NavServise, Templator } from './core/core.js';
-class UserAccount {
-    constructor(name, id) {
-        this.name = name;
-        this.id = id;
+import BootstrapService from './core/services/bootstrap.service.js';
+import { NavService } from './core/core.js';
+import { PageService } from './pages/page.service.js';
+export class App {
+    constructor() {
+        this.navService = new NavService();
+        this.bootstrapService = new BootstrapService(this.navService);
+        this.pageService = new PageService('.chatapp', this.navService.getActiveNavItem(), this.bootstrapService.mockupData);
+    }
+    init() {
+        this.pageService.init();
     }
 }
-const navService = new NavServise();
-console.log(navService);
-const user = new UserAccount("Murphy", 1);
-console.log(user);
-const templator = new Templator();
-console.log(templator.compile("Name: {{name}}", { name: "Nils" }));
+const chatApp = new App();
+chatApp.init();
 //# sourceMappingURL=app.js.map

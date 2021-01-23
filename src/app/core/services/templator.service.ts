@@ -3,7 +3,7 @@ export default class Templator {
 
     constructor() {
         // @ts-ignore: Не уверен, что это хорошая идея
-        this.hb = window.Handlebars;
+        this.hb = Handlebars;
     }
 
     public compile(template: string, options: any): string {
