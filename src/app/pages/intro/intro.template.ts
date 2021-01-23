@@ -4,12 +4,11 @@ export class IntroPageTemplate implements PageTemplate {
     public content: string;
 
     constructor() {
-        this.content = '';
-        this.init();
+        this.content = this.getContent();
     }
 
-    private init(): void {
-        this.content = `
+    private getContent(): string {
+        return `
             <ul class="list">
                 {{#each this}}
                     <li class="list__item" onclick="onClick()">
