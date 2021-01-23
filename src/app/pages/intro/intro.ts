@@ -12,8 +12,4 @@ export class IntroPageComponent extends BaseComponent {
     public render(): string {
         return this.templator.compile(this.template, this.getProps());
     }
-
-    public onClick(): void {
-        console.log('click!')
-    }
 }
