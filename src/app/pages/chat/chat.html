@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatApp | Chat</title>
+    <title>ChatApp | Selected dialog</title>
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -37,7 +37,41 @@
     <link rel="stylesheet" href="common.blocks/single-field/__input/single-field__input.css">
     <link rel="stylesheet" href="common.blocks/single-field/__button/single-filed__button.css">
     <link rel="stylesheet" href="common.blocks/single-field/__icon/single-field__icon.css">
-    <link rel="stylesheet" href="common.blocks/intro/intro.css">
+    <link rel="stylesheet" href="common.blocks/history/history.css">
+    <link rel="stylesheet" href="common.blocks/history/__header/history__header.css">
+    <link rel="stylesheet" href="common.blocks/history/__body/history__body.css">
+    <link rel="stylesheet" href="common.blocks/history/__footer/history__footer.css">
+    <link rel="stylesheet" href="common.blocks/history/__board/history__board.css">
+    <link rel="stylesheet" href="common.blocks/history/__avatar-column/history__avatar-column.css">
+    <link rel="stylesheet" href="common.blocks/history/__button-column/history__button-column.css">
+    <link rel="stylesheet" href="common.blocks/history/__input-column/history__input-column.css">
+    <link rel="stylesheet" href="common.blocks/history/__button/history__button.css">
+    <link rel="stylesheet" href="common.blocks/history/__button/_active/history__button_active.css">
+    <link rel="stylesheet" href="common.blocks/history/__button/_type_round/history__button_type_round.css">
+    <link rel="stylesheet" href="common.blocks/history/__button/_type_text/history__button_type_text.css">
+    <link rel="stylesheet" href="common.blocks/history/__button/_bg_dark-green/history__button_bg_dark-green.css">
+    <link rel="stylesheet" href="common.blocks/history/__message/history__message.css">
+    <link rel="stylesheet" href="common.blocks/history/__message/_type_text/history__message_type_text.css">
+    <link rel="stylesheet" href="common.blocks/history/__message/_type_image/history__message_type_image.css">
+    <link rel="stylesheet" href="common.blocks/history/__message/_position_left/history__message_position_left.css">
+    <link rel="stylesheet" href="common.blocks/history/__message/_position_right/history__message_position_right.css">
+    <link rel="stylesheet" href="common.blocks/history/__message/_bg_dark-green/history__message_bg_dark-green.css">
+    <link rel="stylesheet" href="common.blocks/history/__date/history__date.css">
+    <link rel="stylesheet" href="common.blocks/history/__time/history__time.css">
+    <link rel="stylesheet" href="common.blocks/history/__time/_bg_gray/history__time_bg_gray.css">
+    <link rel="stylesheet" href="common.blocks/history/__time/_position_right-end/history__time_position_right-end.css">
+    <link rel="stylesheet" href="common.blocks/history/__text-column/history__text-column.css">
+    <link rel="stylesheet" href="common.blocks/history/__avatar/history__avatar.css">
+    <link rel="stylesheet" href="common.blocks/history/__dialog-name/history__dialog-name.css">
+    <link rel="stylesheet" href="common.blocks/modal/modal.css">
+    <link rel="stylesheet" href="common.blocks/modal/_state_hide/modal_state_hide.css">
+    <link rel="stylesheet" href="common.blocks/modal/_state_show/modal_state_show.css">
+    <link rel="stylesheet" href="common.blocks/modal/_position_left-end/modal_position_left-end.css">
+    <link rel="stylesheet" href="common.blocks/modal/_position_right-top/modal_position-right-top.css">
+    <link rel="stylesheet" href="common.blocks/list/list.css">
+    <link rel="stylesheet" href="common.blocks/list/__item/list__item.css">
+    <link rel="stylesheet" href="common.blocks/list/__icon/list__icon.css">
+    <link rel="stylesheet" href="common.blocks/list/__text/list__text.css">
 </head>
 
 <body class="page page_theme_dark">
@@ -182,8 +216,100 @@
             </div>
         </div>
         <div class="chat__content">
-            <div class="intro">
-                <span>Выберите чат чтобы отправить сообщение</span>
+            <div class="history">
+                <div class="history__header">
+                    <div class="history__avatar-column">
+                        <img class="history__avatar" src="images/avatar.png">
+                    </div>
+                    <div class="history__text-column">
+                        <span class="history__dialog-name">Lorem</span>
+                    </div>
+                    <div class="history__button-column">
+                        <button class="history__button history__button_type_round" onclick="toggleModalDialog()">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="history__body">
+                    <div class="history__board">
+                        <div class="history__date">
+                            <time>17 июля</time>
+                        </div>
+                        <div class="history__message history__message_type_text history__message_position_left">
+                            <div>
+                                <p>Lorem
+                                    ipsum dolor sit amet,
+                                    consectetur adipiscing elit, sed do
+                                    eiusmod tempor
+                                    incididunt
+                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco
+                                    laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                            <div class="history__time">
+                                <time>12:00</time>
+                            </div>
+                        </div>
+                        <div class="history__message history__message_type_image history__message_position_left">
+                            <img src="images/rnm.png" alt="">
+                            <div class="history__time history__time_bg_gray history__time_position_right-end">
+                                <time>12:00</time>
+                            </div>
+                        </div>
+                        <div
+                            class="history__message history__message_type_text history__message_position_right history__message_bg_dark-green">
+                            <div><span>Lorem ipsum</span></div>
+                            <div class="history__time"><time><i class="fas fa-check-double"></i> 12:00</time></div>
+                        </div>
+                    </div>
+                    <div class="modal modal_position-right-top" id="mdDialog">
+                        <div class="list">
+                            <div class="list__item">
+                                <div class="list__icon"><i class="far fa-plus-square"></i></div>
+                                <div class="list__text">Добавить пользователя</div>
+                            </div>
+                            <div class="list__item">
+                                <div class="list__icon"><i class="far fa-minus-square"></i></div>
+                                <div class="list__text">Удалить пользователя</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal modal_position_left-end" id="mdClip">
+                        <div class="list">
+                            <div class="list__item">
+                                <div class="list__icon"><i class="far fa-image"></i></div>
+                                <div class="list__text">Фото и Видео</div>
+                            </div>
+                            <div class="list__item">
+                                <div class="list__icon"><i class="far fa-sticky-note"></i></div>
+                                <div class="list__text">Файл</div>
+                            </div>
+                            <div class="list__item">
+                                <div class="list__icon"><i class="far fa-dot-circle"></i></div>
+                                <div class="list__text">Локация</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="history__footer">
+                    <div class="history__button-column">
+                        <button class="history__button history__button_type_text" id="btnClip"
+                            onclick="toggleModalClip()">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                    </div>
+                    <div class="history__input-column">
+                        <div class="single-field">
+                            <input class="single-field__input fas" type="text" id="message" placeholder="Сообщение"
+                                required>
+                        </div>
+                    </div>
+                    <div class="history__button-column">
+                        <button class="history__button history__button_type_round history__button_bg_dark-green">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -54,7 +54,7 @@
 
 @import url(../common.blocks/intro/intro.css);
 
-@import url(../common.blocks/chat/chat.css);;
+@import url(../common.blocks/chat/chat.css);
 @import url(../common.blocks/chat/__sidebar/chat_sidebar.css);
 @import url(../common.blocks/chat/__content/chat__content.css);
 @import url(../common.blocks/chat/__panel/chat__panel.css);

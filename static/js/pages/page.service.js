@@ -2,6 +2,7 @@ import { Templator } from '../core/core.js';
 import { IntroPageComponent } from './intro/intro.js';
 import { LoginPageComponent } from './login/login.js';
 import { SigninPageComponent } from './signin/signin.js';
+import { ChatPageComponent } from './chat/chat.js';
 export class PageService {
     constructor(selector, nav, mockupData) {
         this.selector = selector;
@@ -19,6 +20,9 @@ export class PageService {
             }
             if (url.endsWith('signin.html')) {
                 return new SigninPageComponent({}, this.templator);
+            }
+            if (url.endsWith('chat.html')) {
+                return new ChatPageComponent(this.mockupData.previewChatDialogs, this.templator);
             }
         }
         return new IntroPageComponent(this.mockupData.navItems, this.templator);

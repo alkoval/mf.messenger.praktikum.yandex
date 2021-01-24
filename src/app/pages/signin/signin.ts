@@ -43,11 +43,11 @@ export class SigninPageComponent extends BaseComponent {
         const self = this.form;
         const button = this.getContent().querySelector('.card__button, .card__button_bg_dark-green');
         if (button !== null) {
-            button.addEventListener('click', () => { this.login(self) });
+            button.addEventListener('click', () => { this.signin(self) });
         }
     }
 
-    public login(form: FormCard | null): void {
+    public signin(form: FormCard | null): void {
         if (form !== null) {
             let valid = true;
             for (let field of form.fields) {
