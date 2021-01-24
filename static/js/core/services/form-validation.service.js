@@ -1,25 +1,21 @@
 export default class FormValidationService {
-    constructor() { }
-    loginValidator(login) {
-        if (login !== null && login !== undefined) {
-            if (login.match(/^[0-9a-zA-Z_]{4,12}$/)) {
-                return true;
-            }
-        }
-        return false;
+    constructor() {
+        this.regex = new Map();
+        this.init();
     }
-    passwordValidator(password) {
-        if (password !== null && password !== undefined) {
-            if (password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)) {
-                return true;
-            }
-        }
-        return false;
+    init() {
+        this.regex.set('login', /^[0-9a-zA-Z_]{4,12}$/);
+        this.regex.set('password', /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
+        this.regex.set('word', /^[@0-9a-zA-Zа-яА-Я_\-.:,()<>"'\[\] ]{1,200}$/);
+        this.regex.set('email', /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/);
+        this.regex.set('phone', /^[0-9]{1,10}$/);
     }
-    wordValidator(word) {
-        if (word !== null && word !== undefined) {
-            if (word.match(/^[@0-9a-zA-Zа-яА-Я_\-.:,()<>"'\[\] ]{1,200}$/)) {
-                return true;
+    isValid(type, value) {
+        if (value !== null && value !== undefined) {
+            if (this.regex.has(type)) {
+                if (value.match(this.regex.get(type))) {
+                    return true;
+                }
             }
         }
         return false;

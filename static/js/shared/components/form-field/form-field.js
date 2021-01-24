@@ -16,7 +16,7 @@ export class FormFieldComponent extends BaseComponent {
             input.addEventListener('blur', (e) => {
                 if (e.target !== null) {
                     this.formField.value = e.target.value;
-                    if (this.formValidationService.loginValidator(this.formField.value)) {
+                    if (this.formValidationService.isValid(this.formField.validType, this.formField.value)) {
                         e.target.classList.remove('form-field__input_invalid');
                     }
                     else {

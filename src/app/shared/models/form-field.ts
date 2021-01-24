@@ -4,12 +4,14 @@ export class FormField {
     public label: string;
     public error: string;
     public value: string;
+    public validType: string;
 
-    constructor(type: string, name: string, label: string, error: string) {
+    constructor(type: string, name: string, label: string, error: string, validType: string) {
         this.type = type;
         this.name = name;
         this.label = label;
         this.error = error;
         this.value = '';
+        this.validType = validType;
     }
 }

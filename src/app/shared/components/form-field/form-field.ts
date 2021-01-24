@@ -26,7 +26,7 @@ export class FormFieldComponent extends BaseComponent {
                 if (e.target !== null) {
                     //@ts-ignore: Подумать, как работать с input без ошибки
                     this.formField.value = e.target.value;
-                    if (this.formValidationService.loginValidator(this.formField.value)) {
+                    if (this.formValidationService.isValid(this.formField.validType, this.formField.value)) {
                         //@ts-ignore: Подумать, как работать с input без ошибки
                         e.target.classList.remove('form-field__input_invalid');
                     } else {
