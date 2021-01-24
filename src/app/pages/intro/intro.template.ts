@@ -1,22 +1,30 @@
-import { PageTemplate } from '../../shared/interfaces/page-template.js';
+import { ComponentTemplate } from '../../shared/interfaces/component-template.js';
 
-export class IntroPageTemplate implements PageTemplate {
-    public content: string;
+export class IntroPageTemplate implements ComponentTemplate {
+    private tag: string;
+    private cssClass: string;
 
     constructor() {
-        this.content = this.getContent();
+        this.tag = 'ul';
+        this.cssClass = 'list';
     }
 
-    private getContent(): string {
+    public getTag(): string {
+        return this.tag;
+    }
+
+    public getCssClass(): string {
+        return this.cssClass;
+    }
+
+    public getContent(): string {
         return `
-            <ul class="list">
-                {{#each this}}
-                    <li class="list__item" onclick="onClick()">
-                        <i class="{{icon}}"></i>
-                        <a class="list__text" href='{{route}}'>{{text}}</a>
-                    </li>
-                {{/each}}
-            </ul>
+            {{#each this}}
+                <li class="list__item">
+                    <i class="{{icon}}"></i>
+                    <a class="list__text" href='{{route}}'>{{text}}</a>
+                </li>
+            {{/each}}
         `;
     }
 }

@@ -1,15 +1,23 @@
-export class IntroPageTemplate {
+import { ComponentTemplate } from '../../interfaces/component-template.js';
+
+export class ButtonTemplate implements ComponentTemplate {
+    private tag: string;
+    private cssClass: string;
+
     constructor() {
         this.tag = 'ul';
         this.cssClass = 'list';
     }
-    getTag() {
+
+    public getTag(): string {
         return this.tag;
     }
-    getCssClass() {
+
+    public getCssClass(): string {
         return this.cssClass;
     }
-    getContent() {
+
+    public getContent(): string {
         return `
             {{#each this}}
                 <li class="list__item">
@@ -20,4 +28,3 @@ export class IntroPageTemplate {
         `;
     }
 }
-//# sourceMappingURL=intro.template.js.map

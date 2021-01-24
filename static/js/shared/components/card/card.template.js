@@ -1,4 +1,4 @@
-export class IntroPageTemplate {
+export class CardTemplate {
     constructor() {
         this.tag = 'ul';
         this.cssClass = 'list';
@@ -20,4 +20,4 @@ export class IntroPageTemplate {
         `;
     }
 }
-//# sourceMappingURL=intro.template.js.map
+//# sourceMappingURL=card.template.js.map

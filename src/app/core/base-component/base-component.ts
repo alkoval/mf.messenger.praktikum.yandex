@@ -1,5 +1,6 @@
 import { EventBus } from '../event-bus/event-bus.js';
 import { PropsComponent } from '../../shared/interfaces/props-component.js';
+import { ComponentTemplate } from '../../shared/interfaces/component-template.js';
 import { Component } from '../../shared/interfaces/component.js';
 import Templator from '../services/templator.service.js';
 
@@ -7,20 +8,22 @@ export enum EVENTS {
     INIT = "init",
     FLOW_CDM = "flow:component-did-mount",
     FLOW_RENDER = "flow:render",
+    FLOW_AFTER_RENDER = "flow:after-render",
     FLOW_CDU = "flow:component-did-update",
+    SUBSCRIVE = "subscribe"
 }
 export abstract class BaseComponent implements Component {
     private eventBus: EventBus;
     private elem: HTMLElement;
-    private tag: string;
     private props: PropsComponent;
     public templator: Templator;
-    public template: string;
+    public template: ComponentTemplate;
+    public childrens: BaseComponent[];
 
-    constructor(tag: string, props: PropsComponent, templator: Templator, template: string) {
-        this.tag = tag;
+    constructor(props: PropsComponent, templator: Templator, template: ComponentTemplate) {
         this.templator = templator;
         this.template = template;
+        this.childrens = [];
         this.eventBus = new EventBus();
         this.elem = this.createDocumentElement();
         this.props = this.makePropsProxy(props);
@@ -31,8 +34,10 @@ export abstract class BaseComponent implements Component {
     private registerEvents(): void {
         this.eventBus.on(EVENTS.INIT, this.init.bind(this));
         this.eventBus.on(EVENTS.FLOW_CDM, this.componentDidMount.bind(this));
-        this.eventBus.on(EVENTS.FLOW_RENDER, this.preRender.bind(this));
+        this.eventBus.on(EVENTS.FLOW_RENDER, this.prerender.bind(this));
+        this.eventBus.on(EVENTS.FLOW_AFTER_RENDER, this.prerenderChildrens.bind(this));
         this.eventBus.on(EVENTS.FLOW_CDU, this.componentDidUpdate.bind(this));
+        this.eventBus.on(EVENTS.SUBSCRIVE, this.subscribe.bind(this));
     }
 
     public init(): void {
@@ -59,15 +64,41 @@ export abstract class BaseComponent implements Component {
         return this.elem;
     }
 
-    public preRender(): void {
-        this.elem.innerHTML = this.render();
-    }
-
-    public render(): string { return ''; }
-
     public getContent() {
         return this.elem;
     }
+
+    public prerender(): void {
+        this.elem.innerHTML = this.render();
+        this.eventBus.emit(EVENTS.FLOW_AFTER_RENDER);
+    }
+
+    public prerenderChildrens(): void {
+        this.renderChildrens();
+    }
+
+    public renderChildrens(): void {
+        if (this.childrens.length > 0) {
+            for (let child of this.childrens) {
+                this.elem.appendChild(child.getContent());
+            }
+        }
+        this.eventBus.emit(EVENTS.SUBSCRIVE);
+    }
+
+    public renderChildrensToSelector(selector: string): void {
+        if (this.childrens.length > 0) {
+            const root = this.elem.querySelector(selector);
+            if (root !== null) {
+                for (let child of this.childrens) {
+                    root.appendChild(child.getContent());
+                }
+            }
+        }
+        this.eventBus.emit(EVENTS.SUBSCRIVE);
+    }
+
+    public render(): string { return ''; }
 
     private makePropsProxy(props: PropsComponent): PropsComponent {
         const self = this;
@@ -83,6 +114,10 @@ export abstract class BaseComponent implements Component {
     }
 
     private createDocumentElement(): HTMLElement {
-        return document.createElement(this.tag);
+        const elem = document.createElement(this.template.getTag());
+        elem.className = this.template.getCssClass();
+        return elem;
     }
+
+    public subscribe(): void { }
 }

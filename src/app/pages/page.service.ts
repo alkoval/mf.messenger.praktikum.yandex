@@ -1,8 +1,9 @@
 import { Templator } from '../core/core.js';
 import { NavItem } from '../shared/interfaces/nav-item.js';
 import { Component } from '../shared/interfaces/component.js';
-import { IntroPageComponent } from './intro/intro.js';
 import { MockupData } from '../core/mockup/mockup-data.js';
+import { IntroPageComponent } from './intro/intro.js';
+import { LoginPageComponent } from './login/login.js';
 
 export class PageService {
     private mockupData: MockupData;
@@ -23,7 +24,9 @@ export class PageService {
 
     private getPage(url: string): Component {
         if (url !== undefined) {
-
+            if (url.endsWith('login.html')) {
+                return new LoginPageComponent({}, this.templator);
+            }
         }
         return new IntroPageComponent(this.mockupData.navItems, this.templator);
     }

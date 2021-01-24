@@ -1,6 +1,10 @@
 @import url(../common.blocks/page/page.css);
 @import url(../common.blocks/page/page_theme_dark.css);
 
+@import url(../common.blocks/signin/signin.css);
+
+@import url(../common.blocks/login/login.css);
+
 @import url(../common.blocks/blackout/blackout.css);
 @import url(../common.blocks/blackout/_state_show/blackout_state_show.css);
 
@@ -40,6 +44,7 @@
 @import url(../common.blocks/form-field/form-field.css);
 @import url(../common.blocks/form-field/__label/form-field__label.css);
 @import url(../common.blocks/form-field/__input/form-field__input.css);
+@import url(../common.blocks/form-field/__input/form-field__input_invalid/form-field__input_invalid.css);
 @import url(../common.blocks/form-field/__error/form-field__error.css);
 
 @import url(../common.blocks/list/list.css);
@@ -112,7 +117,3 @@
 @import url(../common.blocks/profile/__group-text/_color_dark-green/profile__group-text_color_dark-green.css);
 @import url(../common.blocks/profile/__group-text/_color_red/profile__group-text_color_red.css);
 @import url(../common.blocks/profile/__group-link/profile__group-link.css);
-
-@import url(../common.blocks/signin/signin.css);
-
-@import url(../common.blocks/login/login.css);

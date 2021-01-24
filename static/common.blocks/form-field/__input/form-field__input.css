@@ -26,6 +26,6 @@
   color: #1eb980;
 }
 
-.form-field__input:invalid ~ .form-field__error {
+/*.form-field__input:invalid ~ .form-field__error {
   display: block;
-}
+}*/

@@ -1,5 +1,6 @@
 import { Templator } from '../core/core.js';
 import { IntroPageComponent } from './intro/intro.js';
+import { LoginPageComponent } from './login/login.js';
 export class PageService {
     constructor(selector, nav, mockupData) {
         this.selector = selector;
@@ -12,6 +13,9 @@ export class PageService {
     }
     getPage(url) {
         if (url !== undefined) {
+            if (url.endsWith('login.html')) {
+                return new LoginPageComponent({}, this.templator);
+            }
         }
         return new IntroPageComponent(this.mockupData.navItems, this.templator);
     }

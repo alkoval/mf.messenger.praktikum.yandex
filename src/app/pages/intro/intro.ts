@@ -6,10 +6,10 @@ import { IntroPageTemplate } from './intro.template.js';
 export class IntroPageComponent extends BaseComponent {
 
     constructor(props: PropsComponent, templator: Templator) {
-        super("div", props, templator, new IntroPageTemplate().content);
+        super(props, templator, new IntroPageTemplate());
     }
 
     public render(): string {
-        return this.templator.compile(this.template, this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps());
     }
 }
