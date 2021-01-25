@@ -10,6 +10,9 @@ export class ChatDialogComponent extends BaseComponent {
     prerenderChildrens() {
         this.renderChildrens();
     }
-    subscribe() { }
+    setDataset() {
+        let chatDialog = this.getProps();
+        this.getElement().dataset['idDialog'] = chatDialog.id.toString();
+    }
 }
 //# sourceMappingURL=chat-dialog.js.map

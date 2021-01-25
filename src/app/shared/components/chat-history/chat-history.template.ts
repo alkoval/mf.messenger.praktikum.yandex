@@ -6,7 +6,7 @@ export class ChatHistoryTemplate implements ComponentTemplate {
 
     constructor() {
         this.tag = 'div';
-        this.cssClass = 'chat__dialog';
+        this.cssClass = 'history';
     }
 
     public getTag(): string {
@@ -19,7 +19,6 @@ export class ChatHistoryTemplate implements ComponentTemplate {
 
     public getContent(): string {
         return `
-            <div class="history">
                 <div class="history__header">
                     <div class="history__avatar-column">
                         <img class="history__avatar" src="assets/images/avatar.png">
@@ -28,7 +27,7 @@ export class ChatHistoryTemplate implements ComponentTemplate {
                         <span class="history__dialog-name">{{nickname}}</span>
                     </div>
                     <div class="history__button-column">
-                        <button class="history__button history__button_type_round" onclick="toggleModalDialog()">
+                        <button class="history__button history__button_type_round">
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
                     </div>
@@ -66,8 +65,7 @@ export class ChatHistoryTemplate implements ComponentTemplate {
                 </div>
                 <div class="history__footer">
                     <div class="history__button-column">
-                        <button class="history__button history__button_type_text" id="btnClip"
-                            onclick="toggleModalClip()">
+                        <button class="history__button history__button_type_text" id="btnClip">
                             <i class="fas fa-paperclip"></i>
                         </button>
                     </div>
@@ -83,7 +81,6 @@ export class ChatHistoryTemplate implements ComponentTemplate {
                         </button>
                     </div>
                 </div>
-            </div>
         `;
     }
 }

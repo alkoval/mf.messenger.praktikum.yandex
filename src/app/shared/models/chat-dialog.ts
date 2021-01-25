@@ -1,11 +1,11 @@
-export class PreviewChatDialog {
+export class ChatDialog {
     public id: number;
     public avatar: string;
     public nickname: string;
     public message: string;
     public time: Date;
-    public unread: number;
     public shortTime: string;
+    public unread: number;
 
     constructor(
         id: number,

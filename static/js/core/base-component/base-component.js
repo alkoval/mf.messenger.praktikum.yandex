@@ -6,7 +6,9 @@ export var EVENTS;
     EVENTS["FLOW_RENDER"] = "flow:render";
     EVENTS["FLOW_AFTER_RENDER"] = "flow:after-render";
     EVENTS["FLOW_CDU"] = "flow:component-did-update";
+    EVENTS["SET_DATASET"] = "set:dataset";
     EVENTS["SUBSCRIVE"] = "subscribe";
+    EVENTS["CREATED"] = "subscribe";
 })(EVENTS || (EVENTS = {}));
 export class BaseComponent {
     constructor(props, templator, template) {
@@ -25,10 +27,12 @@ export class BaseComponent {
         this.eventBus.on(EVENTS.FLOW_RENDER, this.prerender.bind(this));
         this.eventBus.on(EVENTS.FLOW_AFTER_RENDER, this.prerenderChildrens.bind(this));
         this.eventBus.on(EVENTS.FLOW_CDU, this.componentDidUpdate.bind(this));
+        this.eventBus.on(EVENTS.SET_DATASET, this.setDataset.bind(this));
         this.eventBus.on(EVENTS.SUBSCRIVE, this.subscribe.bind(this));
     }
     init() {
         this.eventBus.emit(EVENTS.FLOW_CDM);
+        this.eventBus.emit(EVENTS.SET_DATASET);
     }
     componentDidMount() {
         this.eventBus.emit(EVENTS.FLOW_RENDER);
@@ -38,6 +42,7 @@ export class BaseComponent {
     }
     setProps(props) {
         Object.assign(this.props, props);
+        this.eventBus.emit(EVENTS.FLOW_CDU);
     }
     getProps() {
         return this.props;
@@ -76,12 +81,13 @@ export class BaseComponent {
     }
     render() { return ''; }
     makePropsProxy(props) {
-        const self = this;
         props = new Proxy(props, {
+            get(target, prop) {
+                let value = target[prop];
+                return (typeof value === 'function') ? value.bind(target) : value;
+            },
             set(target, prop, val) {
-                console.log('setProps');
                 target[prop] = val;
-                self.eventBus.emit(EVENTS.FLOW_CDU);
                 return true;
             }
         });
@@ -92,6 +98,8 @@ export class BaseComponent {
         elem.className = this.template.getCssClass();
         return elem;
     }
+    setDataset() { }
     subscribe() { }
+    creatred() { }
 }
 //# sourceMappingURL=base-component.js.map

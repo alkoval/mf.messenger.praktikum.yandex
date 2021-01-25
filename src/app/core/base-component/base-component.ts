@@ -10,7 +10,9 @@ export enum EVENTS {
     FLOW_RENDER = "flow:render",
     FLOW_AFTER_RENDER = "flow:after-render",
     FLOW_CDU = "flow:component-did-update",
-    SUBSCRIVE = "subscribe"
+    SET_DATASET = "set:dataset",
+    SUBSCRIVE = "subscribe",
+    CREATED = "subscribe"
 }
 export abstract class BaseComponent implements Component {
     private eventBus: EventBus;
@@ -37,11 +39,13 @@ export abstract class BaseComponent implements Component {
         this.eventBus.on(EVENTS.FLOW_RENDER, this.prerender.bind(this));
         this.eventBus.on(EVENTS.FLOW_AFTER_RENDER, this.prerenderChildrens.bind(this));
         this.eventBus.on(EVENTS.FLOW_CDU, this.componentDidUpdate.bind(this));
+        this.eventBus.on(EVENTS.SET_DATASET, this.setDataset.bind(this));
         this.eventBus.on(EVENTS.SUBSCRIVE, this.subscribe.bind(this));
     }
 
     public init(): void {
         this.eventBus.emit(EVENTS.FLOW_CDM);
+        this.eventBus.emit(EVENTS.SET_DATASET);
     }
 
     private componentDidMount(): void {
@@ -54,6 +58,7 @@ export abstract class BaseComponent implements Component {
 
     public setProps(props: PropsComponent): void {
         Object.assign(this.props, props);
+        this.eventBus.emit(EVENTS.FLOW_CDU);
     }
 
     public getProps(): PropsComponent {
@@ -101,12 +106,15 @@ export abstract class BaseComponent implements Component {
     public render(): string { return ''; }
 
     private makePropsProxy(props: PropsComponent): PropsComponent {
-        const self = this;
+        //const self = this;
         props = new Proxy(props, {
+            get(target, prop) {
+                //@ts-ignore: Решить вопрос с типом target[prop]
+                let value = target[prop];
+                return (typeof value === 'function') ? value.bind(target) : value;
+            },
             set(target: any, prop: string, val: any) {
-                console.log('setProps')
                 target[prop] = val;
-                self.eventBus.emit(EVENTS.FLOW_CDU);
                 return true;
             }
         });
@@ -119,5 +127,9 @@ export abstract class BaseComponent implements Component {
         return elem;
     }
 
+    public setDataset(): void { }
+
     public subscribe(): void { }
+
+    public creatred(): void { }
 }

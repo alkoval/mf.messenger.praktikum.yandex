@@ -23,7 +23,7 @@ export class ChatDialogTemplate implements ComponentTemplate {
                 <img class="chat__avatar" src="assets/images/{{avatar}}">
             </div>
             <div class="chat__text-column">
-                <span class="chat__nickname" data-chat-id="{{id}}">{{nickname}}</span>
+                <span class="chat__nickname">{{nickname}}</span>
                 <span class="chat__message-preview">{{message}}</span>
             </div>
             <div class="chat__property-column">

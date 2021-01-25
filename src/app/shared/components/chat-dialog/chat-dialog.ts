@@ -1,10 +1,10 @@
 import { BaseComponent } from '../../../core/base-component/base-component.js';
 import { Templator } from '../../../core/core.js';
 import { PropsComponent } from '../../interfaces/props-component.js';
+import { ChatDialog } from '../../models/chat-dialog.js';
 import { ChatDialogTemplate } from './chat-dialog.template.js';
 
 export class ChatDialogComponent extends BaseComponent {
-
     constructor(props: PropsComponent, templator: Templator) {
         super(props, templator, new ChatDialogTemplate());
     }
@@ -17,5 +17,8 @@ export class ChatDialogComponent extends BaseComponent {
         this.renderChildrens();
     }
 
-    public subscribe(): void { }
+    public setDataset(): void {
+        let chatDialog = this.getProps() as ChatDialog;
+        this.getElement().dataset['idDialog'] = chatDialog.id.toString();
+    }
 }
