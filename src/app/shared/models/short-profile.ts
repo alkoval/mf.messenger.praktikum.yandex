@@ -1,4 +1,4 @@
-export class Profile {
+export class ShortProfile {
     public id: number;
     public name: string;
     public secondName: string;

@@ -1,23 +1,15 @@
-import { ComponentTemplate } from '../../interfaces/component-template.js';
-
-export class HistoryTextMessageTemplate implements ComponentTemplate {
-    private tag: string;
-    private cssClass: string;
-
+export class HistoryTextMessageTemplate {
     constructor() {
         this.tag = 'div';
         this.cssClass = 'history__message history__message_type_text';
     }
-
-    public getTag(): string {
+    getTag() {
         return this.tag;
     }
-
-    public getCssClass(): string {
+    getCssClass() {
         return this.cssClass;
     }
-
-    public getContent(): string {
+    getContent() {
         return `
                 <div>
                     <p>{{message}}</p>
@@ -28,3 +20,4 @@ export class HistoryTextMessageTemplate implements ComponentTemplate {
         `;
     }
 }
+//# sourceMappingURL=history-text-message.template.js.map

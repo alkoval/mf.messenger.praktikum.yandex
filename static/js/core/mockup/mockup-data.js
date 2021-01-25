@@ -1,8 +1,10 @@
+import { Profile } from '../../shared/models/profile.js';
 export class MockupData {
     constructor() {
         this.navItems = [];
         this.previewChatDialogs = [];
         this.historyMessages = [];
+        this.profile = new Profile();
     }
     static getInstance() {
         if (!this.instance) {

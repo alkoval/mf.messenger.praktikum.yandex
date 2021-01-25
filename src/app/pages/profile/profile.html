@@ -54,32 +54,33 @@
 </head>
 
 <body class="page page_theme_dark">
-    <div class="blackout blackout_state_show" id="mdFileUpload">
-        <div class="modal modal_state_show">
-            <div class="modal__content">
-                <div class="modal__section">
-                    <span class="modal__title">Загрузите файл</span>
-                </div>
-                <div class="modal__section">
-                    <div class="modal__file-upload">
-                        <label for="fileUpload" class="modal__file-upload__label" id="fileUploadLabel">
-                            Выбрать файл на компьютере
-                        </label>
-                        <input class="modal__file-upload__input" id="fileUpload" type="file"
-                            onchange="checkFile(this)" />
+    <div class="profile">
+        <div class="blackout" id="mdFileUpload">
+            <div class="modal modal_state_show">
+                <div class="modal__content">
+                    <div class="modal__section">
+                        <span class="modal__title">Загрузите файл</span>
                     </div>
-                </div>
-                <div class="modal__section">
-                    <button class="modal__button modal__button_bg_dark-green" type="button"
-                        onclick="toggleModalFileUpload()">Поменять</button>
-                </div>
-                <div class="modal__section">
-                    <span class="modal__text modal__text_bg_red modal__text_display_none" id="fileUploadError"></span>
+                    <div class="modal__section">
+                        <div class="modal__file-upload">
+                            <label for="fileUpload" class="modal__file-upload__label" id="fileUploadLabel">
+                                Выбрать файл на компьютере
+                            </label>
+                            <input class="modal__file-upload__input" id="fileUpload" type="file"
+                                onchange="checkFile(this)" />
+                        </div>
+                    </div>
+                    <div class="modal__section">
+                        <button class="modal__button modal__button_bg_dark-green" type="button"
+                            onclick="toggleModalFileUpload()">Поменять</button>
+                    </div>
+                    <div class="modal__section">
+                        <span class="modal__text modal__text_bg_red modal__text_display_none"
+                            id="fileUploadError"></span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="profile">
         <div class="profile__sidebar">
             <a class="profile__back" href="./index.html"><i class="fas fa-arrow-left"></i></a>
         </div>
@@ -94,33 +95,9 @@
                     </div>
                     <span class="profile__nickname">Lorem</span>
                 </div>
-                <ul class="profile__section">
-                    <li class="profile__group">
-                        <span class="profile__group-text">Почта</span>
-                        <span class="profile__group-text profile__group-text_color_white">pochta@yandex.ru</span>
-                    </li>
-                    <li class="profile__group">
-                        <span class="profile__group-text">Логин</span>
-                        <span class="profile__group-text profile__group-text_color_white">Lorem</span>
-                    </li>
-                    <li class="profile__group">
-                        <span class="profile__group-text">Имя</span>
-                        <span class="profile__group-text profile__group-text_color_white">Ipsum</span>
-                    </li>
-                    <li class="profile__group">
-                        <span class="profile__group-text">Фамилия</span>
-                        <span class="profile__group-text profile__group-text_color_white">Dolor</span>
-                    </li>
-                    <li class="profile__group">
-                        <span class="profile__group-text">Имя в чате</span>
-                        <span class="profile__group-text profile__group-text_color_white">Lorem</span>
-                    </li>
-                    <li class="profile__group">
-                        <span class="profile__group-text">Телефон</span>
-                        <span class="profile__group-text profile__group-text_color_white">+7 (909) 967 30 30</span>
-                    </li>
+                <ul class="profile__section profile__body">
                 </ul>
-                <ul class="profile__section">
+                <ul class="profile__section profile__footer">
                     <li class="profile__group">
                         <a class="profile__group-text profile__group-text_color_dark-green profile__group-link"
                             href="change-profile.html">Изменить

@@ -1,24 +1,18 @@
 import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { PropsComponent } from '../../interfaces/props-component.js';
-import { ChatDialog } from '../../models/chat-dialog.js';
 import { ChatDialogTemplate } from './chat-dialog.template.js';
-
 export class ChatDialogComponent extends BaseComponent {
-    constructor(props: PropsComponent, templator: Templator) {
+    constructor(props, templator) {
         super(props, templator, new ChatDialogTemplate());
     }
-
-    public render(): string {
+    render() {
         return this.templator.compile(this.template.getContent(), this.getProps());
     }
-
-    public prerenderChildrens(): void {
+    prerenderChildrens() {
         this.renderChildrens();
     }
-
-    public setDataset(): void {
-        let chatDialog = this.getProps() as ChatDialog;
+    setDataset() {
+        let chatDialog = this.getProps();
         this.getElement().dataset['idDialog'] = chatDialog.id.toString();
     }
 }
+//# sourceMappingURL=chat-dialog.js.map

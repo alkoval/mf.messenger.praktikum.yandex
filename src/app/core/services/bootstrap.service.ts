@@ -18,6 +18,7 @@ export default class BootstrapService {
         this.prepaireMockupNavItems();
         this.prepaireMockupPreviewChatDialogs();
         this.prepaireMockupHistoryMessages();
+        this.prepaireProfile();
     }
 
     private prepaireMockupNavItems(): void {
@@ -58,5 +59,19 @@ export default class BootstrapService {
         this.mockupData.historyMessages.push(new HistoryTextMessage(11, 'text', largeMessage, 1, false, new Date()));
         this.mockupData.historyMessages.push(new HistoryImgMessage(12, 'img', img, 1, false, new Date()));
         this.mockupData.historyMessages.push(new HistoryTextMessage(13, 'text', shortMessage, 1, false, new Date()));
+    }
+
+    private prepaireProfile(): void {
+        this.mockupData.profile.id = 42;
+        this.mockupData.profile.name = 'Рик';
+        this.mockupData.profile.secondName = 'Санчез';
+        this.mockupData.profile.nickname = 'Rick';
+        this.mockupData.profile.avatar = 'rick_avatar.png';
+        this.mockupData.profile.login = 'RSanchez';
+        this.mockupData.profile.password = '';
+        this.mockupData.profile.rePassword = '';
+        this.mockupData.profile.email = 'wubbalubbadubdub@blackhole.io';
+        this.mockupData.profile.phone = '0112358132';
+
     }
 }

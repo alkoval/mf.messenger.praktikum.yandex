@@ -1,4 +1,4 @@
-export class Profile {
+export class ShortProfile {
     constructor(id, name, secondName, nickname, avatar) {
         this.id = id;
         this.name = name;

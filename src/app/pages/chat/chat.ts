@@ -3,8 +3,8 @@ import { Templator } from '../../core/core.js';
 import { PropsComponent } from '../../shared/interfaces/props-component.js';
 import { ChatPageTemplate } from './chat.template.js';
 import { ChatDialog } from '../../shared/models/chat-dialog.js';
-import { ChatDialogComponent } from '../../shared/components/chat-dialog/chat-dialog.js';
-import { ChatHistoryComponent } from '../../shared/components/chat-history/chat-history.js';
+import { ChatDialogComponent } from './chat-dialog/chat-dialog.js';
+import { ChatHistoryComponent } from './chat-history/chat-history.js';
 
 export class ChatPageComponent extends BaseComponent {
     private chatHistory: ChatHistoryComponent;

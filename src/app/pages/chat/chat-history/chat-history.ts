@@ -1,7 +1,7 @@
 import { BaseComponent } from '../../../core/base-component/base-component.js';
 import { Templator } from '../../../core/core.js';
 import { MockupData } from '../../../core/mockup/mockup-data.js';
-import { PropsComponent } from '../../interfaces/props-component.js';
+import { PropsComponent } from '../../../shared/interfaces/props-component.js';
 import { HistoryImgMessageComponent } from '../history-img-message/history-img-message.js';
 import { HistoryTextMessageComponent } from '../history-text-message/history-text-message.js';
 import { ChatHistoryTemplate } from './chat-history.template.js';

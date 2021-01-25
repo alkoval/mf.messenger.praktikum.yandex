@@ -1,7 +1,7 @@
 import { BaseComponent } from '../../core/base-component/base-component.js';
 import { ChatPageTemplate } from './chat.template.js';
-import { ChatDialogComponent } from '../../shared/components/chat-dialog/chat-dialog.js';
-import { ChatHistoryComponent } from '../../shared/components/chat-history/chat-history.js';
+import { ChatDialogComponent } from './chat-dialog/chat-dialog.js';
+import { ChatHistoryComponent } from './chat-history/chat-history.js';
 export class ChatPageComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new ChatPageTemplate());

@@ -1,4 +1,4 @@
-import { ComponentTemplate } from '../../interfaces/component-template.js';
+import { ComponentTemplate } from '../../../shared/interfaces/component-template.js';
 
 export class HistoryImgMessageTemplate implements ComponentTemplate {
     private tag: string;
