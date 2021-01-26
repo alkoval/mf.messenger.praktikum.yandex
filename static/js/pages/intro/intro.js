@@ -1,0 +1,11 @@
+import { BaseComponent } from '../../core/base-component/base-component.js';
+import { IntroPageTemplate } from './intro.template.js';
+export class IntroPageComponent extends BaseComponent {
+    constructor(props, templator) {
+        super(props, templator, new IntroPageTemplate());
+    }
+    render() {
+        return this.templator.compile(this.template.getContent(), this.getProps());
+    }
+}
+//# sourceMappingURL=intro.js.map

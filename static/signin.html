@@ -4,82 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatApp | SignIn</title>
-    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <!--BEM common.blocks-->
-    <link rel="stylesheet" href="common.blocks/page/page.css">
-    <link rel="stylesheet" href="common.blocks/page/page_theme_dark.css">
-    <link rel="stylesheet" href="common.blocks/signin/signin.css">
-    <link rel="stylesheet" href="common.blocks/card/card.css">
-    <link rel="stylesheet" href="common.blocks/card/__header/card__header.css">
-    <link rel="stylesheet" href="common.blocks/card/__body/card__body.css">
-    <link rel="stylesheet" href="common.blocks/card/__footer/card__footer.css">
-    <link rel="stylesheet" href="common.blocks/card/__title/card__title.css">
-    <link rel="stylesheet" href="common.blocks/card/__button/card__button.css">
-    <link rel="stylesheet" href="common.blocks/card/__button/_bg_dark-green/card__button_bg_dark-green.css">
-    <link rel="stylesheet" href="common.blocks/card/__link/card__link.css">
-    <link rel="stylesheet" href="common.blocks/form-field/form-field.css">
-    <link rel="stylesheet" href="common.blocks/form-field/__label/form-field__label.css">
-    <link rel="stylesheet" href="common.blocks/form-field/__error/form-field__error.css">
-    <link rel="stylesheet" href="common.blocks/form-field/__input/form-field__input.css">
+    <title>ChatApp | Signin</title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!--Fontsawesome-->
+    <script src="https://kit.fontawesome.com/f5cf5df5b4.js" crossorigin="anonymous"></script>
+    <!--App:style-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--App:BEM common.blocks-->
+    <link rel="stylesheet" href="css/app.css">
+    <!--Handlebars templater-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>-->
+    <script src="assets/handlebars/handlebars.js"></script>
 </head>
 
 <body class="page page_theme_dark">
-    <div class="signin">
-        <form action="" class="card">
-            <div class="card__header">
-                <div class="card__title">Регистрация</div>
-            </div>
-            <div class="card__body">
-                <div class="form-field">
-                    <input class="form-field__input" type="text" name="email" required>
-                    <label class="form-field__label" for="email"> Почта </label>
-                    <span class="form-field__error">Поле не может быть пустым!</span>
-                </div>
-                <div class="form-field">
-                    <input class="form-field__input" type="text" name="login" required>
-                    <label class="form-field__label" for="login"> Логин </label>
-                    <span class="form-field__error">Поле не может быть пустым!</span>
-                </div>
-                <div class="form-field">
-                    <input class="form-field__input" type="text" name="firstName" required>
-                    <label class="form-field__label" for="firstName"> Имя </label>
-                    <span class="form-field__error">Поле не может быть пустым!</span>
-                </div>
-                <div class="form-field">
-                    <input class="form-field__input" type="text" name="secondName" required>
-                    <label class="form-field__label" for="secondName"> Фамилия </label>
-                    <span class="form-field__error">Поле не может быть пустым!</span>
-                </div>
-                <div class="form-field">
-                    <input class="form-field__input" type="text" name="phone" required>
-                    <label class="form-field__label" for="phone"> Телефон </label>
-                    <span class="form-field__error">Поле не может быть пустым!</span>
-                </div>
-                <div class="form-field">
-                    <input class="form-field__input" type="password" name="password" required>
-                    <label class="form-field__label" for="password"> Пароль </label>
-                    <span class="form-field__error">Поле не может быть пустым!</span>
-                </div>
-                <div class="form-field">
-                    <input class="form-field__input" type="password" name="repassword" required>
-                    <label class="form-field__label" for="repassword"> Пароль </label>
-                    <span class="form-field__error">Пароли не совпадают!</span>
-                </div>
-            </div>
-            <div class="card__footer">
-                <button class="card__button card__button_bg_dark-green" type="button"
-                    onclick="fillForm()">Зарегистрироваться</button>
-                <a class="card__link" href="./login.html">Войти</a>
-            </div>
-        </form>
+    <div class="chatapp">
+        <span class="loading">Загрузка...</span>
     </div>
-    <!--Scripts-->
-    <script src="js/fill-form.js"></script>
+
+    <script src="js/app.js" type="module"></script>
 </body>
 
 </html>

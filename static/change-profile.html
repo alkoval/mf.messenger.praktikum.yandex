@@ -5,91 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatApp | Change profile</title>
-    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!--Fontsawesome-->
     <script src="https://kit.fontawesome.com/f5cf5df5b4.js" crossorigin="anonymous"></script>
-    <!--BEM common.blocks-->
-    <link rel="stylesheet" href="common.blocks/page/page.css">
-    <link rel="stylesheet" href="common.blocks/page/page_theme_dark.css">
-    <link rel="stylesheet" href="common.blocks/profile/profile.css">
-    <link rel="stylesheet" href="common.blocks/profile/__sidebar/profile__sidebar.css">
-    <link rel="stylesheet" href="common.blocks/profile/__content/profile__content.css">
-    <link rel="stylesheet" href="common.blocks/profile/__back/profile__back.css">
-    <link rel="stylesheet" href="common.blocks/profile/__card/profile__card.css">
-    <link rel="stylesheet" href="common.blocks/profile/__section/profile__section.css">
-    <link rel="stylesheet" href="common.blocks/profile/__avatar-container/profile__avatar-container.css">
-    <link rel="stylesheet" href="common.blocks/profile/__avatar/profile__avatar.css">
-    <link rel="stylesheet" href="common.blocks/profile/__avatar-link/profile__avatar-link.css">
-    <link rel="stylesheet" href="common.blocks/profile/__nickname/profile__nickname.css">
-    <link rel="stylesheet" href="common.blocks/profile/__group/profile__group.css">
-    <link rel="stylesheet" href="common.blocks/profile/__group/_border_null/profile__group_border_null.css">
-    <link rel="stylesheet" href="common.blocks/profile/__group-text/profile__group-text.css">
-    <link rel="stylesheet" href="common.blocks/profile/__group-text/_color_white/profile__group-text_color_white.css">
-    <link rel="stylesheet"
-        href="common.blocks/profile/__group-text/_color_dark-green/profile__group-text_color_dark-green.css">
-    <link rel="stylesheet" href="common.blocks/profile/__group-text/_color_red/profile__group-text_color_red.css">
-    <link rel="stylesheet" href="common.blocks/profile/__group-link/profile__group-link.css">
-    <link rel="stylesheet" href="common.blocks/profile/__input/profile__input.css">
-    <link rel="stylesheet" href="common.blocks/profile/__button/profile__button.css">
-    <link rel="stylesheet" href="common.blocks/profile/__button/_bg_dark-green/profile__button_bg_dark-green.css">
+    <!--App:style-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--App:BEM common.blocks-->
+    <link rel="stylesheet" href="css/app.css">
+    <!--Handlebars templater-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>-->
+    <script src="assets/handlebars/handlebars.js"></script>
 </head>
 
 <body class="page page_theme_dark">
-    <div class="profile">
-        <div class="profile__sidebar">
-            <a class="profile__back" href="./index.html"><i class="fas fa-arrow-left"></i></a>
-        </div>
-        <div class="profile__content">
-            <form action="">
-                <div class="profile__card">
-                    <div class="profile__section">
-                        <div class="profile__avatar-container">
-                            <img class="profile__avatar" src="images/avatar.png" alt="">
-                        </div>
-                        <span class="profile__nickname">Lorem</span>
-                    </div>
-                    <ul class="profile__section">
-                        <li class="profile__group">
-                            <span class="profile__group-text">Почта</span>
-                            <input class="profile__input" type="text" placeholder="..." name="email"
-                                value="pochta@yandex.ru">
-                        </li>
-                        <li class="profile__group">
-                            <span class="profile__group-text">Логин</span>
-                            <input class="profile__input" type="text" placeholder="..." name="login" value="Lorem">
-                        </li>
-                        <li class="profile__group">
-                            <span class="profile__group-text">Имя</span>
-                            <input class="profile__input" type="text" placeholder="..." name="firstName" value="Ipsum">
-                        </li>
-                        <li class="profile__group">
-                            <span class="profile__group-text">Фамилия</span>
-                            <input class="profile__input" type="text" placeholder="..." name="secondName" value="Dolor">
-                        </li>
-                        <li class="profile__group">
-                            <span class="profile__group-text">Имя в чате</span>
-                            <input class="profile__input" type="text" placeholder="..." name="displayName" value="Lorem">
-                        </li>
-                        <li class="profile__group">
-                            <span class="profile__group-text">Телефон</span>
-                            <input class="profile__input" type="text" placeholder="..." name="phone"
-                                value="+7 (909) 967 30 30">
-                        </li>
-                    </ul>
-                    <div class="profile__section">
-                        <button class="profile__button profile__button_bg_dark-green" type="button"
-                            onclick="updateProfile()">Сохранить</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+    <div class="chatapp">
+        <span class="loading">Загрузка...</span>
     </div>
-    <!--Scripts-->
-    <script src="js/profile.js"></script>
+
+    <script src="js/app.js" type="module"></script>
 </body>
 
 </html>
