@@ -5,8 +5,8 @@ export class ButtonTemplate implements ComponentTemplate {
     private cssClass: string;
 
     constructor() {
-        this.tag = 'ul';
-        this.cssClass = 'list';
+        this.tag = 'button';
+        this.cssClass = 'card__button';
     }
 
     public getTag(): string {
@@ -19,12 +19,7 @@ export class ButtonTemplate implements ComponentTemplate {
 
     public getContent(): string {
         return `
-            {{#each this}}
-                <li class="list__item">
-                    <i class="{{icon}}"></i>
-                    <a class="list__text" href='{{route}}'>{{text}}</a>
-                </li>
-            {{/each}}
+            {{text}}
         `;
     }
 }

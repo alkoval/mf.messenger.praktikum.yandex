@@ -25,9 +25,7 @@ export class ChangePasswordPageTemplate implements ComponentTemplate {
             <div class="profile__content">
                 <div class="profile__card">
                     <ul class="profile__section profile__body"></ul>
-                    <div class="profile__section profile__footer">
-                        <button class="profile__button profile__button_bg_dark-green" type="button">Сохранить</button>
-                    </div>
+                    <div class="profile__section profile__footer"></div>
                 </div>
             </div>
         `;

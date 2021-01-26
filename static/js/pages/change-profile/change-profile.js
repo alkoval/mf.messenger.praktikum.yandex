@@ -4,6 +4,8 @@ import { FormField } from '../../shared/models/form-field.js';
 import { Profile } from '../../shared/models/profile.js';
 import { ChangeProfilePageTemplate } from './change-profile.template.js';
 import FormValidationService from '../../core/services/form-validation.service.js';
+import { ButtonComponent } from '../../shared/components/button/button.js';
+import { Button, BUTTON_STYLE } from '../../shared/models/button.js';
 export class ChangeProfilePageComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new ChangeProfilePageTemplate());
@@ -28,10 +30,13 @@ export class ChangeProfilePageComponent extends BaseComponent {
             this.childrens.push(new ProfileGroupInputComponent(field, this.templator));
         }
         this.renderChildrensToSelector('.profile__body');
+        const btn = new ButtonComponent(new Button('Сохранить', BUTTON_STYLE.BG_DARK_GREEN, 'button'), this.templator);
+        this.childrens.push(btn);
+        this.renderToSelector([btn], '.profile__footer');
     }
     subscribe() {
         const fields = this.fields;
-        const button = this.getContent().querySelector('.profile__button, .profile__button_bg_dark-green');
+        const button = this.getContent().querySelector('.button, .button_bg_dark-green');
         if (button !== null) {
             button.addEventListener('click', () => { this.save(fields); });
         }

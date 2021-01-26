@@ -1,7 +1,7 @@
-export class ButtonTemplate {
+export class TextLinkTemplate {
     constructor() {
-        this.tag = 'button';
-        this.cssClass = 'card__button';
+        this.tag = 'a';
+        this.cssClass = 'text-link';
     }
     getTag() {
         return this.tag;
@@ -15,4 +15,4 @@ export class ButtonTemplate {
         `;
     }
 }
-//# sourceMappingURL=button.template.js.map
+//# sourceMappingURL=text-link.template.js.map

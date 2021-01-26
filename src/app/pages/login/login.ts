@@ -36,7 +36,7 @@ export class LoginPageComponent extends BaseComponent {
 
     public subscribe(): void {
         const self = this.form;
-        const button = this.getContent().querySelector('.card__button, .card__button_bg_dark-green');
+        const button = this.getContent().querySelector('.card__button, .button_bg_dark-green');
         if (button !== null) {
             button.addEventListener('click', () => { this.login(self) });
         }

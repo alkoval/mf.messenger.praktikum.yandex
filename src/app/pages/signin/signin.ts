@@ -31,7 +31,7 @@ export class SigninPageComponent extends BaseComponent {
         this.form.fields.push(new FormField('text', 'name', 'Имя', 'Некорректное значение', 'word'));
         this.form.fields.push(new FormField('text', 'secondName', 'Фамилия', 'Некорректное значение', 'word'));
         this.form.fields.push(new FormField('text', 'phone', 'Телефон', 'Некорректное значение', 'phone'));
-        this.form.fields.push(new FormField('password', 'password', 'Пароль', 'Некорректное значение', 'password'));
+        this.form.fields.push(new FormField('password', 'password', 'Пароль', '@, Латинские символы, цифры, длина 6-12', 'password'));
         this.form.fields.push(new FormField('password', 'rePassword', 'Повторите пароль', 'Пароли не совпадают', 'password'));
         this.formComponent = new FormCardComponent(this.form, this.templator);
         this.childrens.push(this.formComponent);
@@ -40,7 +40,7 @@ export class SigninPageComponent extends BaseComponent {
 
     public subscribe(): void {
         const form = this.form;
-        const button = this.getContent().querySelector('.card__button, .card__button_bg_dark-green');
+        const button = this.getContent().querySelector('.button, .button_bg_dark-green');
         if (button !== null) {
             button.addEventListener('click', () => { this.signin(form) });
         }

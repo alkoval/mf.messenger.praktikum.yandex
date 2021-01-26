@@ -6,6 +6,8 @@ import { FormField } from '../../shared/models/form-field.js';
 import { Profile } from '../../shared/models/profile.js';
 import { ChangePasswordPageTemplate } from './change-password.template.js';
 import FormValidationService from '../../core/services/form-validation.service.js';
+import { ButtonComponent } from '../../shared/components/button/button.js';
+import { Button, BUTTON_STYLE } from '../../shared/models/button.js';
 
 export class ChangePasswordPageComponent extends BaseComponent {
     private formValidationService: FormValidationService;
@@ -33,11 +35,15 @@ export class ChangePasswordPageComponent extends BaseComponent {
             this.childrens.push(new ProfileGroupInputComponent(field, this.templator));
         }
         this.renderChildrensToSelector('.profile__body');
+
+        const btn = new ButtonComponent(new Button('Сохранить', BUTTON_STYLE.BG_DARK_GREEN, 'button'), this.templator);
+        this.childrens.push(btn);
+        this.renderToSelector([btn], '.profile__footer');
     }
 
     public subscribe(): void {
         const fields = this.fields;
-        const button = this.getContent().querySelector('.profile__button, .profile__button_bg_dark-green');
+        const button = this.getContent().querySelector('.button, .button_bg_dark-green');
         if (button !== null) {
             button.addEventListener('click', () => { this.save(fields) });
         }
@@ -57,12 +63,14 @@ export class ChangePasswordPageComponent extends BaseComponent {
         const password = fields.find(e => e.name === 'password')!.value;
         const rePassword = fields.find(e => e.name === 'rePassword')!.value;
         valid = valid && password === rePassword ? true : false;
-        
+
         if (valid) {
             const newProfile = new Profile();
             Object.assign(newProfile, this.profile);
             newProfile.password = password;
             console.log(newProfile);
+        } else {
+            console.log('Введен неверный старый пароль.')
         }
     }
 }

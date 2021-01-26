@@ -49,9 +49,7 @@ export class ChangeProfilePageTemplate {
                         <span class="profile__nickname">{{nickname}}</span>
                     </div>
                     <ul class="profile__section profile__body"></ul>
-                    <div class="profile__section profile__footer">
-                        <button class="profile__button profile__button_bg_dark-green" type="button">Сохранить</button>
-                    </div>
+                    <div class="profile__section profile__footer"></div>
                 </div>
             </div>
         `;

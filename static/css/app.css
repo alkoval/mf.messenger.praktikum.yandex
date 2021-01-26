@@ -121,3 +121,8 @@
 @import url(../common.blocks/profile/__input/_invalid/profile__input_invalid.css);
 @import url(../common.blocks/profile/__button/profile__button.css);
 @import url(../common.blocks/profile/__button/_bg_dark-green/profile__button_bg_dark-green.css);
+
+@import url(../common.blocks/button/button.css);
+@import url(../common.blocks/button/_bg_dark-green/button_bg_dark-green.css);
+
+@import url(../common.blocks/text-link/text-link.css);

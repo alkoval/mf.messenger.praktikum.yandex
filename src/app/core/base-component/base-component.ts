@@ -103,6 +103,18 @@ export abstract class BaseComponent implements Component {
         this.eventBus.emit(EVENTS.SUBSCRIVE);
     }
 
+    public renderToSelector(childrens: BaseComponent[], selector: string): void {
+        if (childrens.length > 0) {
+            const root = this.elem.querySelector(selector);
+            if (root !== null) {
+                for (let child of childrens) {
+                    root.appendChild(child.getContent());
+                }
+            }
+        }
+        this.eventBus.emit(EVENTS.SUBSCRIVE);
+    }
+
     public render(): string { return ''; }
 
     private makePropsProxy(props: PropsComponent): PropsComponent {

@@ -79,6 +79,17 @@ export class BaseComponent {
         }
         this.eventBus.emit(EVENTS.SUBSCRIVE);
     }
+    renderToSelector(childrens, selector) {
+        if (childrens.length > 0) {
+            const root = this.elem.querySelector(selector);
+            if (root !== null) {
+                for (let child of childrens) {
+                    root.appendChild(child.getContent());
+                }
+            }
+        }
+        this.eventBus.emit(EVENTS.SUBSCRIVE);
+    }
     render() { return ''; }
     makePropsProxy(props) {
         props = new Proxy(props, {

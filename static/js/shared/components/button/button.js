@@ -5,6 +5,8 @@ export class ButtonComponent extends BaseComponent {
         super(props, templator, new ButtonTemplate());
     }
     render() {
+        const btn = this.getProps();
+        this.getElement().classList.add(btn.cssClass);
         return this.templator.compile(this.template.getContent(), this.getProps());
     }
 }
