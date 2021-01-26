@@ -5,14 +5,16 @@
 ChatApp, учебный проект реализованный в рамках прохождения обучения в Яндекс Практикуме.
 Отличный способ, чтобы вспомнить если не все, то многое.
 
+Проект подготовлен к спринту 2.
+
 [Ознакомиться с макетом можно тут](https://www.figma.com/file/ngDS5gdAZj27wZVaUYWCa8/Chat?node-id=0%3A1).
 ## Страницы проекта
 
 * Список страниц [index.html](https://cranky-kalam-8c08d4.netlify.app/)
 * Вход [login.html](https://cranky-kalam-8c08d4.netlify.app/login.html)
 * Регистрация [signin.html](https://cranky-kalam-8c08d4.netlify.app/signin.html)
-* Чат без активного диалога [chat.html](https://cranky-kalam-8c08d4.netlify.app/chat.html)
-* Чат с активным диалогом [selected-dialog.html](https://cranky-kalam-8c08d4.netlify.app/selected-dialog.html)
+* Чат [chat.html](https://cranky-kalam-8c08d4.netlify.app/chat.html)
 * Профиль пользователя [profile.html](https://cranky-kalam-8c08d4.netlify.app/profile.html)
 * Редактирование профиля пользователя [change-profile.html](https://cranky-kalam-8c08d4.netlify.app/change-profile.html)
 * Смена пароля [change-password.html](https://cranky-kalam-8c08d4.netlify.app/change-password.html)
+* 404 [404.html](https://cranky-kalam-8c08d4.netlify.app/404.html)
