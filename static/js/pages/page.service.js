@@ -6,6 +6,7 @@ import { ChatPageComponent } from './chat/chat.js';
 import { ProfilePageComponent } from './profile/profile.js';
 import { ChangeProfilePageComponent } from './change-profile/change-profile.js';
 import { ChangePasswordPageComponent } from './change-password/change-password.js';
+import { Error404PageComponent } from './error-404/error-404.js';
 export class PageService {
     constructor(selector, nav, mockupData) {
         this.selector = selector;
@@ -39,8 +40,11 @@ export class PageService {
             if (url.endsWith('/change-password.html')) {
                 return new ChangePasswordPageComponent(this.mockupData.profile, this.templator);
             }
+            if (url.endsWith('/404.html')) {
+                return new Error404PageComponent(this.mockupData.profile, this.templator);
+            }
         }
-        return new IntroPageComponent(this.mockupData.navItems, this.templator);
+        return new Error404PageComponent({}, this.templator);
     }
     draw(selector) {
         const root = document.querySelector(selector);

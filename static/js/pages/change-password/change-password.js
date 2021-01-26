@@ -44,7 +44,6 @@ export class ChangePasswordPageComponent extends BaseComponent {
         const password = fields.find(e => e.name === 'password').value;
         const rePassword = fields.find(e => e.name === 'rePassword').value;
         valid = valid && password === rePassword ? true : false;
-        console.log(this.profile.password, password, rePassword, valid);
         if (valid) {
             const newProfile = new Profile();
             Object.assign(newProfile, this.profile);

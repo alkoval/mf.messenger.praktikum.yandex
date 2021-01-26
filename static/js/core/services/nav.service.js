@@ -13,6 +13,7 @@ export default class NavService {
             { text: 'Профиль', icon: 'far fa-file list__icon', route: '/profile.html' },
             { text: 'Редактор профиля', icon: 'far fa-file list__icon', route: '/change-profile.html' },
             { text: 'Изменить пароль', icon: 'far fa-file list__icon', route: '/change-password.html' },
+            { text: '404', icon: 'far fa-file list__icon', route: '/404.html' },
         ];
     }
     getNavItems() {
