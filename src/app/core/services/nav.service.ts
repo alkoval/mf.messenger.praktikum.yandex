@@ -11,7 +11,7 @@ export default class NavService {
 
     private loadOfflineRoutes(): void {
         this.navItems = [
-            { text: 'Интро', icon: 'far fa-file list__icon', route: '/intro.html' },
+            { text: 'Интро', icon: 'far fa-file list__icon', route: '/index.html' },
             { text: 'Логин', icon: 'far fa-file list__icon', route: '/login.html' },
             { text: 'Регистрация', icon: 'far fa-file list__icon', route: '/signin.html' },
             { text: 'Чат', icon: 'far fa-file list__icon', route: '/chat.html' },

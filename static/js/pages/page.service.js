@@ -4,6 +4,8 @@ import { LoginPageComponent } from './login/login.js';
 import { SigninPageComponent } from './signin/signin.js';
 import { ChatPageComponent } from './chat/chat.js';
 import { ProfilePageComponent } from './profile/profile.js';
+import { ChangeProfilePageComponent } from './change-profile/change-profile.js';
+import { ChangePasswordPageComponent } from './change-password/change-password.js';
 export class PageService {
     constructor(selector, nav, mockupData) {
         this.selector = selector;
@@ -16,6 +18,9 @@ export class PageService {
     }
     getPage(url) {
         if (url !== undefined) {
+            if (url.endsWith('/index.html')) {
+                return new IntroPageComponent(this.mockupData.navItems, this.templator);
+            }
             if (url.endsWith('/login.html')) {
                 return new LoginPageComponent({}, this.templator);
             }
@@ -27,6 +32,12 @@ export class PageService {
             }
             if (url.endsWith('/profile.html')) {
                 return new ProfilePageComponent(this.mockupData.profile, this.templator);
+            }
+            if (url.endsWith('/change-profile.html')) {
+                return new ChangeProfilePageComponent(this.mockupData.profile, this.templator);
+            }
+            if (url.endsWith('/change-password.html')) {
+                return new ChangePasswordPageComponent(this.mockupData.profile, this.templator);
             }
         }
         return new IntroPageComponent(this.mockupData.navItems, this.templator);

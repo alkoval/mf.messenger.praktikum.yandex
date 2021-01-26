@@ -1,15 +1,23 @@
-export class ProfilePageTemplate {
+import { ComponentTemplate } from '../../shared/interfaces/component-template.js';
+
+export class ChangeProfilePageTemplate implements ComponentTemplate {
+    private tag: string;
+    private cssClass: string;
+
     constructor() {
         this.tag = 'div';
         this.cssClass = 'profile';
     }
-    getTag() {
+
+    public getTag(): string {
         return this.tag;
     }
-    getCssClass() {
+
+    public getCssClass(): string {
         return this.cssClass;
     }
-    getContent() {
+
+    public getContent(): string {
         return `
             <div class="blackout" id="mdFileUpload">
                 <div class="modal modal_state_show">
@@ -48,27 +56,12 @@ export class ProfilePageTemplate {
                         </div>
                         <span class="profile__nickname">{{nickname}}</span>
                     </div>
-                    <ul class="profile__section profile__body">
-                    </ul>
-                    <ul class="profile__section profile__footer">
-                        <li class="profile__group">
-                            <a class="profile__group-text profile__group-text_color_dark-green profile__group-link"
-                                href="change-profile.html">Изменить
-                                данные</a>
-                        </li>
-                        <li class="profile__group">
-                            <a class="profile__group-text profile__group-text_color_dark-green profile__group-link"
-                                href="change-password.html">Изменить
-                                пароль</a>
-                        </li>
-                        <li class="profile__group profile__group_border_null">
-                            <a class="profile__group-text profile__group-text_color_red profile__group-link"
-                                href="index.html">Выйти</a>
-                        </li>
-                    </ul>
+                    <ul class="profile__section profile__body"></ul>
+                    <div class="profile__section profile__footer">
+                        <button class="profile__button profile__button_bg_dark-green" type="button">Сохранить</button>
+                    </div>
                 </div>
             </div>
         `;
     }
 }
-//# sourceMappingURL=profile.template.js.map

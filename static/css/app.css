@@ -117,3 +117,7 @@
 @import url(../common.blocks/profile/__group-text/_color_dark-green/profile__group-text_color_dark-green.css);
 @import url(../common.blocks/profile/__group-text/_color_red/profile__group-text_color_red.css);
 @import url(../common.blocks/profile/__group-link/profile__group-link.css);
+@import url(../common.blocks/profile/__input/profile__input.css);
+@import url(../common.blocks/profile/__input/_invalid/profile__input_invalid.css);
+@import url(../common.blocks/profile/__button/profile__button.css);
+@import url(../common.blocks/profile/__button/_bg_dark-green/profile__button_bg_dark-green.css);

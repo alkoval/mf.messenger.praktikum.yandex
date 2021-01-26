@@ -58,7 +58,7 @@ export default class BootstrapService {
         this.mockupData.profile.nickname = 'Rick';
         this.mockupData.profile.avatar = 'rick_avatar.png';
         this.mockupData.profile.login = 'RSanchez';
-        this.mockupData.profile.password = '';
+        this.mockupData.profile.password = '@Atz321';
         this.mockupData.profile.rePassword = '';
         this.mockupData.profile.email = 'wubbalubbadubdub@blackhole.io';
         this.mockupData.profile.phone = '0112358132';

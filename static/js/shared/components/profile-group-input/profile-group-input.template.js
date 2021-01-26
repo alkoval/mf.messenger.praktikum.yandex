@@ -11,7 +11,7 @@ export class ProfileGroupInputTemplate {
     }
     getContent() {
         return `
-            <span class="profile__group-text">Логин</span>
+            <span class="profile__group-text">{{label}}</span>
             <input class="profile__input" type="{{type}}" placeholder="..." name="{{name}}" value="{{value}}">
         `;
     }

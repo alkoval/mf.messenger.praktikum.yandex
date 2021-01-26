@@ -29,10 +29,10 @@ export class SigninPageComponent extends BaseComponent {
         this.renderChildrens();
     }
     subscribe() {
-        const self = this.form;
+        const form = this.form;
         const button = this.getContent().querySelector('.card__button, .card__button_bg_dark-green');
         if (button !== null) {
-            button.addEventListener('click', () => { this.signin(self); });
+            button.addEventListener('click', () => { this.signin(form); });
         }
     }
     signin(form) {
@@ -41,6 +41,7 @@ export class SigninPageComponent extends BaseComponent {
             for (let field of form.fields) {
                 if (!this.formValidationService.isValid(field.validType, field.value)) {
                     valid = false;
+                    break;
                 }
             }
             valid = valid

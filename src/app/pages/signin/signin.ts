@@ -33,17 +33,16 @@ export class SigninPageComponent extends BaseComponent {
         this.form.fields.push(new FormField('text', 'phone', 'Телефон', 'Некорректное значение', 'phone'));
         this.form.fields.push(new FormField('password', 'password', 'Пароль', 'Некорректное значение', 'password'));
         this.form.fields.push(new FormField('password', 'rePassword', 'Повторите пароль', 'Пароли не совпадают', 'password'));
-
         this.formComponent = new FormCardComponent(this.form, this.templator);
         this.childrens.push(this.formComponent);
         this.renderChildrens();
     }
 
     public subscribe(): void {
-        const self = this.form;
+        const form = this.form;
         const button = this.getContent().querySelector('.card__button, .card__button_bg_dark-green');
         if (button !== null) {
-            button.addEventListener('click', () => { this.signin(self) });
+            button.addEventListener('click', () => { this.signin(form) });
         }
     }
 
@@ -53,6 +52,7 @@ export class SigninPageComponent extends BaseComponent {
             for (let field of form.fields) {
                 if (!this.formValidationService.isValid(field.validType, field.value)) {
                     valid = false;
+                    break;
                 }
             }
 
