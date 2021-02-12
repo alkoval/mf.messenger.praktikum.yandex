@@ -8,7 +8,7 @@ export var EVENTS;
     EVENTS["FLOW_CDU"] = "flow:component-did-update";
     EVENTS["SET_DATASET"] = "set:dataset";
     EVENTS["SUBSCRIVE"] = "subscribe";
-    EVENTS["CREATED"] = "subscribe";
+    EVENTS["SHOWN"] = "shown";
 })(EVENTS || (EVENTS = {}));
 export class BaseComponent {
     constructor(props, templator, template) {
@@ -29,6 +29,9 @@ export class BaseComponent {
         this.eventBus.on(EVENTS.FLOW_CDU, this.componentDidUpdate.bind(this));
         this.eventBus.on(EVENTS.SET_DATASET, this.setDataset.bind(this));
         this.eventBus.on(EVENTS.SUBSCRIVE, this.subscribe.bind(this));
+    }
+    getEventEmitter() {
+        return this.eventBus;
     }
     init() {
         this.eventBus.emit(EVENTS.FLOW_CDM);
@@ -112,5 +115,11 @@ export class BaseComponent {
     setDataset() { }
     subscribe() { }
     creatred() { }
+    show() {
+        this.eventBus.emit(EVENTS.SHOWN, this);
+    }
+    hide() {
+        this.elem.remove();
+    }
 }
 //# sourceMappingURL=base-component.js.map

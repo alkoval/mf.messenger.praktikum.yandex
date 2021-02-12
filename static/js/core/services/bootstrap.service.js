@@ -3,19 +3,14 @@ import { MockupData } from '../mockup/mockup-data.js';
 import { HistoryTextMessage } from '../../shared/models/history-text-message.js';
 import { HistoryImgMessage } from '../../shared/models/history-img-message.js';
 export default class BootstrapService {
-    constructor(navServise) {
-        this.navServise = navServise;
+    constructor() {
         this.mockupData = MockupData.getInstance();
         this.init();
     }
     init() {
-        this.prepaireMockupNavItems();
         this.prepaireMockupPreviewChatDialogs();
         this.prepaireMockupHistoryMessages();
         this.prepaireProfile();
-    }
-    prepaireMockupNavItems() {
-        this.mockupData.navItems = this.navServise.getNavItems();
     }
     prepaireMockupPreviewChatDialogs() {
         this.mockupData.previewChatDialogs.push(new ChatDialog(1, 'avatar.png', 'Lorem', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...', new Date(), 0));

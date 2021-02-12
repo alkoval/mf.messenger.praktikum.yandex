@@ -1,28 +1,20 @@
 import { ChatDialog } from '../../shared/models/chat-dialog.js';
 import { MockupData } from '../mockup/mockup-data.js';
-import NavServise from './nav.service.js';
 import { HistoryTextMessage } from '../../shared/models/history-text-message.js';
 import { HistoryImgMessage } from '../../shared/models/history-img-message.js';
 
 export default class BootstrapService {
-    private navServise: NavServise;
     public mockupData: MockupData;
 
-    constructor(navServise: NavServise) {
-        this.navServise = navServise;
+    constructor() {
         this.mockupData = MockupData.getInstance();
         this.init();
     }
 
     private init(): void {
-        this.prepaireMockupNavItems();
         this.prepaireMockupPreviewChatDialogs();
         this.prepaireMockupHistoryMessages();
         this.prepaireProfile();
-    }
-
-    private prepaireMockupNavItems(): void {
-        this.mockupData.navItems = this.navServise.getNavItems();
     }
 
     private prepaireMockupPreviewChatDialogs(): void {

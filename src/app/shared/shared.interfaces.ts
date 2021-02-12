@@ -1,0 +1,11 @@
+export { Component } from './interfaces/component.js';
+export { ComponentConstructor } from './interfaces/component-contstructor.js';
+export { ComponentTemplate } from './interfaces/component-template.js';
+export { HistoryMessage } from './interfaces/history-message.js';
+export { HttpRequestOptions } from './interfaces/http-request-options.js';
+export { NavItem } from './interfaces/nav-item.js';
+export { OnDestroy } from './interfaces/on-destroy.js';
+export { OnInit } from './interfaces/on-init.js';
+export { Page } from './interfaces/page.js';
+export { PropsComponent } from './interfaces/props-component.js';
+export { XhrHeader } from './interfaces/xhr-header.js';

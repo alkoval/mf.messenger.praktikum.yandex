@@ -1,16 +1,16 @@
 import { BaseComponent } from '../../core/base-component/base-component.js';
+import { FormValidationService } from '../../core/core.js';
 import { LoginPageTemplate } from './login.template.js';
 import { FormCardComponent } from '../../shared/components/form-card/form-card.js';
-import { FormCard } from '../../shared/models/form-card.js';
-import { FormField } from '../../shared/models/form-field.js';
-import FormValidationService from '../../core/services/form-validation.service.js';
-import { User } from '../../shared/models/user.js';
+import { FormField, FormCard } from '../../shared/shared.models.js';
+import { LoginService } from './login.service.js';
 export class LoginPageComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new LoginPageTemplate());
         this.formComponent = null;
         this.form = null;
         this.formValidationService = new FormValidationService();
+        this.loginService = new LoginService();
     }
     render() {
         return this.templator.compile(this.template.getContent(), this.getProps());
@@ -39,10 +39,7 @@ export class LoginPageComponent extends BaseComponent {
                 }
             }
             if (valid) {
-                const user = new User();
-                user.login = form.fields.find(e => e.name === 'login').value;
-                user.password = form.fields.find(e => e.name === 'password').value;
-                console.log(user);
+                this.loginService.login(form.fields.find(e => e.name === 'login').value, form.fields.find(e => e.name === 'password').value);
             }
         }
     }

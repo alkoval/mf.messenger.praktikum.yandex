@@ -1,14 +1,17 @@
-import BootstrapService from './core/services/bootstrap.service.js';
+import { Router } from './core/router/router.js';
 import { NavService } from './core/core.js';
 import { PageService } from './pages/page.service.js';
 export class App {
     constructor() {
-        this.navService = new NavService();
-        this.bootstrapService = new BootstrapService(this.navService);
-        this.pageService = new PageService('.chatapp', this.navService.getActiveNavItem(), this.bootstrapService.mockupData);
+        this.router = Router.getInstance();
+        this.navService = NavService.getInstance();
+        this.pageService = PageService.getInstance();
     }
     init() {
-        this.pageService.init();
+        this.navService.setRouter(this.router);
+        this.navService.loadRoutes();
+        this.pageService.setSelector('.chatapp');
+        this.router.start();
     }
 }
 const chatApp = new App();

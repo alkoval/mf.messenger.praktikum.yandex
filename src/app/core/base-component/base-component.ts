@@ -12,7 +12,7 @@ export enum EVENTS {
     FLOW_CDU = "flow:component-did-update",
     SET_DATASET = "set:dataset",
     SUBSCRIVE = "subscribe",
-    CREATED = "subscribe"
+    SHOWN = "shown"
 }
 export abstract class BaseComponent implements Component {
     private eventBus: EventBus;
@@ -41,6 +41,10 @@ export abstract class BaseComponent implements Component {
         this.eventBus.on(EVENTS.FLOW_CDU, this.componentDidUpdate.bind(this));
         this.eventBus.on(EVENTS.SET_DATASET, this.setDataset.bind(this));
         this.eventBus.on(EVENTS.SUBSCRIVE, this.subscribe.bind(this));
+    }
+
+    public getEventEmitter(): EventBus {
+        return this.eventBus;
     }
 
     public init(): void {
@@ -144,4 +148,12 @@ export abstract class BaseComponent implements Component {
     public subscribe(): void { }
 
     public creatred(): void { }
+
+    public show(): void {
+        this.eventBus.emit(EVENTS.SHOWN, this);
+    }
+
+    public hide(): void {
+        this.elem.remove();
+    }
 }

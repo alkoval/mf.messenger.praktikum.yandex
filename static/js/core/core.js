@@ -3,4 +3,5 @@ export { default as FormValidationService } from './services/form-validation.ser
 export { default as LocalStorageService } from './services/local-storage.service.js';
 export { default as NavService } from './services/nav.service.js';
 export { default as Templator } from './services/templator.service.js';
+export { default as HttpService } from './services/http.service.js';
 //# sourceMappingURL=core.js.map

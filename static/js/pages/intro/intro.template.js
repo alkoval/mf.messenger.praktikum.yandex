@@ -14,7 +14,7 @@ export class IntroPageTemplate {
             {{#each this}}
                 <li class="list__item">
                     <i class="{{icon}}"></i>
-                    <a class="list__text" href='{{route}}'>{{text}}</a>
+                    <span class="list__text" data-path='{{path}}'>{{text}}</span>
                 </li>
             {{/each}}
         `;

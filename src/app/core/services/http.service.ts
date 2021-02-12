@@ -9,17 +9,20 @@ export enum METHODS {
     DELETE = "DELETE"
 }
 
-export class HttpService {
+export default class HttpService {
     protected host: string;
     protected defaultMethod: string;
     protected defaultTimeout: number;
     protected defaultHeaders: XhrHeader;
 
-    constructor() {
-        this.host = 'https://ya-praktikum.tech/api/v2/';
+    constructor(path: string) {
+        this.host = `https://ya-praktikum.tech/api/v2/${path}`;
         this.defaultMethod = METHODS.GET;
         this.defaultTimeout = 5000;
-        this.defaultHeaders = { 'Accept': 'application/json, text/javascript, text/plain' };
+        this.defaultHeaders = {
+            'Accept': 'application/json, text/javascript, text/plain',
+            'Content-Type': 'application/json'
+        };
     }
 
     public get(url: string, queryParams: any | null, options: HttpRequestOptions): Promise<unknown> {
@@ -85,10 +88,10 @@ export class HttpService {
             xhr.ontimeout = function () {
                 reject(new Error("Истекло время запроса."));
             };
-            
+
             xhr.onabort = function () {
                 reject(new Error("Запрос был прерван."));
-            };           
+            };
 
             return xhr.send(options.body ? JSON.stringify(options.body) : null);
         });
