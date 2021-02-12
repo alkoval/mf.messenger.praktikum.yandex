@@ -10,4 +10,4 @@ export class AuthSignInAPI {
         return this.httpService.post('/signin', options);
     }
 }
-//# sourceMappingURL=auth-sigin-api.js.map
+//# sourceMappingURL=auth-signin-api.js.map

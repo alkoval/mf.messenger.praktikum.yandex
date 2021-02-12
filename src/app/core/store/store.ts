@@ -9,7 +9,7 @@ export enum STORE_EVENTS {
 export class Store {
     private static instance: Store;
     //@ts-ignore
-    private profile: Profile | null;    
+    private profile: Profile | null;
     private eventBus: EventBus;
 
     private constructor() {
@@ -29,7 +29,7 @@ export class Store {
         return this.eventBus;
     }
 
-    public setProfile(profile: Profile): void {
+    public setProfile(profile: Profile | null): void {
         this.profile = profile;
         this.eventBus.emit(STORE_EVENTS.PROFILE_UPDATE);
     }

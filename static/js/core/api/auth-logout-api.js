@@ -1,10 +1,10 @@
 import { HttpService } from "../core.js";
-export class AuthUserAPI {
+export class AuthLogoutAPI {
     constructor() {
         this.httpService = new HttpService('api/v2/auth');
     }
     request() {
-        return this.httpService.get('/user', null, {});
+        return this.httpService.post('/logout', {});
     }
 }
-//# sourceMappingURL=auth-user-api.js.map
+//# sourceMappingURL=auth-logout-api.js.map

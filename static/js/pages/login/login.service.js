@@ -1,9 +1,11 @@
 import { AuthSignInAPI } from "../../core/api/auth-sigin-api.js";
+import { AuthUserAPI } from "../../core/api/auth-user-api.js";
 import { STORE_EVENTS, Store } from "../../core/store/store.js";
 export class LoginService {
     constructor() {
         this.store = Store.getInstance();
         this.authSignInAPI = new AuthSignInAPI();
+        this.authUserAPI = new AuthUserAPI();
         this.registerEvents();
     }
     registerEvents() {
@@ -15,7 +17,16 @@ export class LoginService {
     login(login, password) {
         const request = { login: login, password: password };
         this.authSignInAPI.request(request).then(response => {
-            console.log(response);
+            let res = response;
+            if (res.toLowerCase() === 'ok') {
+                this.authUserAPI.request().then(response => {
+                    console.log(response);
+                    this.store.setProfile(response);
+                });
+            }
+            else {
+                console.log(response);
+            }
         });
     }
 }

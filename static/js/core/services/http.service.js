@@ -8,12 +8,12 @@ export var METHODS;
 })(METHODS || (METHODS = {}));
 export default class HttpService {
     constructor(path) {
-        this.host = `https://ya-praktikum.tech/api/v2/${path}`;
+        this.host = `https://ya-praktikum.tech/${path}`;
         this.defaultMethod = METHODS.GET;
         this.defaultTimeout = 5000;
         this.defaultHeaders = {
             'Accept': 'application/json, text/javascript, text/plain',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         };
     }
     get(url, queryParams, options) {
@@ -55,6 +55,7 @@ export default class HttpService {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open(method, `${this.host}${url}`);
+            xhr.withCredentials = true;
             if (headers) {
                 Object.keys(headers).forEach(key => xhr.setRequestHeader(key, headers[key]));
             }

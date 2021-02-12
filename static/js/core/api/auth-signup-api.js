@@ -7,7 +7,7 @@ export class AuthSignInAPI {
         let options = {
             body: body
         };
-        return this.httpService.post('/signin', options);
+        return this.httpService.post('/signup', options);
     }
 }
-//# sourceMappingURL=auth-sigin-api.js.map
+//# sourceMappingURL=auth-signup-api.js.map
