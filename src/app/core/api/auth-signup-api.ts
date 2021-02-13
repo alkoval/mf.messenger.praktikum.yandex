@@ -1,15 +1,15 @@
 import { HttpRequestOptions } from "../../shared/shared.interfaces.js";
-import { Profile } from "../../shared/shared.models.js";
 import { HttpService } from "../core.js";
+import { SignUpRequest } from "./interfaces/signup-request.js";
 
-export class AuthSignInAPI {
+export class AuthSignUpAPI {
     private httpService: HttpService;
 
     constructor() {
         this.httpService = new HttpService('api/v2/auth');
     }
 
-    public request(body: Profile): Promise<unknown> {
+    public request(body: SignUpRequest): Promise<unknown> {
         let options: HttpRequestOptions = {
             body: body
         }

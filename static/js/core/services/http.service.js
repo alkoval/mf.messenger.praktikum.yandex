@@ -61,11 +61,11 @@ export default class HttpService {
             }
             xhr.timeout = timeout;
             xhr.onload = function () {
-                if (this.status == 200) {
+                if (this.status === 200 || this.status === 400) {
                     resolve(xhr.response);
                 }
                 else {
-                    reject(new Error(`Ответ от сервера: ${xhr.status} | ${xhr.statusText}`));
+                    reject(new Error(`Ответ от сервера: ${xhr.status} | ${xhr.responseText}`));
                 }
             };
             xhr.onerror = function () {

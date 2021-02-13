@@ -1,5 +1,5 @@
 import { HttpService } from "../core.js";
-export class AuthSignInAPI {
+export class AuthSignUpAPI {
     constructor() {
         this.httpService = new HttpService('api/v2/auth');
     }

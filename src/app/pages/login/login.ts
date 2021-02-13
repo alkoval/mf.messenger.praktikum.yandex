@@ -5,12 +5,14 @@ import { FormCardComponent } from '../../shared/components/form-card/form-card.j
 import { PropsComponent } from '../../shared/interfaces/props-component.js';
 import { FormField, FormCard } from '../../shared/shared.models.js';
 import { AuthService } from '../../core/core.js';
+import { Router } from '../../core/router/router.js';
 
 export class LoginPageComponent extends BaseComponent {
     private formComponent: BaseComponent | null;
     public form: FormCard | null;
     private formValidationService: FormValidationService;
     private authService: AuthService;
+    private router: Router;
 
     constructor(props: PropsComponent, templator: Templator) {
         super(props, templator, new LoginPageTemplate());
@@ -18,6 +20,7 @@ export class LoginPageComponent extends BaseComponent {
         this.form = null;
         this.formValidationService = new FormValidationService();
         this.authService = AuthService.getInstance();
+        this.router = Router.getInstance();
     }
 
     public render(): string {
@@ -25,7 +28,7 @@ export class LoginPageComponent extends BaseComponent {
     }
 
     public prerenderChildrens(): void {
-        this.form = new FormCard('Вход', 'Авторизоваться', './signin.html', 'Нет аккаунта?');
+        this.form = new FormCard('Вход', 'Авторизоваться', './signin', 'Нет аккаунта?');
         this.form.fields.push(new FormField('text', 'login', 'Логин', 'Некорректное значение', 'word'));
         this.form.fields.push(new FormField('password', 'password', 'Пароль', 'Некорректное значение', 'word'));
 
@@ -55,6 +58,12 @@ export class LoginPageComponent extends BaseComponent {
                 this.authService.login(
                     form.fields.find(e => e.name === 'login')!.value,
                     form.fields.find(e => e.name === 'password')!.value
+                ).then(
+                    response => {
+                        if (response) {
+                            this.router.go('./chat');
+                        }
+                    }
                 );
             }
         }

@@ -4,6 +4,7 @@ import { LoginPageTemplate } from './login.template.js';
 import { FormCardComponent } from '../../shared/components/form-card/form-card.js';
 import { FormField, FormCard } from '../../shared/shared.models.js';
 import { AuthService } from '../../core/core.js';
+import { Router } from '../../core/router/router.js';
 export class LoginPageComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new LoginPageTemplate());
@@ -11,12 +12,13 @@ export class LoginPageComponent extends BaseComponent {
         this.form = null;
         this.formValidationService = new FormValidationService();
         this.authService = AuthService.getInstance();
+        this.router = Router.getInstance();
     }
     render() {
         return this.templator.compile(this.template.getContent(), this.getProps());
     }
     prerenderChildrens() {
-        this.form = new FormCard('Вход', 'Авторизоваться', './signin.html', 'Нет аккаунта?');
+        this.form = new FormCard('Вход', 'Авторизоваться', './signin', 'Нет аккаунта?');
         this.form.fields.push(new FormField('text', 'login', 'Логин', 'Некорректное значение', 'word'));
         this.form.fields.push(new FormField('password', 'password', 'Пароль', 'Некорректное значение', 'word'));
         this.formComponent = new FormCardComponent(this.form, this.templator);
@@ -39,7 +41,11 @@ export class LoginPageComponent extends BaseComponent {
                 }
             }
             if (valid) {
-                this.authService.login(form.fields.find(e => e.name === 'login').value, form.fields.find(e => e.name === 'password').value);
+                this.authService.login(form.fields.find(e => e.name === 'login').value, form.fields.find(e => e.name === 'password').value).then(response => {
+                    if (response) {
+                        this.router.go('./chat');
+                    }
+                });
             }
         }
     }

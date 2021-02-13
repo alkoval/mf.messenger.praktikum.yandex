@@ -1,4 +1,5 @@
 import { BaseComponent } from '../../core/base-component/base-component.js';
+import { AuthService } from '../../core/core.js';
 import { SigninPageTemplate } from './signin.template.js';
 import { FormCardComponent } from '../../shared/components/form-card/form-card.js';
 import { FormCard } from '../../shared/models/form-card.js';
@@ -11,18 +12,19 @@ export class SigninPageComponent extends BaseComponent {
         this.formComponent = null;
         this.form = null;
         this.formValidationService = new FormValidationService();
+        this.authService = AuthService.getInstance();
     }
     render() {
         return this.templator.compile(this.template.getContent(), this.getProps());
     }
     prerenderChildrens() {
-        this.form = new FormCard('Регистрация', 'Зарегистрироваться', './login.html', 'Войти');
+        this.form = new FormCard('Регистрация', 'Зарегистрироваться', './login', 'Войти');
         this.form.fields.push(new FormField('email', 'email', 'Почта', 'Некорректное значение', 'email'));
         this.form.fields.push(new FormField('text', 'login', 'Логин', 'Латинские символы, цифры, длина 4-12', 'login'));
         this.form.fields.push(new FormField('text', 'name', 'Имя', 'Некорректное значение', 'word'));
         this.form.fields.push(new FormField('text', 'secondName', 'Фамилия', 'Некорректное значение', 'word'));
         this.form.fields.push(new FormField('text', 'phone', 'Телефон', 'Некорректное значение', 'phone'));
-        this.form.fields.push(new FormField('password', 'password', 'Пароль', '@, Латинские символы, цифры, длина 6-12', 'password'));
+        this.form.fields.push(new FormField('password', 'password', 'Пароль', '@, Латинские символы, цифры, длина от 6', 'password'));
         this.form.fields.push(new FormField('password', 'rePassword', 'Повторите пароль', 'Пароли не совпадают', 'password'));
         this.formComponent = new FormCardComponent(this.form, this.templator);
         this.childrens.push(this.formComponent);
@@ -56,7 +58,7 @@ export class SigninPageComponent extends BaseComponent {
                 profile.password = form.fields.find(e => e.name === 'password').value;
                 profile.rePassword = form.fields.find(e => e.name === 'rePassword').value;
                 profile.login = form.fields.find(e => e.name === 'login').value;
-                console.log(profile);
+                this.authService.signup(profile);
             }
         }
     }

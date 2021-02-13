@@ -13,22 +13,18 @@ export class EventBus {
     }
 
     off<T>(event: string, callback: T) {
-        if (!this.listeners.has(event)) {
-            throw new Error(`Нет события: ${event}`);
+        if (this.listeners.has(event)) {
+            this.listeners.set(event, this.listeners.get(event)!.filter(
+                listener => listener !== callback
+            ));
         }
-
-        this.listeners.set(event, this.listeners.get(event)!.filter(
-            listener => listener !== callback
-        ));
     }
 
     emit<T>(event: string, ...args: T[]) {
-        if (!this.listeners.has(event)) {
-            throw new Error(`Нет события: ${event}`);
+        if (this.listeners.has(event)) {
+            this.listeners.get(event)!.forEach(function (listener) {
+                listener(...args);
+            });
         }
-
-        this.listeners.get(event)!.forEach(function (listener) {
-            listener(...args);
-        });
     }
 }
