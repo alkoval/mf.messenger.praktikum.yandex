@@ -112,7 +112,7 @@ export class ProfilePageComponent extends BaseComponent {
     logout() {
         this.authService.logout().then(response => {
             if (response) {
-                this.router.go('./login');
+                this.router.go('/login');
             }
         });
     }

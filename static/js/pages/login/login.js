@@ -18,6 +18,7 @@ export class LoginPageComponent extends BaseComponent {
         return this.templator.compile(this.template.getContent(), this.getProps());
     }
     prerenderChildrens() {
+        console.log('prerenderChildrens');
         this.form = new FormCard('Вход', 'Авторизоваться', './signin', 'Нет аккаунта?');
         this.form.fields.push(new FormField('text', 'login', 'Логин', 'Некорректное значение', 'word'));
         this.form.fields.push(new FormField('password', 'password', 'Пароль', 'Некорректное значение', 'word'));

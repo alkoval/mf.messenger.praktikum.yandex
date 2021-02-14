@@ -124,7 +124,7 @@ export class ProfilePageComponent extends BaseComponent implements OnInit {
         this.authService.logout().then(
             response => {
                 if (response) {
-                    this.router.go('./login');
+                    this.router.go('/login');
                 }
             }
         )
