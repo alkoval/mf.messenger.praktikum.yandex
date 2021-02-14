@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { UserPasswordAPI } from "../../core/api/user-password-api.js";
 import { UserProfileAPI } from "../../core/api/user-profile-api.js";
 import { AuthService } from "../../core/core.js";
 import { NotifyService } from "../../core/services/notify.service.js";
@@ -17,6 +18,7 @@ export class ProfileService {
         this.store = Store.getInstance();
         this.authService = AuthService.getInstance();
         this.userProfileAPI = new UserProfileAPI();
+        this.userPasswordAPI = new UserPasswordAPI();
         this.notifyService = NotifyService.getInstance();
     }
     getProfile() {
@@ -55,6 +57,15 @@ export class ProfileService {
             else {
                 this.notifyService.notify(response);
             }
+        });
+    }
+    changePassword(oldPassword, newPassword) {
+        const passwordReq = {
+            oldPassword: oldPassword,
+            newPassword: newPassword
+        };
+        return this.userPasswordAPI.request(passwordReq).then(response => {
+            this.notifyService.notify(response);
         });
     }
 }

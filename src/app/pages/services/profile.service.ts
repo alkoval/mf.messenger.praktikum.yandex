@@ -1,5 +1,7 @@
 import { UserRequest } from "../../core/api/interfaces/user-request.js";
 import { UserResponse } from "../../core/api/interfaces/user-response.js";
+import { ChangePasswordRequest } from "../../core/api/interfaces/change-password-request.js";
+import { UserPasswordAPI } from "../../core/api/user-password-api.js";
 import { UserProfileAPI } from "../../core/api/user-profile-api.js";
 import { AuthService } from "../../core/core.js";
 import { NotifyService } from "../../core/services/notify.service.js";
@@ -10,12 +12,14 @@ export class ProfileService {
     private store: Store;
     private authService: AuthService;
     private userProfileAPI: UserProfileAPI;
+    private userPasswordAPI: UserPasswordAPI;
     private notifyService: NotifyService;
 
     constructor() {
         this.store = Store.getInstance();
         this.authService = AuthService.getInstance();
         this.userProfileAPI = new UserProfileAPI();
+        this.userPasswordAPI = new UserPasswordAPI();
         this.notifyService = NotifyService.getInstance();
     }
 
@@ -57,6 +61,18 @@ export class ProfileService {
                 } else {
                     this.notifyService.notify(response as string);
                 }
+            }
+        )
+    }
+
+    public changePassword(oldPassword: string, newPassword: string): Promise<unknown> {
+        const passwordReq: ChangePasswordRequest = {
+            oldPassword: oldPassword,
+            newPassword: newPassword
+        };
+        return this.userPasswordAPI.request(passwordReq).then(
+            response => {
+                this.notifyService.notify(response as string);
             }
         )
     }

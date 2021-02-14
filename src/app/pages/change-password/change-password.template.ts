@@ -20,7 +20,7 @@ export class ChangePasswordPageTemplate implements ComponentTemplate {
     public getContent(): string {
         return `
             <div class="profile__sidebar">
-                <a class="profile__back" href="./index.html"><i class="fas fa-arrow-left"></i></a>
+                <span class="profile__back"><i class="fas fa-arrow-left"></i></span>
             </div>
             <div class="profile__content">
                 <div class="profile__card">

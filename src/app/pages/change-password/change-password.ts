@@ -1,24 +1,26 @@
 import { BaseComponent } from '../../core/base-component/base-component.js';
 import { Templator } from '../../core/core.js';
 import { ProfileGroupInputComponent } from '../../shared/components/profile-group-input/profile-group-input.js';
-import { PropsComponent } from '../../shared/interfaces/props-component.js';
-import { FormField } from '../../shared/models/form-field.js';
-import { Profile } from '../../shared/models/profile.js';
+import { PropsComponent } from '../../shared/shared.interfaces.js';
+import { FormField, Button, BUTTON_STYLE } from '../../shared/shared.models.js';
 import { ChangePasswordPageTemplate } from './change-password.template.js';
 import FormValidationService from '../../core/services/form-validation.service.js';
 import { ButtonComponent } from '../../shared/components/button/button.js';
-import { Button, BUTTON_STYLE } from '../../shared/models/button.js';
+import { ProfileService } from '../services/profile.service.js';
+import { Router } from '../../core/router/router.js';
 
 export class ChangePasswordPageComponent extends BaseComponent {
     private formValidationService: FormValidationService;
     private fields: FormField[];
-    private profile: Profile;
+    private profileService: ProfileService;
+    private router: Router;
 
     constructor(props: PropsComponent, templator: Templator) {
         super(props, templator, new ChangePasswordPageTemplate());
+        this.profileService = new ProfileService();
         this.formValidationService = new FormValidationService();
         this.fields = [];
-        this.profile = props as Profile;
+        this.router = Router.getInstance();
     }
 
     public render(): string {
@@ -47,6 +49,10 @@ export class ChangePasswordPageComponent extends BaseComponent {
         if (button !== null) {
             button.addEventListener('click', () => { this.save(fields) });
         }
+        const backLink = this.getElement().querySelector('.profile__back');
+        if (backLink) {
+            backLink.addEventListener('click', () => { this.router.back() });
+        }
     }
 
     public save(fields: FormField[]): void {
@@ -58,19 +64,13 @@ export class ChangePasswordPageComponent extends BaseComponent {
             }
         }
 
-        valid = valid && fields.find(e => e.name === 'password')!.value == this.profile.password ? true : false;
-
+        const oldPassword = fields.find(e => e.name === 'oldPassword')!.value;
         const password = fields.find(e => e.name === 'password')!.value;
         const rePassword = fields.find(e => e.name === 'rePassword')!.value;
         valid = valid && password === rePassword ? true : false;
 
         if (valid) {
-            const newProfile = new Profile();
-            Object.assign(newProfile, this.profile);
-            newProfile.password = password;
-            console.log(newProfile);
-        } else {
-            console.log('Введен неверный старый пароль.')
+            this.profileService.changePassword(oldPassword, password);
         }
     }
 }
