@@ -25,7 +25,6 @@ export class ProfilePageComponent extends BaseComponent {
     }
     prerenderChildrens() {
         const profile = this.getProps();
-        console.log(profile);
         if (profile.id) {
             if (this.childrens.length > 0) {
                 this.childrens = [];

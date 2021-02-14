@@ -1,10 +1,10 @@
-.text__link {
+.text-link {
   color: #adadad;
   font-size: 0.8rem;
   margin-top: 10px;
 }
 
-.text__link:hover {
+.text-link:hover {
   cursor: pointer;
   color: #1eb980;
 }
