@@ -4,5 +4,6 @@ export interface NavItem {
     text: string;
     icon: string;
     path: string;
-    component: ComponentConstructor
+    component: ComponentConstructor,
+    guard: string | null
 }

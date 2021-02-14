@@ -31,6 +31,10 @@ export class Store {
 
     public setProfile(profile: Profile | null): void {
         this.profile = profile;
-        this.eventBus.emit(STORE_EVENTS.PROFILE_UPDATE);
+        this.eventBus.emit(STORE_EVENTS.PROFILE_UPDATE, this.profile);        
+    }
+
+    public getProfile(): Profile | null {
+        return this.profile;
     }
 }

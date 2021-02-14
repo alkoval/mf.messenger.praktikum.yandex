@@ -8,6 +8,7 @@ import { SignInRequest } from "../api/interfaces/signin-request.js";
 import { SignUpRequest } from "../api/interfaces/signup-request.js";
 import { SignUpResponse } from "../api/interfaces/signup-response.js";
 import { NotifyService } from "./notify.service.js";
+import { UserResponse } from "../api/interfaces/user-response.js";
 
 export class AuthService {
     private static instance: AuthService;
@@ -25,7 +26,6 @@ export class AuthService {
         this.authUserAPI = new AuthUserAPI();
         this.authLogoutAPI = new AuthLogoutAPI();
         this.notifyService = NotifyService.getInstance();
-        this.logout();
     }
 
     public static getInstance(): AuthService {
@@ -45,6 +45,8 @@ export class AuthService {
                 if (res.toLowerCase() === 'ok') {
                     return this.setProfile();
                 } else {
+                    this.logout();
+                    this.notifyService.notify(response as string);
                     return false;
                 }
             }
@@ -73,21 +75,37 @@ export class AuthService {
 
     }
 
-    public logout(): void {
-        this.authLogoutAPI.request().then(
+    public logout(): Promise<unknown> {
+        return this.authLogoutAPI.request().then(
             response => {
                 let res: string = response as string;
                 if (res.toLowerCase() === 'ok') {
                     this.cleareProfile();
+                    return true;
+                } else {
+                    return false;
                 }
             }
         )
     }
 
-    private setProfile(): Promise<unknown> {
+    public setProfile(): Promise<unknown> {
+        console.log('auth.setProfile')
         return this.authUserAPI.request().then(
             response => {
-                this.store.setProfile(response as Profile);
+                const userResponse: UserResponse = JSON.parse(response as string);
+                const profile: Profile = new Profile();
+
+                profile.id = userResponse.id;
+                profile.name = userResponse.first_name;
+                profile.secondName = userResponse.second_name;
+                profile.nickname = userResponse.display_name;
+                profile.login = userResponse.login;
+                profile.email = userResponse.email;
+                profile.phone = userResponse.phone;
+                profile.avatar = userResponse.avatar ? userResponse.avatar : 'rick_avatar.png';
+
+                this.store.setProfile(profile);
                 return true;
             }
         )
@@ -95,9 +113,5 @@ export class AuthService {
 
     private cleareProfile(): void {
         this.store.setProfile(null);
-    }
-
-    private notify(message: string): void {
-        this.notifyService.show({ message: message, time: 5000 });
     }
 }

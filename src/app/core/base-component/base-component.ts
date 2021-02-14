@@ -3,6 +3,7 @@ import { PropsComponent } from '../../shared/interfaces/props-component.js';
 import { ComponentTemplate } from '../../shared/interfaces/component-template.js';
 import { Component } from '../../shared/interfaces/component.js';
 import Templator from '../services/templator.service.js';
+import { OnInit } from '../../shared/shared.interfaces.js';
 
 export enum EVENTS {
     INIT = "init",
@@ -11,7 +12,8 @@ export enum EVENTS {
     FLOW_AFTER_RENDER = "flow:after-render",
     FLOW_CDU = "flow:component-did-update",
     SET_DATASET = "set:dataset",
-    SUBSCRIVE = "subscribe",
+    SUBSCRIBE = "subscribe",
+    SUBSCRIBE_ON_CHILDRENS = "subscribe-on-childrens",
     SHOWN = "shown"
 }
 export abstract class BaseComponent implements Component {
@@ -40,7 +42,8 @@ export abstract class BaseComponent implements Component {
         this.eventBus.on(EVENTS.FLOW_AFTER_RENDER, this.prerenderChildrens.bind(this));
         this.eventBus.on(EVENTS.FLOW_CDU, this.componentDidUpdate.bind(this));
         this.eventBus.on(EVENTS.SET_DATASET, this.setDataset.bind(this));
-        this.eventBus.on(EVENTS.SUBSCRIVE, this.subscribe.bind(this));
+        this.eventBus.on(EVENTS.SUBSCRIBE, this.subscribe.bind(this));
+        this.eventBus.on(EVENTS.SUBSCRIBE_ON_CHILDRENS, this.subscribeOnChildrens.bind(this));
     }
 
     public getEventEmitter(): EventBus {
@@ -80,10 +83,16 @@ export abstract class BaseComponent implements Component {
     public prerender(): void {
         this.elem.innerHTML = this.render();
         this.eventBus.emit(EVENTS.FLOW_AFTER_RENDER);
+        this.eventBus.emit(EVENTS.SUBSCRIBE);
     }
 
     public prerenderChildrens(): void {
         this.renderChildrens();
+        this.afterRenderChildrens();
+    }
+
+    public afterRenderChildrens(): void {
+        this.eventBus.emit(EVENTS.SUBSCRIBE_ON_CHILDRENS);
     }
 
     public renderChildrens(): void {
@@ -92,7 +101,6 @@ export abstract class BaseComponent implements Component {
                 this.elem.appendChild(child.getContent());
             }
         }
-        this.eventBus.emit(EVENTS.SUBSCRIVE);
     }
 
     public renderChildrensToSelector(selector: string): void {
@@ -104,7 +112,6 @@ export abstract class BaseComponent implements Component {
                 }
             }
         }
-        this.eventBus.emit(EVENTS.SUBSCRIVE);
     }
 
     public renderToSelector(childrens: BaseComponent[], selector: string): void {
@@ -116,7 +123,6 @@ export abstract class BaseComponent implements Component {
                 }
             }
         }
-        this.eventBus.emit(EVENTS.SUBSCRIVE);
     }
 
     public render(): string { return ''; }
@@ -146,6 +152,8 @@ export abstract class BaseComponent implements Component {
     public setDataset(): void { }
 
     public subscribe(): void { }
+
+    public subscribeOnChildrens(): void { }
 
     public creatred(): void { }
 

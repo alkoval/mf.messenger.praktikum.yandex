@@ -8,12 +8,14 @@ export default class Route {
     private componentClass: ComponentConstructor;
     private component: Component | null;
     private pageService: PageService;
+    private guard: string | null;
 
-    constructor(path: string, view: ComponentConstructor) {
+    constructor(path: string, view: ComponentConstructor, guard: string | null) {
         this.path = path;
         this.componentClass = view;
         this.component = null;
         this.pageService = PageService.getInstance();
+        this.guard = guard;
     }
 
     public navigate(path: string): void {
@@ -42,5 +44,9 @@ export default class Route {
         }
 
         this.component.show();
+    }
+
+    public getGuard(): string | null {
+        return this.guard;
     }
 } 

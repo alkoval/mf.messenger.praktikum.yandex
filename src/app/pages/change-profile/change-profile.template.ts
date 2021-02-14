@@ -43,16 +43,13 @@ export class ChangeProfilePageTemplate implements ComponentTemplate {
                 </div>
             </div>
             <div class="profile__sidebar">
-                <a class="profile__back" href="./index.html"><i class="fas fa-arrow-left"></i></a>
+                <span class="profile__back"><i class="fas fa-arrow-left"></i></span>
             </div>
             <div class="profile__content">
                 <div class="profile__card">
                     <div class="profile__section">
                         <div class="profile__avatar-container">
                             <img class="profile__avatar" src="assets/images/{{avatar}}" alt="">
-                            <div class="profile__avatar-link">
-                                <span>Поменять<br>аватар</span>
-                            </div>
                         </div>
                         <span class="profile__nickname">{{nickname}}</span>
                     </div>

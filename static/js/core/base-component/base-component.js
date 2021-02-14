@@ -7,7 +7,8 @@ export var EVENTS;
     EVENTS["FLOW_AFTER_RENDER"] = "flow:after-render";
     EVENTS["FLOW_CDU"] = "flow:component-did-update";
     EVENTS["SET_DATASET"] = "set:dataset";
-    EVENTS["SUBSCRIVE"] = "subscribe";
+    EVENTS["SUBSCRIBE"] = "subscribe";
+    EVENTS["SUBSCRIBE_ON_CHILDRENS"] = "subscribe-on-childrens";
     EVENTS["SHOWN"] = "shown";
 })(EVENTS || (EVENTS = {}));
 export class BaseComponent {
@@ -28,7 +29,8 @@ export class BaseComponent {
         this.eventBus.on(EVENTS.FLOW_AFTER_RENDER, this.prerenderChildrens.bind(this));
         this.eventBus.on(EVENTS.FLOW_CDU, this.componentDidUpdate.bind(this));
         this.eventBus.on(EVENTS.SET_DATASET, this.setDataset.bind(this));
-        this.eventBus.on(EVENTS.SUBSCRIVE, this.subscribe.bind(this));
+        this.eventBus.on(EVENTS.SUBSCRIBE, this.subscribe.bind(this));
+        this.eventBus.on(EVENTS.SUBSCRIBE_ON_CHILDRENS, this.subscribeOnChildrens.bind(this));
     }
     getEventEmitter() {
         return this.eventBus;
@@ -59,9 +61,14 @@ export class BaseComponent {
     prerender() {
         this.elem.innerHTML = this.render();
         this.eventBus.emit(EVENTS.FLOW_AFTER_RENDER);
+        this.eventBus.emit(EVENTS.SUBSCRIBE);
     }
     prerenderChildrens() {
         this.renderChildrens();
+        this.afterRenderChildrens();
+    }
+    afterRenderChildrens() {
+        this.eventBus.emit(EVENTS.SUBSCRIBE_ON_CHILDRENS);
     }
     renderChildrens() {
         if (this.childrens.length > 0) {
@@ -69,7 +76,6 @@ export class BaseComponent {
                 this.elem.appendChild(child.getContent());
             }
         }
-        this.eventBus.emit(EVENTS.SUBSCRIVE);
     }
     renderChildrensToSelector(selector) {
         if (this.childrens.length > 0) {
@@ -80,7 +86,6 @@ export class BaseComponent {
                 }
             }
         }
-        this.eventBus.emit(EVENTS.SUBSCRIVE);
     }
     renderToSelector(childrens, selector) {
         if (childrens.length > 0) {
@@ -91,7 +96,6 @@ export class BaseComponent {
                 }
             }
         }
-        this.eventBus.emit(EVENTS.SUBSCRIVE);
     }
     render() { return ''; }
     makePropsProxy(props) {
@@ -114,6 +118,7 @@ export class BaseComponent {
     }
     setDataset() { }
     subscribe() { }
+    subscribeOnChildrens() { }
     creatred() { }
     show() {
         this.eventBus.emit(EVENTS.SHOWN, this);

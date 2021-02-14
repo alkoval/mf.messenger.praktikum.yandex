@@ -20,7 +20,10 @@ export class Store {
     }
     setProfile(profile) {
         this.profile = profile;
-        this.eventBus.emit(STORE_EVENTS.PROFILE_UPDATE);
+        this.eventBus.emit(STORE_EVENTS.PROFILE_UPDATE, this.profile);
+    }
+    getProfile() {
+        return this.profile;
     }
 }
 //# sourceMappingURL=store.js.map

@@ -1,5 +1,5 @@
 import { Router } from './core/router/router.js';
-import { NavService } from './core/core.js';
+import { AuthService, NavService } from './core/core.js';
 import { PageService } from './pages/page.service.js';
 import { NotifyService } from './core/services/notify.service.js';
 export class App {
@@ -8,6 +8,7 @@ export class App {
         this.navService = NavService.getInstance();
         this.pageService = PageService.getInstance();
         this.notifyService = NotifyService.getInstance();
+        this.authService = AuthService.getInstance();
     }
     init() {
         this.navService.setRouter(this.router);
@@ -15,6 +16,7 @@ export class App {
         this.pageService.setSelector('.chatapp');
         this.notifyService.setSelector('.chatapp');
         this.router.start();
+        this.authService.setProfile();
     }
 }
 const chatApp = new App();

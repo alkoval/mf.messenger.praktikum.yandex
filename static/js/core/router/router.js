@@ -14,7 +14,7 @@ export class Router {
     }
     use(navItems) {
         for (let item of navItems) {
-            const route = new Route(item.path, item.component);
+            const route = new Route(item.path, item.component, item.guard);
             this.routes.push(route);
         }
         return this;

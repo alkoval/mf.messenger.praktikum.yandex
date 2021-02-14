@@ -3,6 +3,7 @@ import { AuthSignUpAPI } from "../api/auth-signup-api.js";
 import { AuthUserAPI } from "../api/auth-user-api.js";
 import { AuthLogoutAPI } from "../api/auth-logout-api.js";
 import { Store } from "../store/store.js";
+import { Profile } from "../../shared/shared.models.js";
 import { NotifyService } from "./notify.service.js";
 export class AuthService {
     constructor() {
@@ -12,7 +13,6 @@ export class AuthService {
         this.authUserAPI = new AuthUserAPI();
         this.authLogoutAPI = new AuthLogoutAPI();
         this.notifyService = NotifyService.getInstance();
-        this.logout();
     }
     static getInstance() {
         if (!this.instance) {
@@ -28,6 +28,8 @@ export class AuthService {
                 return this.setProfile();
             }
             else {
+                this.logout();
+                this.notifyService.notify(response);
                 return false;
             }
         });
@@ -41,33 +43,46 @@ export class AuthService {
             password: profile.password,
             phone: profile.phone
         };
-        this.authSignUpAPI.request(request).then(response => {
+        return this.authSignUpAPI.request(request).then(response => {
             let res = response;
             if (res.id) {
                 profile.id = res.id;
                 this.store.setProfile(profile);
+                return true;
             }
         });
     }
     logout() {
-        this.authLogoutAPI.request().then(response => {
+        return this.authLogoutAPI.request().then(response => {
             let res = response;
             if (res.toLowerCase() === 'ok') {
                 this.cleareProfile();
+                return true;
+            }
+            else {
+                return false;
             }
         });
     }
     setProfile() {
+        console.log('auth.setProfile');
         return this.authUserAPI.request().then(response => {
-            this.store.setProfile(response);
+            const userResponse = JSON.parse(response);
+            const profile = new Profile();
+            profile.id = userResponse.id;
+            profile.name = userResponse.first_name;
+            profile.secondName = userResponse.second_name;
+            profile.nickname = userResponse.display_name;
+            profile.login = userResponse.login;
+            profile.email = userResponse.email;
+            profile.phone = userResponse.phone;
+            profile.avatar = userResponse.avatar ? userResponse.avatar : 'rick_avatar.png';
+            this.store.setProfile(profile);
             return true;
         });
     }
     cleareProfile() {
         this.store.setProfile(null);
-    }
-    notify(message) {
-        this.notifyService.show({ message: message, time: 5000 });
     }
 }
 //# sourceMappingURL=auth.service.js.map

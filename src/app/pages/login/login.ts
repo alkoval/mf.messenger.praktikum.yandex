@@ -35,6 +35,7 @@ export class LoginPageComponent extends BaseComponent {
         this.formComponent = new FormCardComponent(this.form, this.templator);
         this.childrens.push(this.formComponent);
         this.renderChildrens();
+        this.afterRenderChildrens();
     }
 
     public subscribe(): void {
@@ -61,7 +62,7 @@ export class LoginPageComponent extends BaseComponent {
                 ).then(
                     response => {
                         if (response) {
-                            this.router.go('./chat');
+                            this.router.go('/profile');
                         }
                     }
                 );

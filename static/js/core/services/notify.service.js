@@ -3,7 +3,6 @@ import { Templator } from "../core.js";
 export class NotifyService {
     constructor() {
         this.selector = '';
-        this.notifyComponent = null;
     }
     static getInstance() {
         if (!this.instance) {
@@ -17,15 +16,15 @@ export class NotifyService {
     show(notify) {
         const root = document.querySelector(this.selector);
         if (root !== null) {
-            if (this.notifyComponent) {
-                this.notifyComponent.setProps(notify);
-                this.notifyComponent.show();
-            }
-            else {
-                this.notifyComponent = new NotifyComponent(notify, Templator.getInstance());
-            }
-            root.appendChild(this.notifyComponent.getContent());
+            const notifyComponent = new NotifyComponent(notify, Templator.getInstance());
+            root.appendChild(notifyComponent.getContent());
         }
+    }
+    notify(message, time) {
+        this.show({
+            message: message,
+            time: time ? time : 5000
+        });
     }
 }
 //# sourceMappingURL=notify.service.js.map

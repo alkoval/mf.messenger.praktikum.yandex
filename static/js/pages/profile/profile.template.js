@@ -35,7 +35,7 @@ export class ProfilePageTemplate {
                 </div>
             </div>
             <div class="profile__sidebar">
-                <a class="profile__back" href="./index.html"><i class="fas fa-arrow-left"></i></a>
+                <span class="profile__back"><i class="fas fa-arrow-left"></i></span>
             </div>
             <div class="profile__content">
                 <div class="profile__card">
@@ -53,17 +53,17 @@ export class ProfilePageTemplate {
                     <ul class="profile__section profile__footer">
                         <li class="profile__group">
                             <a class="profile__group-text profile__group-text_color_dark-green profile__group-link"
-                                href="change-profile.html">Изменить
+                                href="change-profile">Изменить
                                 данные</a>
                         </li>
                         <li class="profile__group">
                             <a class="profile__group-text profile__group-text_color_dark-green profile__group-link"
-                                href="change-password.html">Изменить
+                                href="change-password">Изменить
                                 пароль</a>
                         </li>
                         <li class="profile__group profile__group_border_null">
                             <a class="profile__group-text profile__group-text_color_red profile__group-link"
-                                href="index.html">Выйти</a>
+                                href="./">Выйти</a>
                         </li>
                     </ul>
                 </div>

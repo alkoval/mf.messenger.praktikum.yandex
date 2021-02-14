@@ -1,23 +1,44 @@
 import { BaseComponent } from '../../core/base-component/base-component.js';
+import { AuthService } from '../../core/core.js';
+import { Router } from '../../core/router/router.js';
+import { Store, STORE_EVENTS } from '../../core/store/store.js';
 import { ProfileGroupTextComponent } from '../../shared/components/profile-group-text/profile-group-text.js';
-import { FormField } from '../../shared/models/form-field.js';
+import { FormField } from '../../shared/shared.models.js';
 import { ProfilePageTemplate } from './profile.template.js';
 export class ProfilePageComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new ProfilePageTemplate());
+        this.store = Store.getInstance();
+        this.authService = AuthService.getInstance();
+        this.router = Router.getInstance();
+        this.onInit();
+    }
+    onInit() {
+        this.store.subscribe().on(STORE_EVENTS.PROFILE_UPDATE, this.setProps.bind(this));
+        const profile = this.store.getProfile();
+        if (profile != null) {
+            this.setProps(profile);
+        }
     }
     render() {
         return this.templator.compile(this.template.getContent(), this.getProps());
     }
     prerenderChildrens() {
         const profile = this.getProps();
-        this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'email', 'Почта', 'Некорректное значение', 'email', profile.email), this.templator));
-        this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'login', 'Логин', 'Некорректное значение', 'login', profile.login), this.templator));
-        this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'name', 'Имя', 'Некорректное значение', 'word', profile.name), this.templator));
-        this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'secondName', 'Фамилия', 'Некорректное значение', 'word', profile.secondName), this.templator));
-        this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'nickname', 'Имя в чате', 'Некорректное значение', 'word', profile.nickname), this.templator));
-        this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'phone', 'Телефон', 'Некорректное значение', 'phone', profile.phone), this.templator));
-        this.renderChildrensToSelector('.profile__body');
+        this.childrens = [];
+        if (profile.id && this.childrens.length === 0) {
+            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'email', 'Почта', 'Некорректное значение', 'email', profile.email), this.templator));
+            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'login', 'Логин', 'Некорректное значение', 'login', profile.login), this.templator));
+            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'name', 'Имя', 'Некорректное значение', 'word', profile.name), this.templator));
+            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'secondName', 'Фамилия', 'Некорректное значение', 'word', profile.secondName), this.templator));
+            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'nickname', 'Имя в чате', 'Некорректное значение', 'word', profile.nickname), this.templator));
+            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'phone', 'Телефон', 'Некорректное значение', 'phone', profile.phone), this.templator));
+            this.renderChildrensToSelector('.profile__body');
+            this.afterRenderChildrens();
+        }
+        else {
+            this.renderChildrensToSelector('.profile__body');
+        }
     }
     subscribe() {
         const showMd = this.getElement().querySelector('.profile__avatar-link');
@@ -31,6 +52,10 @@ export class ProfilePageComponent extends BaseComponent {
         const inputFile = this.getElement().querySelector('.modal__file-upload__input');
         if (inputFile) {
             inputFile.addEventListener('change', (e) => { this.checkFile(e.target); });
+        }
+        const backLink = this.getElement().querySelector('.profile__back');
+        if (backLink) {
+            backLink.addEventListener('click', () => { this.router.back(); });
         }
     }
     toggleModal() {
@@ -72,6 +97,13 @@ export class ProfilePageComponent extends BaseComponent {
         else {
             err.classList.remove("modal__text_display_none");
         }
+    }
+    logout() {
+        this.authService.logout().then(response => {
+            if (response) {
+                this.router.go('./login');
+            }
+        });
     }
 }
 //# sourceMappingURL=profile.js.map

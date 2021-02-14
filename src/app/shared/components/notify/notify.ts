@@ -25,6 +25,6 @@ export class NotifyComponent extends BaseComponent {
     }
 
     public hide(): void {
-        this.getElement().style.display = 'none';
+        this.getElement().remove();//.style.display = 'none';
     }
 }

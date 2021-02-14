@@ -6,6 +6,7 @@ import { FormCard } from '../../shared/models/form-card.js';
 import { FormField } from '../../shared/models/form-field.js';
 import FormValidationService from '../../core/services/form-validation.service.js';
 import { Profile } from '../../shared/models/profile.js';
+import { Router } from '../../core/router/router.js';
 export class SigninPageComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new SigninPageTemplate());
@@ -13,6 +14,7 @@ export class SigninPageComponent extends BaseComponent {
         this.form = null;
         this.formValidationService = new FormValidationService();
         this.authService = AuthService.getInstance();
+        this.router = Router.getInstance();
     }
     render() {
         return this.templator.compile(this.template.getContent(), this.getProps());
@@ -58,7 +60,12 @@ export class SigninPageComponent extends BaseComponent {
                 profile.password = form.fields.find(e => e.name === 'password').value;
                 profile.rePassword = form.fields.find(e => e.name === 'rePassword').value;
                 profile.login = form.fields.find(e => e.name === 'login').value;
-                this.authService.signup(profile);
+                this.authService.signup(profile).then(response => {
+                    if (response) {
+                        this.router.go('./chat');
+                    }
+                });
+                ;
             }
         }
     }

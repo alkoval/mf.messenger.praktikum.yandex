@@ -16,7 +16,7 @@ export class NotifyComponent extends BaseComponent {
         this.getElement().style.display = 'block';
     }
     hide() {
-        this.getElement().style.display = 'none';
+        this.getElement().remove();
     }
 }
 //# sourceMappingURL=notify.js.map

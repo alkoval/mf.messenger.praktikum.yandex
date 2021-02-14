@@ -24,6 +24,7 @@ export class LoginPageComponent extends BaseComponent {
         this.formComponent = new FormCardComponent(this.form, this.templator);
         this.childrens.push(this.formComponent);
         this.renderChildrens();
+        this.afterRenderChildrens();
     }
     subscribe() {
         const self = this.form;
@@ -43,7 +44,7 @@ export class LoginPageComponent extends BaseComponent {
             if (valid) {
                 this.authService.login(form.fields.find(e => e.name === 'login').value, form.fields.find(e => e.name === 'password').value).then(response => {
                     if (response) {
-                        this.router.go('./chat');
+                        this.router.go('/profile');
                     }
                 });
             }

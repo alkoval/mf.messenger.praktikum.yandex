@@ -1,18 +1,32 @@
 import { BaseComponent } from '../../core/base-component/base-component.js';
-import { Templator } from '../../core/core.js';
+import { AuthService, Templator } from '../../core/core.js';
+import { Router } from '../../core/router/router.js';
+import { Store, STORE_EVENTS } from '../../core/store/store.js';
 import { ProfileGroupTextComponent } from '../../shared/components/profile-group-text/profile-group-text.js';
-import { PropsComponent } from '../../shared/interfaces/props-component.js';
-import { FormField } from '../../shared/models/form-field.js';
-import { Profile } from '../../shared/models/profile.js';
+import { OnInit, PropsComponent } from '../../shared/shared.interfaces.js';
+import { FormField, Profile } from '../../shared/shared.models.js';
 import { ProfilePageTemplate } from './profile.template.js';
-//import FormValidationService from '../../core/services/form-validation.service.js';
 
-export class ProfilePageComponent extends BaseComponent {
-    //private formValidationService: FormValidationService;
+
+export class ProfilePageComponent extends BaseComponent implements OnInit {
+    private store: Store;
+    private authService: AuthService;
+    private router: Router;
 
     constructor(props: PropsComponent, templator: Templator) {
         super(props, templator, new ProfilePageTemplate());
-        //this.formValidationService = new FormValidationService();
+        this.store = Store.getInstance();
+        this.authService = AuthService.getInstance();
+        this.router = Router.getInstance();
+        this.onInit();
+    }
+
+    public onInit(): void {
+        this.store.subscribe().on(STORE_EVENTS.PROFILE_UPDATE, this.setProps.bind(this));
+        const profile = this.store.getProfile();
+        if (profile != null) {
+            this.setProps(profile);
+        }
     }
 
     public render(): string {
@@ -21,13 +35,19 @@ export class ProfilePageComponent extends BaseComponent {
 
     public prerenderChildrens(): void {
         const profile = this.getProps() as Profile;
-        this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'email', 'Почта', 'Некорректное значение', 'email', profile.email), this.templator));
-        this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'login', 'Логин', 'Некорректное значение', 'login', profile.login), this.templator));
-        this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'name', 'Имя', 'Некорректное значение', 'word', profile.name), this.templator));
-        this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'secondName', 'Фамилия', 'Некорректное значение', 'word', profile.secondName), this.templator));
-        this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'nickname', 'Имя в чате', 'Некорректное значение', 'word', profile.nickname), this.templator));
-        this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'phone', 'Телефон', 'Некорректное значение', 'phone', profile.phone), this.templator));
-        this.renderChildrensToSelector('.profile__body');
+        // Проверить почему не обновляется profile
+        if (profile.id && this.childrens.length === 0) {
+            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'email', 'Почта', 'Некорректное значение', 'email', profile.email), this.templator));
+            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'login', 'Логин', 'Некорректное значение', 'login', profile.login), this.templator));
+            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'name', 'Имя', 'Некорректное значение', 'word', profile.name), this.templator));
+            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'secondName', 'Фамилия', 'Некорректное значение', 'word', profile.secondName), this.templator));
+            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'nickname', 'Имя в чате', 'Некорректное значение', 'word', profile.nickname), this.templator));
+            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'phone', 'Телефон', 'Некорректное значение', 'phone', profile.phone), this.templator));
+            this.renderChildrensToSelector('.profile__body');
+            this.afterRenderChildrens();
+        } else {
+            this.renderChildrensToSelector('.profile__body');
+        }
     }
 
     public subscribe(): void {
@@ -42,6 +62,10 @@ export class ProfilePageComponent extends BaseComponent {
         const inputFile = this.getElement().querySelector('.modal__file-upload__input');
         if (inputFile) {
             inputFile.addEventListener('change', (e) => { this.checkFile(e.target as HTMLInputElement) });
+        }
+        const backLink = this.getElement().querySelector('.profile__back');
+        if (backLink) {
+            backLink.addEventListener('click', () => { this.router.back() });
         }
     }
 
@@ -82,5 +106,15 @@ export class ProfilePageComponent extends BaseComponent {
         } else {
             err!.classList.remove("modal__text_display_none");
         }
+    }
+
+    public logout(): void {
+        this.authService.logout().then(
+            response => {
+                if (response) {
+                    this.router.go('./login');
+                }
+            }
+        )
     }
 }
