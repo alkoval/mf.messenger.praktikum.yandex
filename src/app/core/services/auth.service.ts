@@ -9,23 +9,26 @@ import { SignUpRequest } from "../api/interfaces/signup-request.js";
 import { SignUpResponse } from "../api/interfaces/signup-response.js";
 import { NotifyService } from "./notify.service.js";
 import { UserResponse } from "../api/interfaces/user-response.js";
+import { UserAPI } from "../api/user-api.js";
 
 export class AuthService {
     private static instance: AuthService;
     private store: Store;
+    private notifyService: NotifyService;
     private authSignInAPI: AuthSignInAPI;
     private authSignUpAPI: AuthSignUpAPI;
     private authUserAPI: AuthUserAPI;
     private authLogoutAPI: AuthLogoutAPI;
-    private notifyService: NotifyService;
+    private userAPI: UserAPI;
 
     constructor() {
         this.store = Store.getInstance();
+        this.notifyService = NotifyService.getInstance();
         this.authSignInAPI = new AuthSignInAPI();
         this.authSignUpAPI = new AuthSignUpAPI();
         this.authUserAPI = new AuthUserAPI();
         this.authLogoutAPI = new AuthLogoutAPI();
-        this.notifyService = NotifyService.getInstance();
+        this.userAPI = new UserAPI();
     }
 
     public static getInstance(): AuthService {
@@ -64,11 +67,11 @@ export class AuthService {
         };
         return this.authSignUpAPI.request(request).then(
             response => {
-                let res: SignUpResponse = response as SignUpResponse;
+                let res: SignUpResponse = JSON.parse(response as string);
                 if (res.id) {
-                    profile.id = res.id;
-                    this.store.setProfile(profile);
-                    return true;
+                    return res.id;
+                } else {
+                    this.notifyService.notify(response as string);
                 }
             }
         );
@@ -90,7 +93,6 @@ export class AuthService {
     }
 
     public setProfile(): Promise<unknown> {
-        console.log('auth.setProfile')
         return this.authUserAPI.request().then(
             response => {
                 const userResponse: UserResponse = JSON.parse(response as string);

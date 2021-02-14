@@ -7,20 +7,23 @@ import { AuthService } from "../../core/core.js";
 import { NotifyService } from "../../core/services/notify.service.js";
 import { Store } from "../../core/store/store.js";
 import { Profile } from "../../shared/shared.models.js";
+import { UserAPI } from "../../core/api/user-api.js";
 
 export class ProfileService {
     private store: Store;
     private authService: AuthService;
+    private notifyService: NotifyService;
     private userProfileAPI: UserProfileAPI;
     private userPasswordAPI: UserPasswordAPI;
-    private notifyService: NotifyService;
+    private userAPI: UserAPI;
 
     constructor() {
         this.store = Store.getInstance();
         this.authService = AuthService.getInstance();
+        this.notifyService = NotifyService.getInstance();
         this.userProfileAPI = new UserProfileAPI();
         this.userPasswordAPI = new UserPasswordAPI();
-        this.notifyService = NotifyService.getInstance();
+        this.userAPI = new UserAPI();
     }
 
     public async getProfile(): Promise<unknown> {
@@ -73,6 +76,38 @@ export class ProfileService {
         return this.userPasswordAPI.request(passwordReq).then(
             response => {
                 this.notifyService.notify(response as string);
+            }
+        )
+    }
+
+    public siginUp(profile: Profile): Promise<unknown> {
+        return this.authService.signup(profile).then(
+            id => {
+                console.log(id)
+                return this.userAPI.request(id as number).then(
+                    user => {
+                        console.log(user)
+                        const userResponse: UserResponse = JSON.parse(user as string);
+                        if (userResponse.id) {
+                            const profile: Profile = new Profile();
+
+                            profile.id = userResponse.id;
+                            profile.name = userResponse.first_name;
+                            profile.secondName = userResponse.second_name;
+                            profile.nickname = userResponse.display_name;
+                            profile.login = userResponse.login;
+                            profile.email = userResponse.email;
+                            profile.phone = userResponse.phone;
+                            profile.avatar = userResponse.avatar ? userResponse.avatar : 'rick_avatar.png';
+
+                            this.store.setProfile(profile);
+                            return true;
+                        } else {
+                            this.notifyService.notify(user as string);
+                            return false;
+                        }
+                    }
+                )
             }
         )
     }

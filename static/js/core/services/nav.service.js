@@ -19,7 +19,7 @@ export default class NavService {
             this.navItems = [] = [
                 { text: 'Логин', icon: 'far fa-file list__icon', path: '/', component: LoginPageComponent, guard: null },
                 { text: 'Логин', icon: 'far fa-file list__icon', path: '/login', component: LoginPageComponent, guard: null },
-                { text: 'Регистрация', icon: 'far fa-file list__icon', path: '/signin', component: SigninPageComponent, guard: GUARDS.PROFILE },
+                { text: 'Регистрация', icon: 'far fa-file list__icon', path: '/signin', component: SigninPageComponent, guard: null },
                 { text: 'Чат', icon: 'far fa-file list__icon', path: '/chat', component: ChatPageComponent, guard: GUARDS.PROFILE },
                 { text: 'Профиль', icon: 'far fa-file list__icon', path: '/profile', component: ProfilePageComponent, guard: GUARDS.PROFILE },
                 { text: 'Редактор профиля', icon: 'far fa-file list__icon', path: '/change-profile', component: ChangeProfilePageComponent, guard: GUARDS.PROFILE },

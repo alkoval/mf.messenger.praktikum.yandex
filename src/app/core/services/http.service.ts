@@ -77,7 +77,7 @@ export default class HttpService {
             xhr.timeout = timeout;
 
             xhr.onload = function () {
-                if (this.status === 200 || this.status === 400) {
+                if (this.status === 200 || this.status === 400 || this.status === 409) {
                     resolve(xhr.response);
                 } else {
                     reject(new Error(`Ответ от сервера: ${xhr.status} | ${xhr.responseText}`));

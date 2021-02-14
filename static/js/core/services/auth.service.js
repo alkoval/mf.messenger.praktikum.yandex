@@ -5,14 +5,16 @@ import { AuthLogoutAPI } from "../api/auth-logout-api.js";
 import { Store } from "../store/store.js";
 import { Profile } from "../../shared/shared.models.js";
 import { NotifyService } from "./notify.service.js";
+import { UserAPI } from "../api/user-api.js";
 export class AuthService {
     constructor() {
         this.store = Store.getInstance();
+        this.notifyService = NotifyService.getInstance();
         this.authSignInAPI = new AuthSignInAPI();
         this.authSignUpAPI = new AuthSignUpAPI();
         this.authUserAPI = new AuthUserAPI();
         this.authLogoutAPI = new AuthLogoutAPI();
-        this.notifyService = NotifyService.getInstance();
+        this.userAPI = new UserAPI();
     }
     static getInstance() {
         if (!this.instance) {
@@ -44,11 +46,12 @@ export class AuthService {
             phone: profile.phone
         };
         return this.authSignUpAPI.request(request).then(response => {
-            let res = response;
+            let res = JSON.parse(response);
             if (res.id) {
-                profile.id = res.id;
-                this.store.setProfile(profile);
-                return true;
+                return res.id;
+            }
+            else {
+                this.notifyService.notify(response);
             }
         });
     }
@@ -65,7 +68,6 @@ export class AuthService {
         });
     }
     setProfile() {
-        console.log('auth.setProfile');
         return this.authUserAPI.request().then(response => {
             const userResponse = JSON.parse(response);
             const profile = new Profile();
