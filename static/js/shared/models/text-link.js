@@ -1,8 +1,8 @@
 export class TextLink {
-    constructor(text, cssClass, url) {
+    constructor(text, cssClass, path) {
         this.text = text;
         this.cssClass = cssClass;
-        this.url = url;
+        this.path = path;
     }
 }
 //# sourceMappingURL=text-link.js.map

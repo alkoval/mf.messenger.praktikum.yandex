@@ -1,6 +1,6 @@
 export class TextLinkTemplate {
     constructor() {
-        this.tag = 'a';
+        this.tag = 'span';
         this.cssClass = 'text-link';
     }
     getTag() {

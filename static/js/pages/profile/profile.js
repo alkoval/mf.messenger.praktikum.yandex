@@ -25,8 +25,11 @@ export class ProfilePageComponent extends BaseComponent {
     }
     prerenderChildrens() {
         const profile = this.getProps();
-        this.childrens = [];
-        if (profile.id && this.childrens.length === 0) {
+        console.log(profile);
+        if (profile.id) {
+            if (this.childrens.length > 0) {
+                this.childrens = [];
+            }
             this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'email', 'Почта', 'Некорректное значение', 'email', profile.email), this.templator));
             this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'login', 'Логин', 'Некорректное значение', 'login', profile.login), this.templator));
             this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'name', 'Имя', 'Некорректное значение', 'word', profile.name), this.templator));
@@ -35,9 +38,6 @@ export class ProfilePageComponent extends BaseComponent {
             this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'phone', 'Телефон', 'Некорректное значение', 'phone', profile.phone), this.templator));
             this.renderChildrensToSelector('.profile__body');
             this.afterRenderChildrens();
-        }
-        else {
-            this.renderChildrensToSelector('.profile__body');
         }
     }
     subscribe() {
@@ -56,6 +56,18 @@ export class ProfilePageComponent extends BaseComponent {
         const backLink = this.getElement().querySelector('.profile__back');
         if (backLink) {
             backLink.addEventListener('click', () => { this.router.back(); });
+        }
+        const changeProfileLink = this.getElement().querySelectorAll('.profile__footer .profile__group-link')[0];
+        if (changeProfileLink) {
+            changeProfileLink.addEventListener('click', () => { this.router.go('/change-profile'); });
+        }
+        const changePasswordLink = this.getElement().querySelectorAll('.profile__footer .profile__group-link')[1];
+        if (changePasswordLink) {
+            changePasswordLink.addEventListener('click', () => { this.router.go('/change-password'); });
+        }
+        const logoutLink = this.getElement().querySelectorAll('.profile__footer .profile__group-link')[2];
+        if (logoutLink) {
+            logoutLink.addEventListener('click', () => { this.logout(); });
         }
     }
     toggleModal() {

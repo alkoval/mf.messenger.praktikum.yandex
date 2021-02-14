@@ -5,7 +5,7 @@ export class TextLinkTemplate implements ComponentTemplate {
     private cssClass: string;
 
     constructor() {
-        this.tag = 'a';
+        this.tag = 'span';
         this.cssClass = 'text-link';
     }
 

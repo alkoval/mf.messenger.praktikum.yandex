@@ -1,9 +1,6 @@
 import { EventBus } from '../event-bus/event-bus.js';
-import { PropsComponent } from '../../shared/interfaces/props-component.js';
-import { ComponentTemplate } from '../../shared/interfaces/component-template.js';
-import { Component } from '../../shared/interfaces/component.js';
+import { Component, PropsComponent, ComponentTemplate } from '../../shared/shared.interfaces.js';
 import Templator from '../services/templator.service.js';
-import { OnInit } from '../../shared/shared.interfaces.js';
 
 export enum EVENTS {
     INIT = "init",

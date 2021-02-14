@@ -60,18 +60,13 @@ export class ProfilePageTemplate implements ComponentTemplate {
                     </ul>
                     <ul class="profile__section profile__footer">
                         <li class="profile__group">
-                            <a class="profile__group-text profile__group-text_color_dark-green profile__group-link"
-                                href="change-profile">Изменить
-                                данные</a>
+                            <span class="profile__group-text profile__group-text_color_dark-green profile__group-link">Изменить данные</span>
                         </li>
                         <li class="profile__group">
-                            <a class="profile__group-text profile__group-text_color_dark-green profile__group-link"
-                                href="change-password">Изменить
-                                пароль</a>
+                            <span class="profile__group-text profile__group-text_color_dark-green profile__group-link">Изменить пароль</span>
                         </li>
                         <li class="profile__group profile__group_border_null">
-                            <a class="profile__group-text profile__group-text_color_red profile__group-link"
-                                href="./">Выйти</a>
+                            <span class="profile__group-text profile__group-text_color_red profile__group-link">Выйти</span>
                         </li>
                     </ul>
                 </div>
