@@ -1,11 +1,8 @@
 import { BaseComponent } from '../../core/base-component/base-component.js';
-import { AuthService } from '../../core/core.js';
 import { SigninPageTemplate } from './signin.template.js';
 import { FormCardComponent } from '../../shared/components/form-card/form-card.js';
-import { FormCard } from '../../shared/models/form-card.js';
-import { FormField } from '../../shared/models/form-field.js';
+import { FormCard, FormField, Profile } from '../../shared/shared.models.js';
 import FormValidationService from '../../core/services/form-validation.service.js';
-import { Profile } from '../../shared/models/profile.js';
 import { Router } from '../../core/router/router.js';
 import { ProfileService } from '../services/profile.service.js';
 export class SigninPageComponent extends BaseComponent {
@@ -14,7 +11,6 @@ export class SigninPageComponent extends BaseComponent {
         this.formComponent = null;
         this.form = null;
         this.formValidationService = new FormValidationService();
-        this.authService = AuthService.getInstance();
         this.router = Router.getInstance();
         this.profileService = new ProfileService();
     }
@@ -22,7 +18,7 @@ export class SigninPageComponent extends BaseComponent {
         return this.templator.compile(this.template.getContent(), this.getProps());
     }
     prerenderChildrens() {
-        this.form = new FormCard('Регистрация', 'Зарегистрироваться', './login', 'Войти');
+        this.form = new FormCard('Регистрация', 'Зарегистрироваться', '/login', 'Войти');
         this.form.fields.push(new FormField('email', 'email', 'Почта', 'Некорректное значение', 'email'));
         this.form.fields.push(new FormField('text', 'login', 'Логин', 'Латинские символы, цифры, длина 4-12', 'login'));
         this.form.fields.push(new FormField('text', 'name', 'Имя', 'Некорректное значение', 'word'));
@@ -64,7 +60,7 @@ export class SigninPageComponent extends BaseComponent {
                 profile.login = form.fields.find(e => e.name === 'login').value;
                 this.profileService.siginUp(profile).then(response => {
                     if (response) {
-                        this.router.go('./chat');
+                        this.router.go('/chat');
                     }
                 });
             }
