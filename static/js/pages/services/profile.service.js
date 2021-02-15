@@ -100,7 +100,7 @@ export class ProfileService {
         profile.login = userResponse.login;
         profile.email = userResponse.email;
         profile.phone = userResponse.phone;
-        profile.avatar = userResponse.avatar ? userResponse.avatar : 'rick_avatar.png';
+        profile.avatar = userResponse.avatar ? `${this.store.getHost()}/${userResponse.avatar}` : this.store.getDefImg();
         return profile;
     }
 }

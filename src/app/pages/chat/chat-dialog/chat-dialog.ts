@@ -9,16 +9,12 @@ export class ChatDialogComponent extends BaseComponent {
         super(props, templator, new ChatDialogTemplate());
     }
 
-    public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps());
-    }
-
     public prerenderChildrens(): void {
         this.renderChildrens();
     }
 
     public setDataset(): void {
-        let chatDialog = this.getProps() as ChatDialog;
+        let chatDialog = this.getProps().root as ChatDialog;
         this.getElement().dataset['idDialog'] = chatDialog.id.toString();
     }
 }

@@ -8,6 +8,8 @@ export class Store {
     constructor() {
         this.eventBus = new EventBus();
         this.profile = null;
+        this.host = 'https://ya-praktikum.tech';
+        this.defaultImg = 'https://i.imgur.com/HnSqZIY.png';
     }
     static getInstance() {
         if (!this.instance) {
@@ -24,6 +26,12 @@ export class Store {
     }
     getProfile() {
         return this.profile;
+    }
+    getHost() {
+        return this.host;
+    }
+    getDefImg() {
+        return this.defaultImg;
     }
 }
 //# sourceMappingURL=store.js.map

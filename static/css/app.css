@@ -24,6 +24,7 @@
 @import url(../common.blocks/modal/_position_right-top/modal_position-right-top.css);
 @import url(../common.blocks/modal/_state_hide/modal_state_hide.css);
 @import url(../common.blocks/modal/_state_show/modal_state_show.css);
+@import url(../common.blocks/modal/__close/modal__close.css);
 
 @import url(../common.blocks/card/card.css);
 @import url(../common.blocks/card/__header/card__header.css);
@@ -72,6 +73,7 @@
 @import url(../common.blocks/chat/__message-preview/__message-preview.css);
 @import url(../common.blocks/chat/__nickname/__nickname.css);
 @import url(../common.blocks/chat/__time/chat__time.css);
+@import url(../common.blocks/chat/__link/chat__link.css);
 
 @import url(../common.blocks/history/history.css);
 @import url(../common.blocks/history/__header/history__header.css);

@@ -12,10 +12,10 @@ export class ChatDialogTemplate {
     getContent() {
         return `
             <div class="chat__avatar-column">
-                <img class="chat__avatar" src="assets/images/{{avatar}}">
+                <img class="chat__avatar" src="{{avatar}}">
             </div>
             <div class="chat__text-column">
-                <span class="chat__nickname">{{nickname}}</span>
+                <span class="chat__title">{{title}}</span>
                 <span class="chat__message-preview">{{message}}</span>
             </div>
             <div class="chat__property-column">

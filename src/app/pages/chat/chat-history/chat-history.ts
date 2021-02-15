@@ -37,7 +37,7 @@ export class ChatHistoryComponent extends BaseComponent {
     }
 
     public toggleModalDialog(): void {
-        const md = document.getElementsByClassName('modal modal_position-right-top')[0];
+        const md = this.getElement().getElementsByClassName('modal modal_position-right-top')[0];
         if (md.classList.contains("modal_state_show")) {
             md.classList.remove("modal_state_show");
         } else {
@@ -46,8 +46,8 @@ export class ChatHistoryComponent extends BaseComponent {
     }
 
     public toggleModalClip(): void {
-        const md = document.getElementsByClassName('modal modal_position_left-end')[0] as HTMLElement;
-        const btn = document.getElementsByClassName('history__button history__button_type_text')[0] as HTMLElement;
+        const md = this.getElement().getElementsByClassName('modal modal_position_left-end')[0] as HTMLElement;
+        const btn = this.getElement().getElementsByClassName('history__button history__button_type_text')[0] as HTMLElement;
         md.style.top = btn.offsetTop.toString();
         md.style.left = btn.offsetLeft.toString();
         if (md.classList.contains("modal_state_show")) {

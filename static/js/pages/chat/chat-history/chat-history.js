@@ -28,7 +28,7 @@ export class ChatHistoryComponent extends BaseComponent {
         md2.addEventListener('click', () => { this.toggleModalClip(); });
     }
     toggleModalDialog() {
-        const md = document.getElementsByClassName('modal modal_position-right-top')[0];
+        const md = this.getElement().getElementsByClassName('modal modal_position-right-top')[0];
         if (md.classList.contains("modal_state_show")) {
             md.classList.remove("modal_state_show");
         }
@@ -37,8 +37,8 @@ export class ChatHistoryComponent extends BaseComponent {
         }
     }
     toggleModalClip() {
-        const md = document.getElementsByClassName('modal modal_position_left-end')[0];
-        const btn = document.getElementsByClassName('history__button history__button_type_text')[0];
+        const md = this.getElement().getElementsByClassName('modal modal_position_left-end')[0];
+        const btn = this.getElement().getElementsByClassName('history__button history__button_type_text')[0];
         md.style.top = btn.offsetTop.toString();
         md.style.left = btn.offsetLeft.toString();
         if (md.classList.contains("modal_state_show")) {
