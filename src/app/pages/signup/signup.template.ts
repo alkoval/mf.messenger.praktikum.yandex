@@ -1,6 +1,6 @@
 import { ComponentTemplate } from '../../shared/interfaces/component-template.js';
 
-export class SigninPageTemplate implements ComponentTemplate {
+export class SignUpPageTemplate implements ComponentTemplate {
     private tag: string;
     private cssClass: string;
 

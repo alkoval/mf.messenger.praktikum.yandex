@@ -2,10 +2,9 @@ import { ChangePasswordPageComponent } from '../../pages/change-password/change-
 import { ChangeProfilePageComponent } from '../../pages/change-profile/change-profile.js';
 import { ChatPageComponent } from '../../pages/chat/chat.js';
 import { Error404PageComponent } from '../../pages/error-404/error-404.js';
-import { IntroPageComponent } from '../../pages/intro/intro.js';
 import { LoginPageComponent } from '../../pages/login/login.js';
 import { ProfilePageComponent } from '../../pages/profile/profile.js';
-import { SigninPageComponent } from '../../pages/signin/signin.js';
+import { SignUpPageComponent } from '../../pages/signup/signup.js';
 import { NavItem } from '../../shared/interfaces/nav-item.js';
 import { Router } from '../router/router.js';
 import { GUARDS } from './guard.service.js';
@@ -26,10 +25,9 @@ export default class NavService {
     public loadRoutes(): void {
         if (this.router) {
             this.navItems = [] = [
-                //{ text: 'Интро', icon: 'far fa-file list__icon', path: '/', component: IntroPageComponent, guard: null },
                 { text: 'Логин', icon: 'far fa-file list__icon', path: '/', component: LoginPageComponent, guard: null },
                 { text: 'Логин', icon: 'far fa-file list__icon', path: '/login', component: LoginPageComponent, guard: null },
-                { text: 'Регистрация', icon: 'far fa-file list__icon', path: '/signin', component: SigninPageComponent, guard: null },
+                { text: 'Регистрация', icon: 'far fa-file list__icon', path: '/signin', component: SignUpPageComponent, guard: null },
                 { text: 'Чат', icon: 'far fa-file list__icon', path: '/chat', component: ChatPageComponent, guard: GUARDS.PROFILE },
                 { text: 'Профиль', icon: 'far fa-file list__icon', path: '/profile', component: ProfilePageComponent, guard: GUARDS.PROFILE },
                 { text: 'Редактор профиля', icon: 'far fa-file list__icon', path: '/change-profile', component: ChangeProfilePageComponent, guard: GUARDS.PROFILE },

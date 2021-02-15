@@ -1,6 +1,6 @@
+import { APP_HOST } from "../../shared/const/constants.js";
 import { HttpRequestOptions } from "../../shared/interfaces/http-request-options.js";
 import { XhrHeader } from "../../shared/interfaces/xhr-header.js";
-import { Store } from "../store/store.js";
 
 export enum METHODS {
     GET = "GET",
@@ -17,13 +17,12 @@ export default class HttpService {
     protected defaultHeaders: XhrHeader;
 
     constructor(path: string) {
-        this.host = `${Store.getInstance().getHost()}/${path}`;
+        this.host = `${APP_HOST}/${path}`;
         this.defaultMethod = METHODS.GET;
         this.defaultTimeout = 5000;
         this.defaultHeaders = {
             'Accept': 'application/json, text/javascript, text/plain',
             'Content-Type': 'application/json',
-            //'Access-Control-Allow-Credentials': 'true',
         };
     }
 

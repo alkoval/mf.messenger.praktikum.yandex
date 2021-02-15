@@ -2,19 +2,14 @@ import { AuthSignInAPI } from "../api/auth-signin-api.js";
 import { AuthSignUpAPI } from "../api/auth-signup-api.js";
 import { AuthUserAPI } from "../api/auth-user-api.js";
 import { AuthLogoutAPI } from "../api/auth-logout-api.js";
-import { Store } from "../store/store.js";
-import { Profile } from "../../shared/shared.models.js";
 import { NotifyService } from "./notify.service.js";
-import { UserAPI } from "../api/user-api.js";
 export class AuthService {
     constructor() {
-        this.store = Store.getInstance();
         this.notifyService = NotifyService.getInstance();
         this.authSignInAPI = new AuthSignInAPI();
         this.authSignUpAPI = new AuthSignUpAPI();
         this.authUserAPI = new AuthUserAPI();
         this.authLogoutAPI = new AuthLogoutAPI();
-        this.userAPI = new UserAPI();
     }
     static getInstance() {
         if (!this.instance) {
@@ -27,7 +22,7 @@ export class AuthService {
         return this.authSignInAPI.request(request).then(response => {
             let res = response;
             if (res.toLowerCase() === 'ok') {
-                return this.setProfile();
+                return true;
             }
             else {
                 this.logout();
@@ -59,7 +54,6 @@ export class AuthService {
         return this.authLogoutAPI.request().then(response => {
             let res = response;
             if (res.toLowerCase() === 'ok') {
-                this.cleareProfile();
                 return true;
             }
             else {
@@ -67,24 +61,11 @@ export class AuthService {
             }
         });
     }
-    setProfile() {
+    getInfoUser() {
         return this.authUserAPI.request().then(response => {
             const userResponse = JSON.parse(response);
-            const profile = new Profile();
-            profile.id = userResponse.id;
-            profile.name = userResponse.first_name;
-            profile.secondName = userResponse.second_name;
-            profile.nickname = userResponse.display_name;
-            profile.login = userResponse.login;
-            profile.email = userResponse.email;
-            profile.phone = userResponse.phone;
-            profile.avatar = userResponse.avatar ? `${this.store.getHost()}/${userResponse.avatar}` : this.store.getDefImg();
-            this.store.setProfile(profile);
-            return true;
+            return userResponse;
         });
-    }
-    cleareProfile() {
-        this.store.setProfile(null);
     }
 }
 //# sourceMappingURL=auth.service.js.map

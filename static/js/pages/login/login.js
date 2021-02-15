@@ -5,6 +5,7 @@ import { FormCardComponent } from '../../shared/components/form-card/form-card.j
 import { FormField, FormCard } from '../../shared/shared.models.js';
 import { AuthService } from '../../core/core.js';
 import { Router } from '../../core/router/router.js';
+import { ProfileService } from '../services/profile.service.js';
 export class LoginPageComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new LoginPageTemplate());
@@ -12,6 +13,7 @@ export class LoginPageComponent extends BaseComponent {
         this.form = null;
         this.formValidationService = new FormValidationService();
         this.authService = AuthService.getInstance();
+        this.profileService = ProfileService.getInstance();
         this.router = Router.getInstance();
     }
     prerenderChildrens() {
@@ -39,9 +41,13 @@ export class LoginPageComponent extends BaseComponent {
                 }
             }
             if (valid) {
-                this.authService.login(form.fields.find(e => e.name === 'login').value, form.fields.find(e => e.name === 'password').value).then(response => {
-                    if (response) {
-                        this.router.go('/chat');
+                this.authService.login(form.fields.find(e => e.name === 'login').value, form.fields.find(e => e.name === 'password').value).then(login => {
+                    if (login) {
+                        this.authService.getInfoUser().then(userInfo => {
+                            const profile = this.profileService.userResToProfile(userInfo);
+                            this.profileService.setProfile(profile);
+                            this.router.go('/chat');
+                        });
                     }
                 });
             }

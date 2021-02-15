@@ -1,11 +1,11 @@
-import { Store } from "../store/store.js";
+import { ProfileService } from "../../pages/services/profile.service.js";
 export var GUARDS;
 (function (GUARDS) {
     GUARDS["PROFILE"] = "profile";
 })(GUARDS || (GUARDS = {}));
 export class GuardService {
     constructor() {
-        this.store = Store.getInstance();
+        this.profileService = ProfileService.getInstance();
     }
     check(path, guard) {
         if (guard === GUARDS.PROFILE) {
@@ -14,8 +14,8 @@ export class GuardService {
         return path;
     }
     checkProfile() {
-        console.log('guard ' + this.store.getProfile());
-        return this.store.getProfile() ? true : false;
+        console.log('guard ' + this.profileService.getProfile());
+        return this.profileService.getProfile() ? true : false;
     }
 }
 //# sourceMappingURL=guard.service.js.map

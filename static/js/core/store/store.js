@@ -1,8 +1,8 @@
 import { EventBus } from "../event-bus/event-bus.js";
 export var STORE_EVENTS;
 (function (STORE_EVENTS) {
-    STORE_EVENTS["USER_UPDATE"] = "user-update";
     STORE_EVENTS["PROFILE_UPDATE"] = "profile-update";
+    STORE_EVENTS["DIALOGS_RELOAD"] = "dialogs-reload";
 })(STORE_EVENTS || (STORE_EVENTS = {}));
 export class Store {
     constructor() {
@@ -10,6 +10,7 @@ export class Store {
         this.profile = null;
         this.host = 'https://ya-praktikum.tech';
         this.defaultImg = 'https://i.imgur.com/HnSqZIY.png';
+        this.dialogs = [];
     }
     static getInstance() {
         if (!this.instance) {
@@ -32,6 +33,14 @@ export class Store {
     }
     getDefImg() {
         return this.defaultImg;
+    }
+    setDialogs(dialogs) {
+        this.dialogs = dialogs;
+        console.log(this.dialogs);
+        this.eventBus.emit(STORE_EVENTS.DIALOGS_RELOAD, this.dialogs);
+    }
+    getDialogs() {
+        return this.dialogs;
     }
 }
 //# sourceMappingURL=store.js.map

@@ -2,33 +2,27 @@ import { AuthSignInAPI } from "../api/auth-signin-api.js";
 import { AuthSignUpAPI } from "../api/auth-signup-api.js";
 import { AuthUserAPI } from "../api/auth-user-api.js";
 import { AuthLogoutAPI } from "../api/auth-logout-api.js";
-import { Store } from "../store/store.js";
 import { Profile } from "../../shared/shared.models.js";
 import { SignInRequest } from "../api/interfaces/signin-request.js";
 import { SignUpRequest } from "../api/interfaces/signup-request.js";
 import { SignUpResponse } from "../api/interfaces/signup-response.js";
 import { NotifyService } from "./notify.service.js";
 import { UserResponse } from "../api/interfaces/user-response.js";
-import { UserAPI } from "../api/user-api.js";
 
 export class AuthService {
     private static instance: AuthService;
-    private store: Store;
     private notifyService: NotifyService;
     private authSignInAPI: AuthSignInAPI;
     private authSignUpAPI: AuthSignUpAPI;
     private authUserAPI: AuthUserAPI;
     private authLogoutAPI: AuthLogoutAPI;
-    private userAPI: UserAPI;
 
     constructor() {
-        this.store = Store.getInstance();
         this.notifyService = NotifyService.getInstance();
         this.authSignInAPI = new AuthSignInAPI();
         this.authSignUpAPI = new AuthSignUpAPI();
         this.authUserAPI = new AuthUserAPI();
         this.authLogoutAPI = new AuthLogoutAPI();
-        this.userAPI = new UserAPI();
     }
 
     public static getInstance(): AuthService {
@@ -46,7 +40,7 @@ export class AuthService {
             response => {
                 let res: string = response as string;
                 if (res.toLowerCase() === 'ok') {
-                    return this.setProfile();
+                    return true;
                 } else {
                     this.logout();
                     this.notifyService.notify(response as string);
@@ -83,7 +77,6 @@ export class AuthService {
             response => {
                 let res: string = response as string;
                 if (res.toLowerCase() === 'ok') {
-                    this.cleareProfile();
                     return true;
                 } else {
                     return false;
@@ -92,28 +85,12 @@ export class AuthService {
         )
     }
 
-    public setProfile(): Promise<unknown> {
+    public getInfoUser(): Promise<unknown> {
         return this.authUserAPI.request().then(
             response => {
                 const userResponse: UserResponse = JSON.parse(response as string);
-                const profile: Profile = new Profile();
-
-                profile.id = userResponse.id;
-                profile.name = userResponse.first_name;
-                profile.secondName = userResponse.second_name;
-                profile.nickname = userResponse.display_name;
-                profile.login = userResponse.login;
-                profile.email = userResponse.email;
-                profile.phone = userResponse.phone;
-                profile.avatar = userResponse.avatar ? `${this.store.getHost()}/${userResponse.avatar}` : this.store.getDefImg();
-
-                this.store.setProfile(profile);
-                return true;
+                return userResponse;
             }
         )
-    }
-
-    private cleareProfile(): void {
-        this.store.setProfile(null);
     }
 }

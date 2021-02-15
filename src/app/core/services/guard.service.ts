@@ -1,14 +1,14 @@
-import { Store } from "../store/store.js";
+import { ProfileService } from "../../pages/services/profile.service.js";
 
 export enum GUARDS {
     PROFILE = "profile"
 }
 
 export class GuardService {
-    private store: Store;
+    private profileService: ProfileService;
 
     constructor() {
-        this.store = Store.getInstance();
+        this.profileService = ProfileService.getInstance();
     }
 
     public check(path: string, guard: string): string {
@@ -19,7 +19,7 @@ export class GuardService {
     }
 
     private checkProfile(): boolean {
-        console.log('guard ' + this.store.getProfile())
-        return this.store.getProfile() ? true : false;
+        console.log('guard ' + this.profileService.getProfile())
+        return this.profileService.getProfile() ? true : false;
     }
 }

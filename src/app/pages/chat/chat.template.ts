@@ -37,24 +37,7 @@ export class ChatPageTemplate implements ComponentTemplate {
                     <span>Выберите чат чтобы отправить сообщение</span>
                 </div>
             </div>
-            <div class="blackout">
-                <div class="modal modal_state_show">
-                    <form class="modal__content">
-                        <div class="modal__section">
-                            <span class="modal__title">Новый чат</span>
-                            <span class="modal__close"><i class="fas fa-times"></i></close>
-                        </div>
-                        <div class="modal__section">
-                            <div class="modal__content">
-                                <p>текст</p>
-                            </div>                           
-                        </div>
-                        <div class="modal__section">
-                            <button class="modal__button modal__button_bg_dark-green" type="button">Добавить</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+           
         `;
     }
 }

@@ -1,37 +1,61 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import { UserPasswordAPI } from "../../core/api/user-password-api.js";
 import { UserProfileAPI } from "../../core/api/user-profile-api.js";
-import { AuthService } from "../../core/core.js";
 import { NotifyService } from "../../core/services/notify.service.js";
-import { Store } from "../../core/store/store.js";
 import { Profile } from "../../shared/shared.models.js";
 import { UserAPI } from "../../core/api/user-api.js";
 import { UserProfileAvatarAPI } from "../../core/api/user-profile-avatar-api.js";
+import { EventBus } from "../../core/event-bus/event-bus.js";
+import { APP_DEFAULT_IMAGE, APP_HOST } from "../../shared/const/constants.js";
+import { AuthService } from "../../core/core.js";
+export var PROFILE_EVENTS;
+(function (PROFILE_EVENTS) {
+    PROFILE_EVENTS["PROFILE_UPDATE"] = "profile-update";
+})(PROFILE_EVENTS || (PROFILE_EVENTS = {}));
 export class ProfileService {
     constructor() {
-        this.store = Store.getInstance();
-        this.authService = AuthService.getInstance();
+        this.eventBus = new EventBus();
+        this.profile = null;
         this.notifyService = NotifyService.getInstance();
+        this.authService = AuthService.getInstance();
         this.userProfileAPI = new UserProfileAPI();
         this.userProfileAvatarAPI = new UserProfileAvatarAPI();
         this.userPasswordAPI = new UserPasswordAPI();
         this.userAPI = new UserAPI();
+        this.onInit();
+    }
+    static getInstance() {
+        if (!this.instance) {
+            this.instance = new this();
+        }
+        return this.instance;
+    }
+    onInit() {
+        this.authService.getInfoUser().then(userInfo => {
+            this.setProfile(this.userResToProfile(userInfo));
+        });
+    }
+    subscribe() {
+        return this.eventBus;
     }
     getProfile() {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (this.store.getProfile() === null) {
-                console.log(this.store.getProfile());
-                yield this.authService.setProfile();
+        return this.profile;
+    }
+    setProfile(profile) {
+        this.profile = profile;
+        this.eventBus.emit(PROFILE_EVENTS.PROFILE_UPDATE, this.profile);
+    }
+    getInfoProfile(id) {
+        return this.userAPI.request(id).then(user => {
+            console.log(user);
+            const userResponse = JSON.parse(user);
+            if (userResponse.id) {
+                this.setProfile(this.userResToProfile(userResponse));
+                return true;
             }
-            return this.store.getProfile();
+            else {
+                this.notifyService.notify(user);
+                return false;
+            }
         });
     }
     saveProfile(profile) {
@@ -46,7 +70,7 @@ export class ProfileService {
         return this.userProfileAPI.request(userRequest).then(response => {
             const userResponse = JSON.parse(response);
             if (userResponse.id) {
-                this.store.setProfile(this.userResToProfile(userResponse));
+                this.setProfile(this.userResToProfile(userResponse));
                 this.notifyService.notify('Данные профиля успешно обновлены');
             }
             else {
@@ -67,28 +91,11 @@ export class ProfileService {
         return this.userProfileAvatarAPI.request(avatar).then(response => {
             const userResponse = JSON.parse(response);
             if (userResponse.id) {
-                this.store.setProfile(this.userResToProfile(userResponse));
+                this.setProfile(this.userResToProfile(userResponse));
             }
             else {
                 this.notifyService.notify(response);
             }
-        });
-    }
-    siginUp(profile) {
-        return this.authService.signup(profile).then(id => {
-            console.log(id);
-            return this.userAPI.request(id).then(user => {
-                console.log(user);
-                const userResponse = JSON.parse(user);
-                if (userResponse.id) {
-                    this.store.setProfile(this.userResToProfile(userResponse));
-                    return true;
-                }
-                else {
-                    this.notifyService.notify(user);
-                    return false;
-                }
-            });
         });
     }
     userResToProfile(userResponse) {
@@ -100,7 +107,7 @@ export class ProfileService {
         profile.login = userResponse.login;
         profile.email = userResponse.email;
         profile.phone = userResponse.phone;
-        profile.avatar = userResponse.avatar ? `${this.store.getHost()}/${userResponse.avatar}` : this.store.getDefImg();
+        profile.avatar = userResponse.avatar ? `${APP_HOST}/${userResponse.avatar}` : APP_DEFAULT_IMAGE;
         return profile;
     }
 }

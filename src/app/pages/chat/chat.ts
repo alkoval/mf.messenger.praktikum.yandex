@@ -6,37 +6,34 @@ import { ChatDialog, Profile } from '../../shared/shared.models.js';
 import { ChatDialogComponent } from './chat-dialog/chat-dialog.js';
 import { ChatHistoryComponent } from './chat-history/chat-history.js';
 import { Router } from '../../core/router/router.js';
-import { ChatService } from '../services/chat.service.js';
-import { Store, STORE_EVENTS } from '../../core/store/store.js';
+import { ChatService, CHAT_EVENTS } from '../services/chat.service.js';
+import { ProfileService, PROFILE_EVENTS } from '../services/profile.service.js';
 
 export class ChatPageComponent extends BaseComponent implements OnInit {
     private chatHistory: ChatHistoryComponent;
+    private profileService: ProfileService;
     private chatService: ChatService;
     private router: Router;
-    private store: Store;
 
     constructor(props: PropsComponent, templator: Templator) {
         super(props, templator, new ChatPageTemplate());
         this.chatHistory = new ChatHistoryComponent({}, this.templator);
-        this.chatService = new ChatService();
+        this.profileService = ProfileService.getInstance();
+        this.chatService = ChatService.getInstance();
         this.router = Router.getInstance();
-        this.store = Store.getInstance();
         this.onInit();
     }
 
     public onInit(): void {
-        this.store.subscribe().on(STORE_EVENTS.PROFILE_UPDATE, this.updateProfile.bind(this));
-        const profile = this.store.getProfile();
-        if (profile !== null) {
-            this.setProps({ "profile": profile });
-            this.loadDialogs();
-        }
+        this.profileService.subscribe().on(PROFILE_EVENTS.PROFILE_UPDATE, this.updateProfile.bind(this));
+        this.chatService.subscribe().on(CHAT_EVENTS.DIALOGS_RELOAD, this.reloadDialogs.bind(this));
+        this.updateProfile(this.profileService.getProfile());
     }
 
     public prerenderChildrens(): void {
         if (this.getProps().dialogs) {
-            for (let item of this.getProps().dialogs as ChatDialog[]) {
-                this.childrens.push(new ChatDialogComponent({ "root": item }, this.templator));
+            for (let item of this.getProps().dialogs) {
+                this.childrens.push(new ChatDialogComponent({ 'root': item }, this.templator));
             }
         }
         this.renderChildrensToSelector('.chat__dialogs');
@@ -44,15 +41,7 @@ export class ChatPageComponent extends BaseComponent implements OnInit {
     }
 
     public subscribe(): void {
-        const mdAddUser = this.getElement().querySelectorAll('.chat__dialog, .chat__link')[0];
-        if (mdAddUser) {
-            mdAddUser.addEventListener('click', () => { this.toggleModal() });
-        }
-        const closeMdAddUser = this.getElement().querySelectorAll('.chat__dialog, .modal__close')[0];
-        if (closeMdAddUser) {
-            closeMdAddUser.addEventListener('click', () => { this.toggleModal() });
-        }
-        const profileLink = this.getElement().querySelectorAll('.chat__dialog, .chat__link')[1];
+        const profileLink = this.getElement().querySelectorAll('.chat__toolbar .chat__link')[1];
         if (profileLink) {
             profileLink.addEventListener('click', () => { this.router.go('/profile') });
         }
@@ -65,19 +54,15 @@ export class ChatPageComponent extends BaseComponent implements OnInit {
         }
     }
 
-    public updateProfile(profile: Profile): void {
+    public updateProfile(profile: Profile | null): void {
         if (profile !== null) {
-            this.setProps({ "profile": profile });
-            this.loadDialogs();
+            this.setProps({ 'profile': profile });
+            this.chatService.loadDialogs();
         }
     }
 
-    public loadDialogs(): void {
-        this.chatService.getDialogs().then(
-            response => {
-                this.setProps({ "dialogs": response });
-            }
-        )
+    public reloadDialogs(dialogs: ChatDialog[]): void {
+        this.setProps({ 'dialogs': dialogs });
     }
 
     public getHistory(node: HTMLElement) {
@@ -91,17 +76,6 @@ export class ChatPageComponent extends BaseComponent implements OnInit {
                     this.chatHistory.setProps(selectedDialog);
                     chatContent.appendChild(this.chatHistory.getContent());
                 }
-            }
-        }
-    }
-
-    public toggleModal(): void {
-        const blackout = this.getElement().querySelector('.blackout');
-        if (blackout) {
-            if (blackout.classList.contains('blackout_state_show')) {
-                blackout.classList.remove('blackout_state_show');
-            } else {
-                blackout.classList.add('blackout_state_show');
             }
         }
     }

@@ -1,27 +1,29 @@
 import { BaseComponent } from '../../core/base-component/base-component.js';
-import { Templator } from '../../core/core.js';
+import { AuthService, Templator } from '../../core/core.js';
 import { PropsComponent } from '../../shared/shared.interfaces.js';
-import { SigninPageTemplate } from './signin.template.js';
+import { SignUpPageTemplate } from './signup.template.js';
 import { FormCardComponent } from '../../shared/components/form-card/form-card.js';
 import { FormCard, FormField, Profile } from '../../shared/shared.models.js';
 import FormValidationService from '../../core/services/form-validation.service.js';
 import { Router } from '../../core/router/router.js';
 import { ProfileService } from '../services/profile.service.js';
 
-export class SigninPageComponent extends BaseComponent {
+export class SignUpPageComponent extends BaseComponent {
     private formComponent: BaseComponent | null;
     public form: FormCard | null;
     private formValidationService: FormValidationService;
     private router: Router;
+    private authService: AuthService;
     private profileService: ProfileService;
 
     constructor(props: PropsComponent, templator: Templator) {
-        super(props, templator, new SigninPageTemplate());
+        super(props, templator, new SignUpPageTemplate());
         this.formComponent = null;
         this.form = null;
         this.formValidationService = new FormValidationService();
         this.router = Router.getInstance();
-        this.profileService = new ProfileService();
+        this.authService = AuthService.getInstance();
+        this.profileService = ProfileService.getInstance();
     }
 
     public prerenderChildrens(): void {
@@ -69,10 +71,16 @@ export class SigninPageComponent extends BaseComponent {
                 profile.password = form.fields.find(e => e.name === 'password')!.value;
                 profile.rePassword = form.fields.find(e => e.name === 'rePassword')!.value;
                 profile.login = form.fields.find(e => e.name === 'login')!.value;
-                this.profileService.siginUp(profile).then(
-                    response => {
-                        if (response) {
-                            this.router.go('/chat');
+                this.authService.signup(profile).then(
+                    id => {
+                        if (id) {
+                            this.profileService.getInfoProfile(id as number).then(
+                                response => {
+                                    if (response) {
+                                        this.router.go('/chat');
+                                    }
+                                }
+                            )
                         }
                     }
                 );

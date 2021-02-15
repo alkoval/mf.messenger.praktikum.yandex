@@ -9,7 +9,7 @@ import { Router } from '../../core/router/router.js';
 export class ChangePasswordPageComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new ChangePasswordPageTemplate());
-        this.profileService = new ProfileService();
+        this.profileService = ProfileService.getInstance();
         this.formValidationService = new FormValidationService();
         this.fields = [];
         this.router = Router.getInstance();
@@ -21,7 +21,7 @@ export class ChangePasswordPageComponent extends BaseComponent {
             new FormField('password', 'rePassword', 'Повторите новый пароль', 'Некорректное значение', 'password', ''),
         ];
         for (let field of this.fields) {
-            this.childrens.push(new ProfileGroupInputComponent({ "root": field }, this.templator));
+            this.childrens.push(new ProfileGroupInputComponent({ 'root': field }, this.templator));
         }
         this.renderChildrensToSelector('.profile__body');
         const btn = new ButtonComponent({ "root": new Button('Сохранить', BUTTON_STYLE.BG_DARK_GREEN, 'button') }, this.templator);

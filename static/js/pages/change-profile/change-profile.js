@@ -4,22 +4,20 @@ import { Profile, FormField, Button, BUTTON_STYLE } from '../../shared/shared.mo
 import { ChangeProfilePageTemplate } from './change-profile.template.js';
 import FormValidationService from '../../core/services/form-validation.service.js';
 import { ButtonComponent } from '../../shared/components/button/button.js';
-import { Store, STORE_EVENTS } from '../../core/store/store.js';
-import { ProfileService } from '../services/profile.service.js';
+import { ProfileService, PROFILE_EVENTS } from '../services/profile.service.js';
 import { Router } from '../../core/router/router.js';
 export class ChangeProfilePageComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new ChangeProfilePageTemplate());
-        this.store = Store.getInstance();
         this.formValidationService = new FormValidationService();
         this.fields = [];
-        this.profileService = new ProfileService();
+        this.profileService = ProfileService.getInstance();
         this.router = Router.getInstance();
         this.onInit();
     }
     onInit() {
-        this.store.subscribe().on(STORE_EVENTS.PROFILE_UPDATE, this.updateProfile.bind(this));
-        const profile = this.store.getProfile();
+        this.profileService.subscribe().on(PROFILE_EVENTS.PROFILE_UPDATE, this.updateProfile.bind(this));
+        const profile = this.profileService.getProfile();
         if (profile !== null) {
             this.setProps({ "root": profile });
         }

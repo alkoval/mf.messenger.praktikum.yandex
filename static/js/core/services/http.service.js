@@ -1,4 +1,4 @@
-import { Store } from "../store/store.js";
+import { APP_HOST } from "../../shared/const/constants.js";
 export var METHODS;
 (function (METHODS) {
     METHODS["GET"] = "GET";
@@ -9,7 +9,7 @@ export var METHODS;
 })(METHODS || (METHODS = {}));
 export default class HttpService {
     constructor(path) {
-        this.host = `${Store.getInstance().getHost()}/${path}`;
+        this.host = `${APP_HOST}/${path}`;
         this.defaultMethod = METHODS.GET;
         this.defaultTimeout = 5000;
         this.defaultHeaders = {

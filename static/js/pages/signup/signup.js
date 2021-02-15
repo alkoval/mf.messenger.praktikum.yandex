@@ -1,14 +1,14 @@
 import { BaseComponent } from '../../core/base-component/base-component.js';
 import { AuthService } from '../../core/core.js';
-import { SigninPageTemplate } from './signin.template.js';
+import { SignUpPageTemplate } from './signup.template.js';
 import { FormCardComponent } from '../../shared/components/form-card/form-card.js';
 import { FormCard, FormField, Profile } from '../../shared/shared.models.js';
 import FormValidationService from '../../core/services/form-validation.service.js';
 import { Router } from '../../core/router/router.js';
 import { ProfileService } from '../services/profile.service.js';
-export class SigninPageComponent extends BaseComponent {
+export class SignUpPageComponent extends BaseComponent {
     constructor(props, templator) {
-        super(props, templator, new SigninPageTemplate());
+        super(props, templator, new SignUpPageTemplate());
         this.formComponent = null;
         this.form = null;
         this.formValidationService = new FormValidationService();
@@ -70,4 +70,4 @@ export class SigninPageComponent extends BaseComponent {
         }
     }
 }
-//# sourceMappingURL=signin.js.map
+//# sourceMappingURL=signup.js.map

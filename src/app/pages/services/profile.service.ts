@@ -3,38 +3,85 @@ import { UserResponse } from "../../core/api/interfaces/user-response.js";
 import { ChangePasswordRequest } from "../../core/api/interfaces/change-password-request.js";
 import { UserPasswordAPI } from "../../core/api/user-password-api.js";
 import { UserProfileAPI } from "../../core/api/user-profile-api.js";
-import { AuthService } from "../../core/core.js";
 import { NotifyService } from "../../core/services/notify.service.js";
-import { Store } from "../../core/store/store.js";
 import { Profile } from "../../shared/shared.models.js";
 import { UserAPI } from "../../core/api/user-api.js";
 import { UserProfileAvatarAPI } from "../../core/api/user-profile-avatar-api.js";
+import { EventBus } from "../../core/event-bus/event-bus.js";
+import { APP_DEFAULT_IMAGE, APP_HOST } from "../../shared/const/constants.js";
+import { AuthService } from "../../core/core.js";
+import { OnInit } from "../../shared/shared.interfaces.js";
 
-export class ProfileService {
-    private store: Store;
-    private authService: AuthService;
+export enum PROFILE_EVENTS {
+    PROFILE_UPDATE = 'profile-update',
+}
+
+export class ProfileService implements OnInit {
+    private static instance: ProfileService;
+    private eventBus: EventBus;
+    private profile: Profile | null;
     private notifyService: NotifyService;
+    private authService: AuthService;
     private userProfileAPI: UserProfileAPI;
     private userProfileAvatarAPI: UserProfileAvatarAPI;
     private userPasswordAPI: UserPasswordAPI;
     private userAPI: UserAPI;
 
     constructor() {
-        this.store = Store.getInstance();
-        this.authService = AuthService.getInstance();
+        this.eventBus = new EventBus();
+        this.profile = null;
         this.notifyService = NotifyService.getInstance();
+        this.authService = AuthService.getInstance();
         this.userProfileAPI = new UserProfileAPI();
         this.userProfileAvatarAPI = new UserProfileAvatarAPI();
         this.userPasswordAPI = new UserPasswordAPI();
         this.userAPI = new UserAPI();
+        this.onInit();
     }
 
-    public async getProfile(): Promise<unknown> {
-        if (this.store.getProfile() === null) {
-            console.log(this.store.getProfile())
-            await this.authService.setProfile();
+    public static getInstance(): ProfileService {
+        if (!this.instance) {
+            this.instance = new this();
         }
-        return this.store.getProfile();
+
+        return this.instance;
+    }
+
+    public onInit(): void {
+        this.authService.getInfoUser().then(
+            userInfo => {
+                this.setProfile(this.userResToProfile(userInfo as UserResponse));
+            }
+        )
+    }
+
+    public subscribe(): EventBus {
+        return this.eventBus;
+    }
+
+    public getProfile(): Profile | null {
+        return this.profile;
+    }
+
+    public setProfile(profile: Profile | null): void {
+        this.profile = profile;
+        this.eventBus.emit(PROFILE_EVENTS.PROFILE_UPDATE, this.profile);
+    }
+
+    public getInfoProfile(id: number): Promise<unknown> {
+        return this.userAPI.request(id).then(
+            user => {
+                console.log(user)
+                const userResponse: UserResponse = JSON.parse(user as string);
+                if (userResponse.id) {
+                    this.setProfile(this.userResToProfile(userResponse));
+                    return true;
+                } else {
+                    this.notifyService.notify(user as string);
+                    return false;
+                }
+            }
+        )
     }
 
     public saveProfile(profile: Profile): Promise<unknown> {
@@ -50,7 +97,7 @@ export class ProfileService {
             response => {
                 const userResponse: UserResponse = JSON.parse(response as string);
                 if (userResponse.id) {
-                    this.store.setProfile(this.userResToProfile(userResponse));
+                    this.setProfile(this.userResToProfile(userResponse));
                     this.notifyService.notify('Данные профиля успешно обновлены');
                 } else {
                     this.notifyService.notify(response as string);
@@ -76,7 +123,7 @@ export class ProfileService {
             response => {
                 const userResponse: UserResponse = JSON.parse(response as string);
                 if (userResponse.id) {
-                    this.store.setProfile(this.userResToProfile(userResponse));
+                    this.setProfile(this.userResToProfile(userResponse));
                 } else {
                     this.notifyService.notify(response as string);
                 }
@@ -84,28 +131,7 @@ export class ProfileService {
         )
     }
 
-    public siginUp(profile: Profile): Promise<unknown> {
-        return this.authService.signup(profile).then(
-            id => {
-                console.log(id)
-                return this.userAPI.request(id as number).then(
-                    user => {
-                        console.log(user)
-                        const userResponse: UserResponse = JSON.parse(user as string);
-                        if (userResponse.id) {
-                            this.store.setProfile(this.userResToProfile(userResponse));
-                            return true;
-                        } else {
-                            this.notifyService.notify(user as string);
-                            return false;
-                        }
-                    }
-                )
-            }
-        )
-    }
-
-    private userResToProfile(userResponse: UserResponse): Profile {
+    public userResToProfile(userResponse: UserResponse): Profile {
         const profile: Profile = new Profile();
 
         profile.id = userResponse.id;
@@ -115,7 +141,7 @@ export class ProfileService {
         profile.login = userResponse.login;
         profile.email = userResponse.email;
         profile.phone = userResponse.phone;
-        profile.avatar = userResponse.avatar ? `${this.store.getHost()}/${userResponse.avatar}` : this.store.getDefImg();
+        profile.avatar = userResponse.avatar ? `${APP_HOST}/${userResponse.avatar}` : APP_DEFAULT_IMAGE;
 
         return profile;
     }

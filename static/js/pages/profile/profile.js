@@ -1,23 +1,21 @@
 import { BaseComponent } from '../../core/base-component/base-component.js';
 import { AuthService } from '../../core/core.js';
 import { Router } from '../../core/router/router.js';
-import { Store, STORE_EVENTS } from '../../core/store/store.js';
 import { ProfileGroupTextComponent } from '../../shared/components/profile-group-text/profile-group-text.js';
 import { FormField } from '../../shared/shared.models.js';
-import { ProfileService } from '../services/profile.service.js';
+import { ProfileService, PROFILE_EVENTS } from '../services/profile.service.js';
 import { ProfilePageTemplate } from './profile.template.js';
 export class ProfilePageComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new ProfilePageTemplate());
-        this.store = Store.getInstance();
         this.authService = AuthService.getInstance();
         this.router = Router.getInstance();
-        this.profileService = new ProfileService();
+        this.profileService = ProfileService.getInstance();
         this.onInit();
     }
     onInit() {
-        this.store.subscribe().on(STORE_EVENTS.PROFILE_UPDATE, this.updateProfile.bind(this));
-        const profile = this.store.getProfile();
+        this.profileService.subscribe().on(PROFILE_EVENTS.PROFILE_UPDATE, this.updateProfile.bind(this));
+        const profile = this.profileService.getProfile();
         if (profile !== null) {
             this.setProps({ "root": profile });
         }
