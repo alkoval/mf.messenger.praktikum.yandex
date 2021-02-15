@@ -1,10 +1,12 @@
 import { BaseComponent } from '../../core/base-component/base-component.js';
 import { ChatPageTemplate } from './chat.template.js';
+import { FormField } from '../../shared/shared.models.js';
 import { ChatDialogComponent } from './chat-dialog/chat-dialog.js';
 import { ChatHistoryComponent } from './chat-history/chat-history.js';
 import { Router } from '../../core/router/router.js';
 import { ChatService, CHAT_EVENTS } from '../services/chat.service.js';
 import { ProfileService, PROFILE_EVENTS } from '../services/profile.service.js';
+import { ModalNewDialogComponent } from './modal-new-dialog/modal-new-dialog.js';
 export class ChatPageComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new ChatPageTemplate());
@@ -19,16 +21,27 @@ export class ChatPageComponent extends BaseComponent {
         this.chatService.subscribe().on(CHAT_EVENTS.DIALOGS_RELOAD, this.reloadDialogs.bind(this));
         this.updateProfile(this.profileService.getProfile());
     }
+    render() {
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
+    }
     prerenderChildrens() {
+        const mdNewDialog = new ModalNewDialogComponent({ 'root': '', 'field': new FormField('text', 'dialogName', 'Имя диалога', 'Некорректное значение', 'word') }, this.templator);
+        this.renderToRoot([mdNewDialog]);
+        this.childrens.push(mdNewDialog);
+        const dialogs = [];
         if (this.getProps().dialogs) {
             for (let item of this.getProps().dialogs) {
-                this.childrens.push(new ChatDialogComponent({ 'root': item }, this.templator));
+                dialogs.push(new ChatDialogComponent({ 'root': item }, this.templator));
             }
         }
-        this.renderChildrensToSelector('.chat__dialogs');
+        this.renderToSelector(dialogs, '.chat__dialogs');
         this.afterRenderChildrens();
     }
     subscribe() {
+        const mdAddUser = this.getElement().querySelectorAll('.chat__toolbar .chat__link')[0];
+        if (mdAddUser) {
+            mdAddUser.addEventListener('click', () => { this.toggle(); });
+        }
         const profileLink = this.getElement().querySelectorAll('.chat__toolbar .chat__link')[1];
         if (profileLink) {
             profileLink.addEventListener('click', () => { this.router.go('/profile'); });
@@ -60,6 +73,17 @@ export class ChatPageComponent extends BaseComponent {
                     this.chatHistory.setProps(selectedDialog);
                     chatContent.appendChild(this.chatHistory.getContent());
                 }
+            }
+        }
+    }
+    toggle() {
+        const blackout = this.getElement().querySelector('.blackout');
+        if (blackout) {
+            if (blackout.classList.contains('blackout_state_show')) {
+                blackout.classList.remove('blackout_state_show');
+            }
+            else {
+                blackout.classList.add('blackout_state_show');
             }
         }
     }

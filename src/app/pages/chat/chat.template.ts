@@ -36,8 +36,7 @@ export class ChatPageTemplate implements ComponentTemplate {
                 <div class="intro">
                     <span>Выберите чат чтобы отправить сообщение</span>
                 </div>
-            </div>
-           
+            </div>           
         `;
     }
 }

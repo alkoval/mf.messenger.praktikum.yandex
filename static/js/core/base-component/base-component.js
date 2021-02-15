@@ -97,6 +97,11 @@ export class BaseComponent {
             }
         }
     }
+    renderToRoot(childrens) {
+        for (let child of childrens) {
+            this.getElement().appendChild(child.getContent());
+        }
+    }
     render() {
         return this.templator.compile(this.template.getContent(), this.getProps().root);
     }

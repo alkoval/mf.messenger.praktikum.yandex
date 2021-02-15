@@ -2,12 +2,13 @@ import { BaseComponent } from '../../core/base-component/base-component.js';
 import { Templator } from '../../core/core.js';
 import { OnInit, PropsComponent } from '../../shared/shared.interfaces.js';
 import { ChatPageTemplate } from './chat.template.js';
-import { ChatDialog, Profile } from '../../shared/shared.models.js';
+import { ChatDialog, FormField, Profile } from '../../shared/shared.models.js';
 import { ChatDialogComponent } from './chat-dialog/chat-dialog.js';
 import { ChatHistoryComponent } from './chat-history/chat-history.js';
 import { Router } from '../../core/router/router.js';
 import { ChatService, CHAT_EVENTS } from '../services/chat.service.js';
 import { ProfileService, PROFILE_EVENTS } from '../services/profile.service.js';
+import { ModalNewDialogComponent } from './modal-new-dialog/modal-new-dialog.js';
 
 export class ChatPageComponent extends BaseComponent implements OnInit {
     private chatHistory: ChatHistoryComponent;
@@ -30,17 +31,31 @@ export class ChatPageComponent extends BaseComponent implements OnInit {
         this.updateProfile(this.profileService.getProfile());
     }
 
+    public render(): string {
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
+    }
+
     public prerenderChildrens(): void {
+        const mdNewDialog = new ModalNewDialogComponent({ 'root': '', 'field': new FormField('text', 'dialogName', 'Имя диалога', 'Некорректное значение', 'word') }, this.templator);
+        this.renderToRoot([mdNewDialog]);
+        this.childrens.push(mdNewDialog);
+
+        const dialogs = [];
         if (this.getProps().dialogs) {
             for (let item of this.getProps().dialogs) {
-                this.childrens.push(new ChatDialogComponent({ 'root': item }, this.templator));
+                dialogs.push(new ChatDialogComponent({ 'root': item }, this.templator));
             }
         }
-        this.renderChildrensToSelector('.chat__dialogs');
+        this.renderToSelector(dialogs, '.chat__dialogs');
+
         this.afterRenderChildrens();
     }
 
     public subscribe(): void {
+        const mdAddUser = this.getElement().querySelectorAll('.chat__toolbar .chat__link')[0];
+        if (mdAddUser) {
+            mdAddUser.addEventListener('click', () => { this.toggle() });
+        }
         const profileLink = this.getElement().querySelectorAll('.chat__toolbar .chat__link')[1];
         if (profileLink) {
             profileLink.addEventListener('click', () => { this.router.go('/profile') });
@@ -76,6 +91,17 @@ export class ChatPageComponent extends BaseComponent implements OnInit {
                     this.chatHistory.setProps(selectedDialog);
                     chatContent.appendChild(this.chatHistory.getContent());
                 }
+            }
+        }
+    }
+
+    public toggle(): void {
+        const blackout = this.getElement().querySelector('.blackout');
+        if (blackout) {
+            if (blackout.classList.contains('blackout_state_show')) {
+                blackout.classList.remove('blackout_state_show');
+            } else {
+                blackout.classList.add('blackout_state_show');
             }
         }
     }

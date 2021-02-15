@@ -122,6 +122,12 @@ export abstract class BaseComponent implements Component {
         }
     }
 
+    public renderToRoot(childrens: BaseComponent[]): void {
+        for (let child of childrens) {
+            this.getElement().appendChild(child.getContent());
+        }
+    }
+
     public render(): string {
         return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
