@@ -10,6 +10,6 @@ export class ProfileGroupTextComponent extends BaseComponent {
     }
 
     public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
 }

@@ -5,9 +5,9 @@ export class ButtonComponent extends BaseComponent {
         super(props, templator, new ButtonTemplate());
     }
     render() {
-        const btn = this.getProps();
+        const btn = this.getProps().root;
         this.getElement().classList.add(btn.cssClass);
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
 }
 //# sourceMappingURL=button.js.map

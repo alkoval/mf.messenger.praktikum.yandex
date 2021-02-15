@@ -37,7 +37,7 @@ export default class Route {
 
     public render(): void {
         if (!this.component) {
-            this.component = new this.componentClass({}, Templator.getInstance());
+            this.component = new this.componentClass({ "root": "" }, Templator.getInstance());
             this.pageService.render(this.component);
             this.pageService.subscribePageState(this.component);
             return;

@@ -11,8 +11,8 @@ export class ButtonComponent extends BaseComponent {
     }
 
     public render(): string {
-        const btn = this.getProps() as Button;
+        const btn = this.getProps().root as Button;
         this.getElement().classList.add(btn.cssClass);
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
 }

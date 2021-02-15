@@ -41,7 +41,7 @@ export class ProfilePageTemplate {
                 <div class="profile__card">
                     <div class="profile__section">
                         <div class="profile__avatar-container">
-                            <img class="profile__avatar" src="https://ya-praktikum.tech/{{avatar}}" alt="">
+                            <img class="profile__avatar" src="https://ya-praktikum.tech/{{avatar}}">
                             <div class="profile__avatar-link">
                                 <span>Поменять<br>аватар</span>
                             </div>

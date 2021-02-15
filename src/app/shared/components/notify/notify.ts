@@ -11,16 +11,15 @@ export class NotifyComponent extends BaseComponent {
     }
 
     public subscribe(): void {
-        const notify: Notify = this.getProps() as Notify;
+        const notify: Notify = this.getProps().root as Notify;
         setTimeout(this.hide.bind(this), notify.time);
     }
 
     public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
 
     public show(): void {
-        console.log(this.getProps())
         this.getElement().style.display = 'block';
     }
 

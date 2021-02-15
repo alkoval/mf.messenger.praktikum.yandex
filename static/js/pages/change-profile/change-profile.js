@@ -18,18 +18,23 @@ export class ChangeProfilePageComponent extends BaseComponent {
         this.onInit();
     }
     onInit() {
-        this.store.subscribe().on(STORE_EVENTS.PROFILE_UPDATE, this.setProps.bind(this));
+        this.store.subscribe().on(STORE_EVENTS.PROFILE_UPDATE, this.updateProfile.bind(this));
         const profile = this.store.getProfile();
-        if (profile != null) {
-            this.setProps(profile);
+        if (profile !== null) {
+            this.setProps({ "root": profile });
+        }
+    }
+    updateProfile(profile) {
+        if (profile !== null) {
+            this.setProps({ "root": profile });
         }
     }
     render() {
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
     prerenderChildrens() {
-        const profile = this.getProps();
-        if (profile.id && this.childrens.length === 0) {
+        const profile = this.getProps().root;
+        if (profile && this.childrens.length === 0) {
             this.fields = [
                 new FormField('text', 'email', 'Почта', 'Некорректное значение', 'email', profile.email),
                 new FormField('text', 'login', 'Логин', 'Некорректное значение', 'login', profile.login),
@@ -39,10 +44,10 @@ export class ChangeProfilePageComponent extends BaseComponent {
                 new FormField('text', 'phone', 'Телефон', 'Некорректное значение', 'phone', profile.phone)
             ];
             for (let field of this.fields) {
-                this.childrens.push(new ProfileGroupInputComponent(field, this.templator));
+                this.childrens.push(new ProfileGroupInputComponent({ "root": field }, this.templator));
             }
             this.renderChildrensToSelector('.profile__body');
-            const btn = new ButtonComponent(new Button('Сохранить', BUTTON_STYLE.BG_DARK_GREEN, 'button'), this.templator);
+            const btn = new ButtonComponent({ "root": new Button('Сохранить', BUTTON_STYLE.BG_DARK_GREEN, 'button') }, this.templator);
             this.childrens.push(btn);
             this.renderToSelector([btn], '.profile__footer');
             this.afterRenderChildrens();
@@ -71,7 +76,7 @@ export class ChangeProfilePageComponent extends BaseComponent {
             }
         }
         if (valid) {
-            const profile = this.getProps();
+            const profile = this.getProps().root;
             const newProfile = new Profile();
             newProfile.id = profile.id;
             newProfile.email = fields.find(e => e.name === 'email').value;

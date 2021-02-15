@@ -24,7 +24,7 @@ export class ChangePasswordPageComponent extends BaseComponent {
     }
 
     public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
 
     public prerenderChildrens(): void {
@@ -34,11 +34,11 @@ export class ChangePasswordPageComponent extends BaseComponent {
             new FormField('password', 'rePassword', 'Повторите новый пароль', 'Некорректное значение', 'password', ''),
         ];
         for (let field of this.fields) {
-            this.childrens.push(new ProfileGroupInputComponent(field, this.templator));
+            this.childrens.push(new ProfileGroupInputComponent({ "root": field }, this.templator));
         }
         this.renderChildrensToSelector('.profile__body');
 
-        const btn = new ButtonComponent(new Button('Сохранить', BUTTON_STYLE.BG_DARK_GREEN, 'button'), this.templator);
+        const btn = new ButtonComponent({ "root": new Button('Сохранить', BUTTON_STYLE.BG_DARK_GREEN, 'button') }, this.templator);
         this.childrens.push(btn);
         this.renderToSelector([btn], '.profile__footer');
     }

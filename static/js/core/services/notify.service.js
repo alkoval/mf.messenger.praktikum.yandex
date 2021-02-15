@@ -16,7 +16,7 @@ export class NotifyService {
     show(notify) {
         const root = document.querySelector(this.selector);
         if (root !== null) {
-            const notifyComponent = new NotifyComponent(notify, Templator.getInstance());
+            const notifyComponent = new NotifyComponent({ "root": notify }, Templator.getInstance());
             root.appendChild(notifyComponent.getContent());
         }
     }

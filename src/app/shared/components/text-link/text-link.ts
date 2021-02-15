@@ -14,11 +14,11 @@ export class TextLinkComponent extends BaseComponent {
     }
 
     public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
 
     public subscribe(): void {
-        const link = this.getProps() as TextLink;
+        const link = this.getProps().root as TextLink;
         const elem = this.getElement() as HTMLElement;
         elem.addEventListener('click', () => { this.router.go(link.path) });
     }

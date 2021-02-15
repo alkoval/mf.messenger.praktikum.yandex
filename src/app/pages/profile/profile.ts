@@ -25,29 +25,35 @@ export class ProfilePageComponent extends BaseComponent implements OnInit {
     }
 
     public onInit(): void {
-        this.store.subscribe().on(STORE_EVENTS.PROFILE_UPDATE, this.setProps.bind(this));
+        this.store.subscribe().on(STORE_EVENTS.PROFILE_UPDATE, this.updateProfile.bind(this));
         const profile = this.store.getProfile();
-        if (profile != null) {
-            this.setProps(profile);
+        if (profile !== null) {
+            this.setProps({ "root": profile });
+        }
+    }
+
+    public updateProfile(profile: Profile): void {
+        if (profile !== null) {
+            this.setProps({ "root": profile });
         }
     }
 
     public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
 
     public prerenderChildrens(): void {
-        const profile = this.getProps() as Profile;
-        if (profile.id) {
+        const profile = this.getProps().root;
+        if (profile) {
             if (this.childrens.length > 0) {
                 this.childrens = [];
             }
-            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'email', 'Почта', 'Некорректное значение', 'email', profile.email), this.templator));
-            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'login', 'Логин', 'Некорректное значение', 'login', profile.login), this.templator));
-            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'name', 'Имя', 'Некорректное значение', 'word', profile.name), this.templator));
-            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'secondName', 'Фамилия', 'Некорректное значение', 'word', profile.secondName), this.templator));
-            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'nickname', 'Имя в чате', 'Некорректное значение', 'word', profile.nickname), this.templator));
-            this.childrens.push(new ProfileGroupTextComponent(new FormField('text', 'phone', 'Телефон', 'Некорректное значение', 'phone', profile.phone), this.templator));
+            this.childrens.push(new ProfileGroupTextComponent({ "root": new FormField('text', 'email', 'Почта', 'Некорректное значение', 'email', profile.email) }, this.templator));
+            this.childrens.push(new ProfileGroupTextComponent({ "root": new FormField('text', 'login', 'Логин', 'Некорректное значение', 'login', profile.login) }, this.templator));
+            this.childrens.push(new ProfileGroupTextComponent({ "root": new FormField('text', 'name', 'Имя', 'Некорректное значение', 'word', profile.name) }, this.templator));
+            this.childrens.push(new ProfileGroupTextComponent({ "root": new FormField('text', 'secondName', 'Фамилия', 'Некорректное значение', 'word', profile.secondName) }, this.templator));
+            this.childrens.push(new ProfileGroupTextComponent({ "root": new FormField('text', 'nickname', 'Имя в чате', 'Некорректное значение', 'word', profile.nickname) }, this.templator));
+            this.childrens.push(new ProfileGroupTextComponent({ "root": new FormField('text', 'phone', 'Телефон', 'Некорректное значение', 'phone', profile.phone) }, this.templator));
             this.renderChildrensToSelector('.profile__body');
             this.afterRenderChildrens();
         }

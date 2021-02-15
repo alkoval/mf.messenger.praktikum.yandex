@@ -4,11 +4,11 @@ import { ProfileGroupInputTemplate } from './profile-group-input.template.js';
 export class ProfileGroupInputComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new ProfileGroupInputTemplate());
-        this.formField = props;
+        this.formField = props.root;
         this.formValidationService = new FormValidationService();
     }
     render() {
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
     subscribe() {
         const input = this.getContent().querySelector('.profile__input');

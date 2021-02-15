@@ -4,11 +4,11 @@ import FormValidationService from '../../../core/services/form-validation.servic
 export class FormFieldComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new FormFieldTemplate());
-        this.formField = props;
+        this.formField = props.root;
         this.formValidationService = new FormValidationService();
     }
     render() {
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
     subscribe() {
         const input = this.getContent().querySelector('.form-field__input');

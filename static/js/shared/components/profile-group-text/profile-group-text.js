@@ -5,7 +5,7 @@ export class ProfileGroupTextComponent extends BaseComponent {
         super(props, templator, new ProfileGroupTextTemplate());
     }
     render() {
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
 }
 //# sourceMappingURL=profile-group-text.js.map

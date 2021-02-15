@@ -5,14 +5,13 @@ export class NotifyComponent extends BaseComponent {
         super(props, templator, new NotifyTemplate());
     }
     subscribe() {
-        const notify = this.getProps();
+        const notify = this.getProps().root;
         setTimeout(this.hide.bind(this), notify.time);
     }
     render() {
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
     show() {
-        console.log(this.getProps());
         this.getElement().style.display = 'block';
     }
     hide() {

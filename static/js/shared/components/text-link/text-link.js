@@ -7,10 +7,10 @@ export class TextLinkComponent extends BaseComponent {
         this.router = Router.getInstance();
     }
     render() {
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
     subscribe() {
-        const link = this.getProps();
+        const link = this.getProps().root;
         const elem = this.getElement();
         elem.addEventListener('click', () => { this.router.go(link.path); });
     }

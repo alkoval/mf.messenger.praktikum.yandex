@@ -1,1 +1,3 @@
-export interface PropsComponent { }
+export interface PropsComponent {
+    [key: string]: any;
+}

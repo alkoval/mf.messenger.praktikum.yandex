@@ -11,12 +11,12 @@ export class FormFieldComponent extends BaseComponent {
 
     constructor(props: PropsComponent, templator: Templator) {
         super(props, templator, new FormFieldTemplate());
-        this.formField = props as FormField;
+        this.formField = props.root as FormField;
         this.formValidationService = new FormValidationService();
     }
 
     public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
 
     public subscribe(): void {

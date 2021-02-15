@@ -24,7 +24,7 @@ export class LoginPageComponent extends BaseComponent {
     }
 
     public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
 
     public prerenderChildrens(): void {
@@ -32,7 +32,7 @@ export class LoginPageComponent extends BaseComponent {
         this.form.fields.push(new FormField('text', 'login', 'Логин', 'Некорректное значение', 'word'));
         this.form.fields.push(new FormField('password', 'password', 'Пароль', 'Некорректное значение', 'word'));
 
-        this.formComponent = new FormCardComponent(this.form, this.templator);
+        this.formComponent = new FormCardComponent({ "root": this.form }, this.templator);
         this.childrens.push(this.formComponent);
         this.renderChildrens();
         this.afterRenderChildrens();
