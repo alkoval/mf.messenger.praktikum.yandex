@@ -5,7 +5,7 @@ export class AuthSignUpAPI {
     }
     request(body) {
         let options = {
-            body: body
+            body: JSON.stringify(body)
         };
         return this.httpService.post('/signup', options);
     }

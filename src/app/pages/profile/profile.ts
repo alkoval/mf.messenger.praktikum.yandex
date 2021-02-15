@@ -5,6 +5,7 @@ import { Store, STORE_EVENTS } from '../../core/store/store.js';
 import { ProfileGroupTextComponent } from '../../shared/components/profile-group-text/profile-group-text.js';
 import { OnInit, PropsComponent } from '../../shared/shared.interfaces.js';
 import { FormField, Profile } from '../../shared/shared.models.js';
+import { ProfileService } from '../services/profile.service.js';
 import { ProfilePageTemplate } from './profile.template.js';
 
 
@@ -12,12 +13,14 @@ export class ProfilePageComponent extends BaseComponent implements OnInit {
     private store: Store;
     private authService: AuthService;
     private router: Router;
+    private profileService: ProfileService;
 
     constructor(props: PropsComponent, templator: Templator) {
         super(props, templator, new ProfilePageTemplate());
         this.store = Store.getInstance();
         this.authService = AuthService.getInstance();
         this.router = Router.getInstance();
+        this.profileService = new ProfileService();
         this.onInit();
     }
 
@@ -57,7 +60,7 @@ export class ProfilePageComponent extends BaseComponent implements OnInit {
         }
         const hideMd = this.getElement().querySelector('.modal__button_bg_dark-green');
         if (hideMd) {
-            hideMd.addEventListener('click', () => { this.toggleModal() });
+            hideMd.addEventListener('click', () => { this.changeAvatar() });
         }
         const inputFile = this.getElement().querySelector('.modal__file-upload__input');
         if (inputFile) {
@@ -92,7 +95,24 @@ export class ProfilePageComponent extends BaseComponent implements OnInit {
         }
     }
 
-    public checkFile(target: HTMLInputElement): void {
+    public changeAvatar(): void {
+        const inputFile = this.getElement().querySelector('.modal__file-upload__input');
+        if (inputFile) {
+            if (this.checkFile(inputFile as HTMLInputElement)) {
+                const avatarForm = this.getElement().querySelector('.modal__content')!;
+                const avatar = this.getElement().querySelector('.modal__file-upload__input')! as HTMLInputElement;
+                const file = avatar!.files![0];
+                if (avatarForm && avatar) {
+                    const formData = new FormData(avatarForm as HTMLFormElement);
+                    formData.append('avatar', file, file.name);
+                    this.profileService.chageAvatar(formData);
+                }
+            }
+        }
+        this.toggleModal();
+    }
+
+    public checkFile(target: HTMLInputElement): boolean {
         const label = this.getElement().querySelector(".modal__file-upload__label");
         const err = this.getElement().querySelector(".modal__text, .modal__text_bg_red");
         const file = target!.files![0];
@@ -118,6 +138,7 @@ export class ProfilePageComponent extends BaseComponent implements OnInit {
         } else {
             err!.classList.remove("modal__text_display_none");
         }
+        return valid;
     }
 
     public logout(): void {

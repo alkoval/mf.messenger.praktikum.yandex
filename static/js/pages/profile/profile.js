@@ -4,6 +4,7 @@ import { Router } from '../../core/router/router.js';
 import { Store, STORE_EVENTS } from '../../core/store/store.js';
 import { ProfileGroupTextComponent } from '../../shared/components/profile-group-text/profile-group-text.js';
 import { FormField } from '../../shared/shared.models.js';
+import { ProfileService } from '../services/profile.service.js';
 import { ProfilePageTemplate } from './profile.template.js';
 export class ProfilePageComponent extends BaseComponent {
     constructor(props, templator) {
@@ -11,6 +12,7 @@ export class ProfilePageComponent extends BaseComponent {
         this.store = Store.getInstance();
         this.authService = AuthService.getInstance();
         this.router = Router.getInstance();
+        this.profileService = new ProfileService();
         this.onInit();
     }
     onInit() {
@@ -46,7 +48,7 @@ export class ProfilePageComponent extends BaseComponent {
         }
         const hideMd = this.getElement().querySelector('.modal__button_bg_dark-green');
         if (hideMd) {
-            hideMd.addEventListener('click', () => { this.toggleModal(); });
+            hideMd.addEventListener('click', () => { this.changeAvatar(); });
         }
         const inputFile = this.getElement().querySelector('.modal__file-upload__input');
         if (inputFile) {
@@ -80,6 +82,22 @@ export class ProfilePageComponent extends BaseComponent {
             }
         }
     }
+    changeAvatar() {
+        const inputFile = this.getElement().querySelector('.modal__file-upload__input');
+        if (inputFile) {
+            if (this.checkFile(inputFile)) {
+                const avatarForm = this.getElement().querySelector('.modal__content');
+                const avatar = this.getElement().querySelector('.modal__file-upload__input');
+                const file = avatar.files[0];
+                if (avatarForm && avatar) {
+                    const formData = new FormData(avatarForm);
+                    formData.append('avatar', file, file.name);
+                    this.profileService.chageAvatar(formData);
+                }
+            }
+        }
+        this.toggleModal();
+    }
     checkFile(target) {
         const label = this.getElement().querySelector(".modal__file-upload__label");
         const err = this.getElement().querySelector(".modal__text, .modal__text_bg_red");
@@ -108,6 +126,7 @@ export class ProfilePageComponent extends BaseComponent {
         else {
             err.classList.remove("modal__text_display_none");
         }
+        return valid;
     }
     logout() {
         this.authService.logout().then(response => {

@@ -8,12 +8,14 @@ import { NotifyService } from "../../core/services/notify.service.js";
 import { Store } from "../../core/store/store.js";
 import { Profile } from "../../shared/shared.models.js";
 import { UserAPI } from "../../core/api/user-api.js";
+import { UserProfileAvatarAPI } from "../../core/api/user-profile-avatar-api.js";
 
 export class ProfileService {
     private store: Store;
     private authService: AuthService;
     private notifyService: NotifyService;
     private userProfileAPI: UserProfileAPI;
+    private userProfileAvatarAPI: UserProfileAvatarAPI;
     private userPasswordAPI: UserPasswordAPI;
     private userAPI: UserAPI;
 
@@ -22,6 +24,7 @@ export class ProfileService {
         this.authService = AuthService.getInstance();
         this.notifyService = NotifyService.getInstance();
         this.userProfileAPI = new UserProfileAPI();
+        this.userProfileAvatarAPI = new UserProfileAvatarAPI();
         this.userPasswordAPI = new UserPasswordAPI();
         this.userAPI = new UserAPI();
     }
@@ -47,19 +50,7 @@ export class ProfileService {
             response => {
                 const userResponse: UserResponse = JSON.parse(response as string);
                 if (userResponse.id) {
-                    const profile: Profile = new Profile();
-
-                    profile.id = userResponse.id;
-                    profile.name = userResponse.first_name;
-                    profile.secondName = userResponse.second_name;
-                    profile.nickname = userResponse.display_name;
-                    profile.login = userResponse.login;
-                    profile.email = userResponse.email;
-                    profile.phone = userResponse.phone;
-                    profile.avatar = userResponse.avatar ? userResponse.avatar : 'rick_avatar.png';
-
-                    this.store.setProfile(profile);
-
+                    this.store.setProfile(this.userResToProfile(userResponse));
                     this.notifyService.notify('Данные профиля успешно обновлены');
                 } else {
                     this.notifyService.notify(response as string);
@@ -80,6 +71,19 @@ export class ProfileService {
         )
     }
 
+    public chageAvatar(avatar: FormData): Promise<unknown> {
+        return this.userProfileAvatarAPI.request(avatar).then(
+            response => {
+                const userResponse: UserResponse = JSON.parse(response as string);
+                if (userResponse.id) {
+                    this.store.setProfile(this.userResToProfile(userResponse));
+                } else {
+                    this.notifyService.notify(response as string);
+                }
+            }
+        )
+    }
+
     public siginUp(profile: Profile): Promise<unknown> {
         return this.authService.signup(profile).then(
             id => {
@@ -89,18 +93,7 @@ export class ProfileService {
                         console.log(user)
                         const userResponse: UserResponse = JSON.parse(user as string);
                         if (userResponse.id) {
-                            const profile: Profile = new Profile();
-
-                            profile.id = userResponse.id;
-                            profile.name = userResponse.first_name;
-                            profile.secondName = userResponse.second_name;
-                            profile.nickname = userResponse.display_name;
-                            profile.login = userResponse.login;
-                            profile.email = userResponse.email;
-                            profile.phone = userResponse.phone;
-                            profile.avatar = userResponse.avatar ? userResponse.avatar : 'rick_avatar.png';
-
-                            this.store.setProfile(profile);
+                            this.store.setProfile(this.userResToProfile(userResponse));
                             return true;
                         } else {
                             this.notifyService.notify(user as string);
@@ -110,5 +103,20 @@ export class ProfileService {
                 )
             }
         )
+    }
+
+    private userResToProfile(userResponse: UserResponse): Profile {
+        const profile: Profile = new Profile();
+
+        profile.id = userResponse.id;
+        profile.name = userResponse.first_name;
+        profile.secondName = userResponse.second_name;
+        profile.nickname = userResponse.display_name;
+        profile.login = userResponse.login;
+        profile.email = userResponse.email;
+        profile.phone = userResponse.phone;
+        profile.avatar = userResponse.avatar ? userResponse.avatar : 'rick_avatar.png';
+
+        return profile;
     }
 }

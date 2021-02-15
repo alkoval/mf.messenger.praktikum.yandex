@@ -9,9 +9,9 @@ export class UserProfileAPI {
         this.httpService = new HttpService('api/v2/user');
     }
 
-    public request(userRequest: UserRequest): Promise<unknown> {
+    public request(body: UserRequest): Promise<unknown> {
         const options: HttpRequestOptions = {
-            body: userRequest
+            body: JSON.stringify(body)
         }
         return this.httpService.put(`/profile`, options);
     }

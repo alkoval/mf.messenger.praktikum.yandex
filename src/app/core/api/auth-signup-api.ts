@@ -11,7 +11,7 @@ export class AuthSignUpAPI {
 
     public request(body: SignUpRequest): Promise<unknown> {
         let options: HttpRequestOptions = {
-            body: body
+            body: JSON.stringify(body)
         }
         return this.httpService.post('/signup', options);
     }

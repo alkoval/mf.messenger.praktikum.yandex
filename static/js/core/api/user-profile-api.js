@@ -3,9 +3,9 @@ export class UserProfileAPI {
     constructor() {
         this.httpService = new HttpService('api/v2/user');
     }
-    request(userRequest) {
+    request(body) {
         const options = {
-            body: userRequest
+            body: JSON.stringify(body)
         };
         return this.httpService.put(`/profile`, options);
     }

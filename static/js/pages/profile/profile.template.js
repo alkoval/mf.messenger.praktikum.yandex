@@ -13,13 +13,13 @@ export class ProfilePageTemplate {
         return `
             <div class="blackout" id="mdFileUpload">
                 <div class="modal modal_state_show">
-                    <div class="modal__content">
+                    <form class="modal__content">
                         <div class="modal__section">
                             <span class="modal__title">Загрузите файл</span>
                         </div>
                         <div class="modal__section">
                             <div class="modal__file-upload">
-                                <label for="fileUpload" class="modal__file-upload__label">
+                                <label for="fileUpload" class="modal__file-upload__label text-link">
                                     Выбрать файл на компьютере
                                 </label>
                                 <input class="modal__file-upload__input" id="fileUpload" type="file"/>
@@ -31,7 +31,7 @@ export class ProfilePageTemplate {
                         <div class="modal__section">
                             <span class="modal__text modal__text_bg_red modal__text_display_none"></span>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="profile__sidebar">
@@ -41,7 +41,7 @@ export class ProfilePageTemplate {
                 <div class="profile__card">
                     <div class="profile__section">
                         <div class="profile__avatar-container">
-                            <img class="profile__avatar" src="assets/images/{{avatar}}" alt="">
+                            <img class="profile__avatar" src="https://ya-praktikum.tech/{{avatar}}" alt="">
                             <div class="profile__avatar-link">
                                 <span>Поменять<br>аватар</span>
                             </div>

@@ -11,7 +11,7 @@ export class UserPasswordAPI {
 
     public request(body: ChangePasswordRequest): Promise<unknown> {
         const options: HttpRequestOptions = {
-            body: body
+            body: JSON.stringify(body)
         }
         return this.httpService.put(`/password`, options);
     }

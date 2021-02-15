@@ -14,12 +14,14 @@ import { NotifyService } from "../../core/services/notify.service.js";
 import { Store } from "../../core/store/store.js";
 import { Profile } from "../../shared/shared.models.js";
 import { UserAPI } from "../../core/api/user-api.js";
+import { UserProfileAvatarAPI } from "../../core/api/user-profile-avatar-api.js";
 export class ProfileService {
     constructor() {
         this.store = Store.getInstance();
         this.authService = AuthService.getInstance();
         this.notifyService = NotifyService.getInstance();
         this.userProfileAPI = new UserProfileAPI();
+        this.userProfileAvatarAPI = new UserProfileAvatarAPI();
         this.userPasswordAPI = new UserPasswordAPI();
         this.userAPI = new UserAPI();
     }
@@ -44,16 +46,7 @@ export class ProfileService {
         return this.userProfileAPI.request(userRequest).then(response => {
             const userResponse = JSON.parse(response);
             if (userResponse.id) {
-                const profile = new Profile();
-                profile.id = userResponse.id;
-                profile.name = userResponse.first_name;
-                profile.secondName = userResponse.second_name;
-                profile.nickname = userResponse.display_name;
-                profile.login = userResponse.login;
-                profile.email = userResponse.email;
-                profile.phone = userResponse.phone;
-                profile.avatar = userResponse.avatar ? userResponse.avatar : 'rick_avatar.png';
-                this.store.setProfile(profile);
+                this.store.setProfile(this.userResToProfile(userResponse));
                 this.notifyService.notify('Данные профиля успешно обновлены');
             }
             else {
@@ -70,6 +63,17 @@ export class ProfileService {
             this.notifyService.notify(response);
         });
     }
+    chageAvatar(avatar) {
+        return this.userProfileAvatarAPI.request(avatar).then(response => {
+            const userResponse = JSON.parse(response);
+            if (userResponse.id) {
+                this.store.setProfile(this.userResToProfile(userResponse));
+            }
+            else {
+                this.notifyService.notify(response);
+            }
+        });
+    }
     siginUp(profile) {
         return this.authService.signup(profile).then(id => {
             console.log(id);
@@ -77,16 +81,7 @@ export class ProfileService {
                 console.log(user);
                 const userResponse = JSON.parse(user);
                 if (userResponse.id) {
-                    const profile = new Profile();
-                    profile.id = userResponse.id;
-                    profile.name = userResponse.first_name;
-                    profile.secondName = userResponse.second_name;
-                    profile.nickname = userResponse.display_name;
-                    profile.login = userResponse.login;
-                    profile.email = userResponse.email;
-                    profile.phone = userResponse.phone;
-                    profile.avatar = userResponse.avatar ? userResponse.avatar : 'rick_avatar.png';
-                    this.store.setProfile(profile);
+                    this.store.setProfile(this.userResToProfile(userResponse));
                     return true;
                 }
                 else {
@@ -95,6 +90,18 @@ export class ProfileService {
                 }
             });
         });
+    }
+    userResToProfile(userResponse) {
+        const profile = new Profile();
+        profile.id = userResponse.id;
+        profile.name = userResponse.first_name;
+        profile.secondName = userResponse.second_name;
+        profile.nickname = userResponse.display_name;
+        profile.login = userResponse.login;
+        profile.email = userResponse.email;
+        profile.phone = userResponse.phone;
+        profile.avatar = userResponse.avatar ? userResponse.avatar : 'rick_avatar.png';
+        return profile;
     }
 }
 //# sourceMappingURL=profile.service.js.map

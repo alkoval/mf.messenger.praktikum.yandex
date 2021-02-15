@@ -96,7 +96,7 @@ export default class HttpService {
                 reject(new Error("Запрос был прерван."));
             };
 
-            return xhr.send(options.body ? JSON.stringify(options.body) : null);
+            return xhr.send(options.body ? options.body : null);
         });
     };
 }

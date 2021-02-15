@@ -5,7 +5,7 @@ export class UserPasswordAPI {
     }
     request(body) {
         const options = {
-            body: body
+            body: JSON.stringify(body)
         };
         return this.httpService.put(`/password`, options);
     }
