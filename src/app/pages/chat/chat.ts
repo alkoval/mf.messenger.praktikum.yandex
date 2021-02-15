@@ -24,22 +24,17 @@ export class ChatPageComponent extends BaseComponent implements OnInit {
 
     }
 
-    public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps());
-    }
-
     public prerenderChildrens(): void {
-        //console.log(this.getProps())
-        //const dialogs = this.getProps() as ChatDialog[];
-        //console.log(dialogs)
-        /*for (let item of this.getProps() as ChatDialog[]) {
-            this.childrens.push(new ChatDialogComponent(item, this.templator));
+        if (this.getProps().dialogs) {
+            for (let item of this.getProps().dialogs as ChatDialog[]) {
+                this.childrens.push(new ChatDialogComponent(item, this.templator));
+            }
         }
-
-        this.renderChildrensToSelector('.chat__dialogs');*/
+        this.renderChildrensToSelector('.chat__dialogs');
+        this.afterRenderChildrens();
     }
 
-    public subscribe(): void {
+    public subscribeOnChildrens(): void {
         const nodes = this.getElement().querySelectorAll('.chat__dialog');
         for (let item of nodes) {
             item.addEventListener('click', () => { this.getHistory(item as HTMLElement) });
@@ -49,7 +44,7 @@ export class ChatPageComponent extends BaseComponent implements OnInit {
     public getHistory(node: HTMLElement) {
         let idDialog = node.dataset.idDialog !== undefined ? parseInt(node.dataset.idDialog) : 0;
         if (idDialog !== 0) {
-            const selectedDialog = (this.getProps() as ChatDialog[]).find(e => e.id === idDialog);
+            const selectedDialog = (this.getProps().dialogs as ChatDialog[]).find(e => e.id === idDialog);
             if (selectedDialog !== undefined) {
                 const chatContent = this.getElement().querySelector('.chat__content');
                 if (chatContent !== null) {

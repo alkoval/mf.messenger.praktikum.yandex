@@ -24,10 +24,6 @@ export class SigninPageComponent extends BaseComponent {
         this.profileService = new ProfileService();
     }
 
-    public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps());
-    }
-
     public prerenderChildrens(): void {
         this.form = new FormCard('Регистрация', 'Зарегистрироваться', '/login', 'Войти');
         this.form.fields.push(new FormField('email', 'email', 'Почта', 'Некорректное значение', 'email'));
@@ -37,7 +33,7 @@ export class SigninPageComponent extends BaseComponent {
         this.form.fields.push(new FormField('text', 'phone', 'Телефон', 'Некорректное значение', 'phone'));
         this.form.fields.push(new FormField('password', 'password', 'Пароль', '@, Латинские символы, цифры, длина от 6', 'password'));
         this.form.fields.push(new FormField('password', 'rePassword', 'Повторите пароль', 'Пароли не совпадают', 'password'));
-        this.formComponent = new FormCardComponent(this.form, this.templator);
+        this.formComponent = new FormCardComponent({ 'root': this.form }, this.templator);
         this.childrens.push(this.formComponent);
         this.renderChildrens();
     }

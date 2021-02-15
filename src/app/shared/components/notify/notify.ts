@@ -15,10 +15,6 @@ export class NotifyComponent extends BaseComponent {
         setTimeout(this.hide.bind(this), notify.time);
     }
 
-    public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps().root);
-    }
-
     public show(): void {
         this.getElement().style.display = 'block';
     }

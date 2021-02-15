@@ -41,10 +41,6 @@ export class ChangeProfilePageComponent extends BaseComponent implements OnInit 
         }
     }
 
-    public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps().root);
-    }
-
     public prerenderChildrens(): void {
         const profile = this.getProps().root;
         if (profile && this.childrens.length === 0) {

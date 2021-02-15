@@ -23,10 +23,6 @@ export class LoginPageComponent extends BaseComponent {
         this.router = Router.getInstance();
     }
 
-    public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps().root);
-    }
-
     public prerenderChildrens(): void {
         this.form = new FormCard('Вход', 'Авторизоваться', '/signin', 'Нет аккаунта?');
         this.form.fields.push(new FormField('text', 'login', 'Логин', 'Некорректное значение', 'word'));
@@ -62,7 +58,7 @@ export class LoginPageComponent extends BaseComponent {
                 ).then(
                     response => {
                         if (response) {
-                            this.router.go('/profile');
+                            this.router.go('/chat');
                         }
                     }
                 );

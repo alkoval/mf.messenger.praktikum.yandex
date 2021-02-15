@@ -23,10 +23,6 @@ export class ChangePasswordPageComponent extends BaseComponent {
         this.router = Router.getInstance();
     }
 
-    public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps().root);
-    }
-
     public prerenderChildrens(): void {
         this.fields = [
             new FormField('password', 'oldPassword', 'Старый пароль', 'Некорректное значение', 'password', ''),

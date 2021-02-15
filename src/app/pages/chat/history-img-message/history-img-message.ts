@@ -8,8 +8,4 @@ export class HistoryImgMessageComponent extends BaseComponent {
     constructor(props: PropsComponent, templator: Templator) {
         super(props, templator, new HistoryImgMessageTemplate());
     }
-
-    public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps());
-    }
 }

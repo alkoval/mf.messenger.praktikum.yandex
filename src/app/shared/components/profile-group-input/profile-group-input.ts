@@ -14,10 +14,6 @@ export class ProfileGroupInputComponent extends BaseComponent {
         this.formValidationService = new FormValidationService();
     }
 
-    public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps().root);
-    }
-
     public subscribe(): void {
         const input = this.getContent().querySelector('.profile__input');
         if (input !== null) {

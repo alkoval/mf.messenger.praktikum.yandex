@@ -14,9 +14,6 @@ export class LoginPageComponent extends BaseComponent {
         this.authService = AuthService.getInstance();
         this.router = Router.getInstance();
     }
-    render() {
-        return this.templator.compile(this.template.getContent(), this.getProps().root);
-    }
     prerenderChildrens() {
         this.form = new FormCard('Вход', 'Авторизоваться', '/signin', 'Нет аккаунта?');
         this.form.fields.push(new FormField('text', 'login', 'Логин', 'Некорректное значение', 'word'));
@@ -44,7 +41,7 @@ export class LoginPageComponent extends BaseComponent {
             if (valid) {
                 this.authService.login(form.fields.find(e => e.name === 'login').value, form.fields.find(e => e.name === 'password').value).then(response => {
                     if (response) {
-                        this.router.go('/profile');
+                        this.router.go('/chat');
                     }
                 });
             }

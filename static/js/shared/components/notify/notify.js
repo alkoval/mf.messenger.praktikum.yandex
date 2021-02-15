@@ -8,9 +8,6 @@ export class NotifyComponent extends BaseComponent {
         const notify = this.getProps().root;
         setTimeout(this.hide.bind(this), notify.time);
     }
-    render() {
-        return this.templator.compile(this.template.getContent(), this.getProps().root);
-    }
     show() {
         this.getElement().style.display = 'block';
     }

@@ -122,7 +122,9 @@ export abstract class BaseComponent implements Component {
         }
     }
 
-    public render(): string { return ''; }
+    public render(): string {
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
+    }
 
     private makePropsProxy(props: PropsComponent): PropsComponent {
         //const self = this;

@@ -97,7 +97,9 @@ export class BaseComponent {
             }
         }
     }
-    render() { return ''; }
+    render() {
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
+    }
     makePropsProxy(props) {
         props = new Proxy(props, {
             get(target, prop) {

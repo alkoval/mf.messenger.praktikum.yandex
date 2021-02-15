@@ -27,9 +27,6 @@ export class ProfilePageComponent extends BaseComponent {
             this.setProps({ "root": profile });
         }
     }
-    render() {
-        return this.templator.compile(this.template.getContent(), this.getProps().root);
-    }
     prerenderChildrens() {
         const profile = this.getProps().root;
         if (profile) {

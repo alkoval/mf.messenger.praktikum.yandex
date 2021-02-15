@@ -13,10 +13,6 @@ export class TextLinkComponent extends BaseComponent {
         this.router = Router.getInstance();
     }
 
-    public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps().root);
-    }
-
     public subscribe(): void {
         const link = this.getProps().root as TextLink;
         const elem = this.getElement() as HTMLElement;

@@ -15,10 +15,6 @@ export class FormCardComponent extends BaseComponent {
         super(props, templator, new FormCardTemplate());
     }
 
-    public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps().root);
-    }
-
     public prerenderChildrens(): void {
         const form = this.getProps().root as FormCard;
         for (let item of form.fields) {

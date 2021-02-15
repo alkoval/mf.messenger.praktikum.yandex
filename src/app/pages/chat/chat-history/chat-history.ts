@@ -11,21 +11,17 @@ export class ChatHistoryComponent extends BaseComponent {
     constructor(props: PropsComponent, templator: Templator) {
         super(props, templator, new ChatHistoryTemplate());
     }
-
-    public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps());
-    }
-
+    
     public prerenderChildrens(): void {
         this.childrens = [];
         const length = Math.floor(Math.random() * Math.floor(MockupData.getInstance().historyMessages.length - 1));
         const data = MockupData.getInstance().historyMessages.slice(0, length);
         for (let item of data) {
             if (item.type === 'text') {
-                this.childrens.push(new HistoryTextMessageComponent(item, this.templator));
+                this.childrens.push(new HistoryTextMessageComponent({ "root": item }, this.templator));
             }
             if (item.type === 'img') {
-                this.childrens.push(new HistoryImgMessageComponent(item, this.templator));
+                this.childrens.push(new HistoryImgMessageComponent({ "root": item }, this.templator));
             }
         }
         // Заменить текущее использование модальных окон на компонентный подход

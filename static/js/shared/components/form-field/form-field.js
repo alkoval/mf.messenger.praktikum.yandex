@@ -7,9 +7,6 @@ export class FormFieldComponent extends BaseComponent {
         this.formField = props.root;
         this.formValidationService = new FormValidationService();
     }
-    render() {
-        return this.templator.compile(this.template.getContent(), this.getProps().root);
-    }
     subscribe() {
         const input = this.getContent().querySelector('.form-field__input');
         if (input !== null) {

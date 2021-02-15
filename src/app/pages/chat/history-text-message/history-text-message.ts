@@ -11,12 +11,12 @@ export class HistoryTextMessageComponent extends BaseComponent {
     }
 
     public render(): string {
-        if ((this.getProps() as HistoryTextMessage).from !== 0) {
+        if ((this.getProps().root as HistoryTextMessage).from !== 0) {
             this.getElement().classList.add('history__message_position_left');
         } else {
             this.getElement().classList.add('history__message_position_right');
             this.getElement().classList.add('history__message_bg_dark-green');
         }
-        return this.templator.compile(this.template.getContent(), this.getProps());
+        return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
 }

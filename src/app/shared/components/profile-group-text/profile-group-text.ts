@@ -8,8 +8,4 @@ export class ProfileGroupTextComponent extends BaseComponent {
     constructor(props: PropsComponent, templator: Templator) {
         super(props, templator, new ProfileGroupTextTemplate());
     }
-
-    public render(): string {
-        return this.templator.compile(this.template.getContent(), this.getProps().root);
-    }
 }

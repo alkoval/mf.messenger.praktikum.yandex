@@ -14,9 +14,6 @@ export class ChangePasswordPageComponent extends BaseComponent {
         this.fields = [];
         this.router = Router.getInstance();
     }
-    render() {
-        return this.templator.compile(this.template.getContent(), this.getProps().root);
-    }
     prerenderChildrens() {
         this.fields = [
             new FormField('password', 'oldPassword', 'Старый пароль', 'Некорректное значение', 'password', ''),
