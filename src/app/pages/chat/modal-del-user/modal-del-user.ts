@@ -2,12 +2,15 @@ import { BaseComponent } from '../../../core/base-component/base-component.js';
 import { Templator } from '../../../core/core.js';
 import { FormFieldComponent } from '../../../shared/components/form-field/form-field.js';
 import { PropsComponent } from '../../../shared/shared.interfaces.js';
+import { ChatService } from '../../services/chat.service.js';
 import { ModalDelUserTemplate } from './modal-del-user.template.js';
 
 export class ModalDelUserComponent extends BaseComponent {
+    private chatService: ChatService;
 
     constructor(props: PropsComponent, templator: Templator) {
         super(props, templator, new ModalDelUserTemplate());
+        this.chatService = ChatService.getInstance();
     }
 
     public prerenderChildrens(): void {

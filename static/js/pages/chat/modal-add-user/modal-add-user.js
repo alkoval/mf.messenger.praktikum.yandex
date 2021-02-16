@@ -1,5 +1,6 @@
 import { BaseComponent } from '../../../core/base-component/base-component.js';
 import { FormFieldComponent } from '../../../shared/components/form-field/form-field.js';
+import { ChatService } from '../../services/chat.service.js';
 import { ProfileService } from '../../services/profile.service.js';
 import { ChatUserListComponent } from '../chat-user-list/chat-user-list.js';
 import { ModalAddUserTemplate } from './modal-add-user.template.js';
@@ -7,6 +8,7 @@ export class ModalAddUserComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new ModalAddUserTemplate());
         this.profileService = ProfileService.getInstance();
+        this.chatService = ChatService.getInstance();
         this.onInit();
     }
     onInit() {
@@ -33,10 +35,6 @@ export class ModalAddUserComponent extends BaseComponent {
         if (closeMdAddUser) {
             closeMdAddUser.addEventListener('click', () => { this.toggle(); });
         }
-        const btn = this.getElement().querySelector('.modal__button');
-        if (btn) {
-            btn.addEventListener('click', () => { this.add(); });
-        }
     }
     toggle() {
         if (this.getElement().classList.contains('blackout_state_show')) {
@@ -47,7 +45,8 @@ export class ModalAddUserComponent extends BaseComponent {
         }
     }
     addUser(id) {
-        console.log(id);
+        this.toggle();
+        this.chatService.addUserToDialog(id);
     }
     searchUser(input) {
         if (input.value.length > 0) {

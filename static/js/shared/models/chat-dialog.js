@@ -7,6 +7,7 @@ export class ChatDialog {
         this.time = time;
         this.unread = unread;
         this.shortTime = time.getHours() + ':' + time.getMinutes();
+        this.profiles = [];
     }
 }
 //# sourceMappingURL=chat-dialog.js.map

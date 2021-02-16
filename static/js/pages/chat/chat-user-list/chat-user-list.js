@@ -7,10 +7,10 @@ export class ChatUserListComponent extends BaseComponent {
     subscribeOnChildrens() {
         const items = this.getElement().querySelectorAll('.list__text');
         for (let item of items) {
-            item.addEventListener('click', (e) => { this.addUser(e.target); });
+            item.addEventListener('click', (e) => { this.selected(e.target); });
         }
     }
-    addUser(user) {
+    selected(user) {
         const id = user.getAttribute('data-id');
         if (id) {
             this.getEventEmitter().emit('user-list-selected', id);

@@ -1,3 +1,5 @@
+import { Profile } from "./profile";
+
 export class ChatDialog {
     public id: number;
     public avatar: string;
@@ -6,6 +8,7 @@ export class ChatDialog {
     public time: Date;
     public shortTime: string;
     public unread: number;
+    public profiles: Profile[];
 
     constructor(
         id: number,
@@ -22,5 +25,6 @@ export class ChatDialog {
         this.time = time;
         this.unread = unread;
         this.shortTime = time.getHours() + ':' + time.getMinutes();
+        this.profiles = [];
     }
 }
