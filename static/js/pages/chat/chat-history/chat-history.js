@@ -1,31 +1,36 @@
 import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { MockupData } from '../../../core/mockup/mockup-data.js';
-import { HistoryImgMessageComponent } from '../history-img-message/history-img-message.js';
-import { HistoryTextMessageComponent } from '../history-text-message/history-text-message.js';
+import { ChatService, CHAT_EVENTS } from '../../services/chat.service.js';
 import { ChatHistoryTemplate } from './chat-history.template.js';
 export class ChatHistoryComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new ChatHistoryTemplate());
+        this.chatService = ChatService.getInstance();
+        this.onInit();
     }
-    prerenderChildrens() {
-        this.childrens = [];
-        const length = Math.floor(Math.random() * Math.floor(MockupData.getInstance().historyMessages.length - 1));
-        const data = MockupData.getInstance().historyMessages.slice(0, length);
-        for (let item of data) {
-            if (item.type === 'text') {
-                this.childrens.push(new HistoryTextMessageComponent({ "root": item }, this.templator));
-            }
-            if (item.type === 'img') {
-                this.childrens.push(new HistoryImgMessageComponent({ "root": item }, this.templator));
-            }
-        }
-        this.renderChildrensToSelector('.history__board');
+    onInit() {
+        this.chatService.subscribe().on(CHAT_EVENTS.DIALOG_SELECTED, this.selected.bind(this));
     }
     subscribe() {
         const md = this.getElement().querySelectorAll('.history__button')[0];
-        md.addEventListener('click', () => { this.toggleModalDialog(); });
+        if (md) {
+            md.addEventListener('click', () => { this.toggleModalDialog(); });
+        }
         const md2 = this.getElement().querySelectorAll('.history__button')[1];
-        md2.addEventListener('click', () => { this.toggleModalClip(); });
+        if (md2) {
+            md2.addEventListener('click', () => { this.toggleModalClip(); });
+        }
+        const mdAddUser = this.getElement().querySelectorAll('.modal_position-right-top .list__item')[0];
+        if (mdAddUser) {
+            mdAddUser.addEventListener('click', () => { this.showMdAddUser(); });
+        }
+        const mdDelUser = this.getElement().querySelectorAll('.modal_position-right-top .list__item')[1];
+        if (mdDelUser) {
+            mdDelUser.addEventListener('click', () => { this.showMdDelUser(); });
+        }
+        const delSelected = this.getElement().querySelectorAll('.modal_position-right-top .list__item')[2];
+        if (delSelected) {
+            delSelected.addEventListener('click', () => { this.deleteSelected(); });
+        }
     }
     toggleModalDialog() {
         const md = this.getElement().getElementsByClassName('modal modal_position-right-top')[0];
@@ -48,7 +53,23 @@ export class ChatHistoryComponent extends BaseComponent {
             md.classList.add("modal_state_show");
         }
     }
+    selected(dialog) {
+        this.setProps({ 'root': dialog });
+    }
+    showMdAddUser() {
+        this.getProps().mdAddUser.toggle();
+    }
+    showMdDelUser() {
+        this.getProps().mdDelUser.toggle();
+    }
     drawHistory() {
+    }
+    deleteSelected() {
+        this.toggleModalDialog();
+        const dialog = this.chatService.getSelectedDialog();
+        if (dialog !== null) {
+            this.chatService.deleteDialog(dialog.id);
+        }
     }
 }
 //# sourceMappingURL=chat-history.js.map

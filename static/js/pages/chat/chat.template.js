@@ -22,13 +22,8 @@ export class ChatPageTemplate {
                             required>
                     </div>
                 </div>
-                <div class="chat__dialogs"></div>
             </div>
-            <div class="chat__content">
-                <div class="intro">
-                    <span>Выберите чат чтобы отправить сообщение</span>
-                </div>
-            </div>           
+            <div class="chat__content"></div>           
         `;
     }
 }

@@ -6,13 +6,15 @@ import { APP_DEFAULT_IMAGE, APP_HOST } from "../../shared/const/constants.js";
 import { ChatDialog } from "../../shared/shared.models.js";
 
 export enum CHAT_EVENTS {
-    DIALOGS_RELOAD = 'dialogs-reload'
+    DIALOGS_RELOAD = 'dialogs-reload',
+    DIALOG_SELECTED = 'dialog-selected'
 }
 
 export class ChatService {
     private static instance: ChatService;
     private eventBus: EventBus;
     private dialogs: ChatDialog[];
+    private selectedDialog: ChatDialog | null;
     private notifyService: NotifyService;
     private chatAPI: ChatAPI;
 
@@ -21,6 +23,7 @@ export class ChatService {
         this.dialogs = [];
         this.notifyService = NotifyService.getInstance();
         this.chatAPI = new ChatAPI();
+        this.selectedDialog = null;
     }
 
     public static getInstance(): ChatService {
@@ -38,6 +41,10 @@ export class ChatService {
     public setDialogs(dialogs: ChatDialog[]): void {
         this.dialogs = dialogs;
         this.eventBus.emit(CHAT_EVENTS.DIALOGS_RELOAD, this.dialogs);
+    }
+
+    public getDialog(): void {
+        //this.chatAPI.request
     }
 
     public loadDialogs(): Promise<unknown> {
@@ -61,15 +68,18 @@ export class ChatService {
         )
     }
 
-    public createDialog(title: string): Promise<unknown> {
-        return this.chatAPI.create({ title: title }).then(
+    public createDialog(title: string): void {
+        this.chatAPI.create({ title: title }).then(
             response => {
                 const res = JSON.parse(response as string);
                 if (res.id) {
-                    return this.loadDialogs().then(
+                    this.loadDialogs().then(
                         flag => {
                             if (flag) {
-                                return res.id;
+                                const dialog = this.dialogs.find(d => d.id === res.id);
+                                if (dialog) {
+                                    this.setSelectedDialog(dialog);
+                                }
                             }
                         }
                     );
@@ -78,5 +88,30 @@ export class ChatService {
                 }
             }
         )
+    }
+
+    public deleteDialog(id: number): void {
+        this.chatAPI.delete({ chatId: id }).then(
+            () => {
+                this.setSelectedDialog(null);
+                this.loadDialogs();
+            }
+        )
+    }
+
+    public getSelectedDialog(): ChatDialog | null {
+        return this.selectedDialog;
+    }
+
+    public selectDialogById(id: number): void {
+        const dialog = this.dialogs.find(d => d.id === id);
+        if (dialog) {
+            this.setSelectedDialog(dialog);
+        }
+    }
+
+    private setSelectedDialog(dialog: ChatDialog | null): void {
+        this.selectedDialog = dialog;
+        this.eventBus.emit(CHAT_EVENTS.DIALOG_SELECTED, this.selectedDialog);
     }
 } 

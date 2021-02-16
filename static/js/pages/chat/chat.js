@@ -1,56 +1,54 @@
 import { BaseComponent } from '../../core/base-component/base-component.js';
 import { ChatPageTemplate } from './chat.template.js';
-import { FormField } from '../../shared/shared.models.js';
-import { ChatDialogComponent } from './chat-dialog/chat-dialog.js';
 import { ChatHistoryComponent } from './chat-history/chat-history.js';
 import { Router } from '../../core/router/router.js';
-import { ChatService, CHAT_EVENTS } from '../services/chat.service.js';
+import { ChatService } from '../services/chat.service.js';
 import { ProfileService, PROFILE_EVENTS } from '../services/profile.service.js';
 import { ModalNewDialogComponent } from './modal-new-dialog/modal-new-dialog.js';
+import { ModalAddUserComponent } from './modal-add-user/modal-add-user.js';
+import { ModalDelUserComponent } from './modal-del-user/modal-del-user.js';
+import { ChatDialogListComponent } from './chat-dialog-list/chat-dialog-list.js';
+import { FormField } from '../../shared/shared.models.js';
 export class ChatPageComponent extends BaseComponent {
     constructor(props, templator) {
         super(props, templator, new ChatPageTemplate());
-        this.chatHistory = new ChatHistoryComponent({}, this.templator);
         this.profileService = ProfileService.getInstance();
         this.chatService = ChatService.getInstance();
         this.router = Router.getInstance();
         this.onInit();
     }
     onInit() {
+        this.setProps({
+            'mdAddUser': new ModalAddUserComponent({ 'root': '', 'field': new FormField('text', 'userName', 'Имя пользователя', '', '') }, this.templator),
+            'mdDelUser': new ModalDelUserComponent({ 'root': '' }, this.templator),
+            'mdNewDialog': new ModalNewDialogComponent({ 'root': '', 'field': new FormField('text', 'dialogName', 'Имя диалога', 'Некорректное значение', 'word') }, this.templator),
+            'chatDialogsList': new ChatDialogListComponent({ 'root': '', 'dialogs': [] }, this.templator),
+            'chatHistory': new ChatHistoryComponent({}, this.templator)
+        });
         this.profileService.subscribe().on(PROFILE_EVENTS.PROFILE_UPDATE, this.updateProfile.bind(this));
-        this.chatService.subscribe().on(CHAT_EVENTS.DIALOGS_RELOAD, this.reloadDialogs.bind(this));
         this.updateProfile(this.profileService.getProfile());
     }
     render() {
         return this.templator.compile(this.template.getContent(), this.getProps().root);
     }
     prerenderChildrens() {
-        const mdNewDialog = new ModalNewDialogComponent({ 'root': '', 'field': new FormField('text', 'dialogName', 'Имя диалога', 'Некорректное значение', 'word') }, this.templator);
-        this.renderToRoot([mdNewDialog]);
-        this.childrens.push(mdNewDialog);
-        const dialogs = [];
-        if (this.getProps().dialogs) {
-            for (let item of this.getProps().dialogs) {
-                dialogs.push(new ChatDialogComponent({ 'root': item }, this.templator));
-            }
+        if (this.getProps().mdAddUser) {
+            const modals = [this.getProps().mdAddUser, this.getProps().mdDelUser, this.getProps().mdNewDialog];
+            this.renderToRoot(modals);
+            this.renderToSelector([this.getProps().chatDialogsList], '.chat__sidebar');
+            this.getProps().chatHistory.setProps({ 'root': null, 'mdAddUser': this.getProps().mdAddUser, 'mdDelUser': this.getProps().mdDelUser });
+            this.renderToSelector([this.getProps().chatHistory], '.chat__content');
+            this.afterRenderChildrens();
         }
-        this.renderToSelector(dialogs, '.chat__dialogs');
-        this.afterRenderChildrens();
     }
     subscribe() {
         const mdAddUser = this.getElement().querySelectorAll('.chat__toolbar .chat__link')[0];
         if (mdAddUser) {
-            mdAddUser.addEventListener('click', () => { this.toggle(); });
+            mdAddUser.addEventListener('click', () => { this.mdAddUserShow(); });
         }
         const profileLink = this.getElement().querySelectorAll('.chat__toolbar .chat__link')[1];
         if (profileLink) {
             profileLink.addEventListener('click', () => { this.router.go('/profile'); });
-        }
-    }
-    subscribeOnChildrens() {
-        const nodes = this.getElement().querySelectorAll('.chat__dialog');
-        for (let item of nodes) {
-            item.addEventListener('click', () => { this.getHistory(item); });
         }
     }
     updateProfile(profile) {
@@ -59,33 +57,8 @@ export class ChatPageComponent extends BaseComponent {
             this.chatService.loadDialogs();
         }
     }
-    reloadDialogs(dialogs) {
-        this.setProps({ 'dialogs': dialogs });
-    }
-    getHistory(node) {
-        let idDialog = node.dataset.idDialog !== undefined ? parseInt(node.dataset.idDialog) : 0;
-        if (idDialog !== 0) {
-            const selectedDialog = this.getProps().dialogs.find(e => e.id === idDialog);
-            if (selectedDialog !== undefined) {
-                const chatContent = this.getElement().querySelector('.chat__content');
-                if (chatContent !== null) {
-                    chatContent.innerHTML = '';
-                    this.chatHistory.setProps(selectedDialog);
-                    chatContent.appendChild(this.chatHistory.getContent());
-                }
-            }
-        }
-    }
-    toggle() {
-        const blackout = this.getElement().querySelector('.blackout');
-        if (blackout) {
-            if (blackout.classList.contains('blackout_state_show')) {
-                blackout.classList.remove('blackout_state_show');
-            }
-            else {
-                blackout.classList.add('blackout_state_show');
-            }
-        }
+    mdAddUserShow() {
+        this.getProps().mdAddUser.toggle();
     }
 }
 //# sourceMappingURL=chat.js.map

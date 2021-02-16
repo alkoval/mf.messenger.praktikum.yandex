@@ -6,6 +6,7 @@ import { ChatDialog } from "../../shared/shared.models.js";
 export var CHAT_EVENTS;
 (function (CHAT_EVENTS) {
     CHAT_EVENTS["DIALOGS_RELOAD"] = "dialogs-reload";
+    CHAT_EVENTS["DIALOG_SELECTED"] = "dialog-selected";
 })(CHAT_EVENTS || (CHAT_EVENTS = {}));
 export class ChatService {
     constructor() {
@@ -13,6 +14,7 @@ export class ChatService {
         this.dialogs = [];
         this.notifyService = NotifyService.getInstance();
         this.chatAPI = new ChatAPI();
+        this.selectedDialog = null;
     }
     static getInstance() {
         if (!this.instance) {
@@ -27,6 +29,8 @@ export class ChatService {
         this.dialogs = dialogs;
         this.eventBus.emit(CHAT_EVENTS.DIALOGS_RELOAD, this.dialogs);
     }
+    getDialog() {
+    }
     loadDialogs() {
         return this.chatAPI.request().then(response => {
             const dialogs = [];
@@ -39,12 +43,15 @@ export class ChatService {
         });
     }
     createDialog(title) {
-        return this.chatAPI.create({ title: title }).then(response => {
+        this.chatAPI.create({ title: title }).then(response => {
             const res = JSON.parse(response);
             if (res.id) {
-                return this.loadDialogs().then(flag => {
+                this.loadDialogs().then(flag => {
                     if (flag) {
-                        return res.id;
+                        const dialog = this.dialogs.find(d => d.id === res.id);
+                        if (dialog) {
+                            this.setSelectedDialog(dialog);
+                        }
                     }
                 });
             }
@@ -52,6 +59,25 @@ export class ChatService {
                 this.notifyService.notify(response);
             }
         });
+    }
+    deleteDialog(id) {
+        this.chatAPI.delete({ chatId: id }).then(() => {
+            this.setSelectedDialog(null);
+            this.loadDialogs();
+        });
+    }
+    getSelectedDialog() {
+        return this.selectedDialog;
+    }
+    selectDialogById(id) {
+        const dialog = this.dialogs.find(d => d.id === id);
+        if (dialog) {
+            this.setSelectedDialog(dialog);
+        }
+    }
+    setSelectedDialog(dialog) {
+        this.selectedDialog = dialog;
+        this.eventBus.emit(CHAT_EVENTS.DIALOG_SELECTED, this.selectedDialog);
     }
 }
 //# sourceMappingURL=chat.service.js.map

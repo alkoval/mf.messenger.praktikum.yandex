@@ -46,11 +46,11 @@ export default class HttpService {
     };
 
     public patch(url: string, options: HttpRequestOptions): Promise<unknown> {
-        return this.request(url, { ...options, method: METHODS.GET });
+        return this.request(url, { ...options, method: METHODS.PATCH });
     };
 
     public delete(url: string, options: HttpRequestOptions): Promise<unknown> {
-        return this.request(url, { ...options, method: METHODS.GET });
+        return this.request(url, { ...options, method: METHODS.DELETE });
     };
 
     private prepareQueryParams(params: any = {}): string {

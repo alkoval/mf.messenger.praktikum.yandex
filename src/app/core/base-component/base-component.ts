@@ -169,4 +169,8 @@ export abstract class BaseComponent implements Component {
     public hide(): void {
         this.elem.remove();
     }
+
+    public toggle(): void {
+
+    }
 }

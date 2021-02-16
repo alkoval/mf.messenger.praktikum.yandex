@@ -11,12 +11,13 @@ export class ChatHistoryTemplate {
     }
     getContent() {
         return `
+            {{#if title}}
                 <div class="history__header">
                     <div class="history__avatar-column">
-                        <img class="history__avatar" src="assets/images/avatar.png">
+                        <img class="history__avatar" src="{{avatar}}">
                     </div>
                     <div class="history__text-column">
-                        <span class="history__dialog-name">{{nickname}}</span>
+                        <span class="history__dialog-name">{{title}}</span>
                     </div>
                     <div class="history__button-column">
                         <button class="history__button history__button_type_round">
@@ -35,6 +36,10 @@ export class ChatHistoryTemplate {
                             <div class="list__item">
                                 <div class="list__icon"><i class="far fa-minus-square"></i></div>
                                 <div class="list__text">Удалить пользователя</div>
+                            </div>
+                            <div class="list__item">
+                                <div class="list__icon"><i class="fas fa-trash-alt"></i></div>
+                                <div class="list__text">Удалить диалог</div>
                             </div>
                         </div>
                     </div>
@@ -73,6 +78,11 @@ export class ChatHistoryTemplate {
                         </button>
                     </div>
                 </div>
+            {{else}}
+                <div class="intro">
+                    <span>Выберите чат чтобы отправить сообщение</span>
+                </div>
+            {{/if}}
         `;
     }
 }

@@ -1,39 +1,48 @@
 import { BaseComponent } from '../../../core/base-component/base-component.js';
 import { Templator } from '../../../core/core.js';
-import { MockupData } from '../../../core/mockup/mockup-data.js';
-import { PropsComponent } from '../../../shared/interfaces/props-component.js';
-import { HistoryImgMessageComponent } from '../history-img-message/history-img-message.js';
-import { HistoryTextMessageComponent } from '../history-text-message/history-text-message.js';
+import { OnInit, PropsComponent } from '../../../shared/shared.interfaces.js';
+import { ChatDialog } from '../../../shared/shared.models.js';
+import { ChatService, CHAT_EVENTS } from '../../services/chat.service.js';
 import { ChatHistoryTemplate } from './chat-history.template.js';
 
-export class ChatHistoryComponent extends BaseComponent {
+export class ChatHistoryComponent extends BaseComponent implements OnInit {
+    private chatService: ChatService;
 
     constructor(props: PropsComponent, templator: Templator) {
         super(props, templator, new ChatHistoryTemplate());
+        this.chatService = ChatService.getInstance();
+        this.onInit();
     }
-    
-    public prerenderChildrens(): void {
-        this.childrens = [];
-        const length = Math.floor(Math.random() * Math.floor(MockupData.getInstance().historyMessages.length - 1));
-        const data = MockupData.getInstance().historyMessages.slice(0, length);
-        for (let item of data) {
-            if (item.type === 'text') {
-                this.childrens.push(new HistoryTextMessageComponent({ "root": item }, this.templator));
-            }
-            if (item.type === 'img') {
-                this.childrens.push(new HistoryImgMessageComponent({ "root": item }, this.templator));
-            }
-        }
-        // Заменить текущее использование модальных окон на компонентный подход
-        this.renderChildrensToSelector('.history__board');
+
+    public onInit(): void {
+        this.chatService.subscribe().on(CHAT_EVENTS.DIALOG_SELECTED, this.selected.bind(this));
     }
 
     public subscribe(): void {
         const md = this.getElement().querySelectorAll('.history__button')[0];
-        md.addEventListener('click', () => { this.toggleModalDialog() });
+        if (md) {
+            md.addEventListener('click', () => { this.toggleModalDialog() });
+        }
 
         const md2 = this.getElement().querySelectorAll('.history__button')[1];
-        md2.addEventListener('click', () => { this.toggleModalClip() });
+        if (md2) {
+            md2.addEventListener('click', () => { this.toggleModalClip() });
+        }
+
+        const mdAddUser = this.getElement().querySelectorAll('.modal_position-right-top .list__item')[0];
+        if (mdAddUser) {
+            mdAddUser.addEventListener('click', () => { this.showMdAddUser() });
+        }
+
+        const mdDelUser = this.getElement().querySelectorAll('.modal_position-right-top .list__item')[1];
+        if (mdDelUser) {
+            mdDelUser.addEventListener('click', () => { this.showMdDelUser() });
+        }
+
+        const delSelected = this.getElement().querySelectorAll('.modal_position-right-top .list__item')[2];
+        if (delSelected) {
+            delSelected.addEventListener('click', () => { this.deleteSelected() });
+        }
     }
 
     public toggleModalDialog(): void {
@@ -57,8 +66,28 @@ export class ChatHistoryComponent extends BaseComponent {
         }
     }
 
+    public selected(dialog: ChatDialog | null): void {
+        this.setProps({ 'root': dialog });
+    }
+
+    public showMdAddUser(): void {
+        this.getProps().mdAddUser.toggle();
+    }
+
+    public showMdDelUser(): void {
+        this.getProps().mdDelUser.toggle();
+    }
+
     // Переписать метод на использование сервиса истории диалога
     public drawHistory(): void {
 
+    }
+
+    public deleteSelected(): void {
+        this.toggleModalDialog();
+        const dialog = this.chatService.getSelectedDialog();
+        if (dialog !== null) {
+            this.chatService.deleteDialog(dialog.id);
+        }
     }
 }

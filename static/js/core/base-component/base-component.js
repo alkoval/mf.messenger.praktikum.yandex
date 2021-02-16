@@ -133,5 +133,7 @@ export class BaseComponent {
     hide() {
         this.elem.remove();
     }
+    toggle() {
+    }
 }
 //# sourceMappingURL=base-component.js.map

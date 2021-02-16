@@ -1,5 +1,6 @@
 import { HttpRequestOptions } from "../../shared/shared.interfaces.js";
 import { HttpService } from "../core.js";
+import { ChatDeleteRequest } from "./interfaces/chat-delete-request.js";
 import { CreateChatRequest } from "./interfaces/create-chat-request.js";
 
 export class ChatAPI {
@@ -18,5 +19,12 @@ export class ChatAPI {
             body: JSON.stringify(body)
         }
         return this.httpService.post('', options);
+    }
+
+    public delete(body: ChatDeleteRequest): Promise<unknown> {
+        let options: HttpRequestOptions = {
+            body: JSON.stringify(body)
+        }
+        return this.httpService.delete('', options);
     }
 }

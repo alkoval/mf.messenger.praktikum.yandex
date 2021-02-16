@@ -37,11 +37,11 @@ export default class HttpService {
     }
     ;
     patch(url, options) {
-        return this.request(url, Object.assign(Object.assign({}, options), { method: METHODS.GET }));
+        return this.request(url, Object.assign(Object.assign({}, options), { method: METHODS.PATCH }));
     }
     ;
     delete(url, options) {
-        return this.request(url, Object.assign(Object.assign({}, options), { method: METHODS.GET }));
+        return this.request(url, Object.assign(Object.assign({}, options), { method: METHODS.DELETE }));
     }
     ;
     prepareQueryParams(params = {}) {
