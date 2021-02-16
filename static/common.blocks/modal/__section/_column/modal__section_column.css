@@ -1,0 +1,6 @@
+.modal__section_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

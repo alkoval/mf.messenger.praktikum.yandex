@@ -57,9 +57,11 @@ export class ChatHistoryComponent extends BaseComponent {
         this.setProps({ 'root': dialog });
     }
     showMdAddUser() {
+        this.toggleModalDialog();
         this.getProps().mdAddUser.toggle();
     }
     showMdDelUser() {
+        this.toggleModalDialog();
         this.getProps().mdDelUser.toggle();
     }
     drawHistory() {

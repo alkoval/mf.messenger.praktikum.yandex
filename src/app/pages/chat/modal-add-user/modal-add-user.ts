@@ -1,18 +1,39 @@
 import { BaseComponent } from '../../../core/base-component/base-component.js';
 import { Templator } from '../../../core/core.js';
 import { FormFieldComponent } from '../../../shared/components/form-field/form-field.js';
-import { PropsComponent } from '../../../shared/shared.interfaces.js';
+import { OnInit, PropsComponent } from '../../../shared/shared.interfaces.js';
+import { ProfileService } from '../../services/profile.service.js';
+import { ChatUserListComponent } from '../chat-user-list/chat-user-list.js';
 import { ModalAddUserTemplate } from './modal-add-user.template.js';
 
-export class ModalAddUserComponent extends BaseComponent {
+export class ModalAddUserComponent extends BaseComponent implements OnInit {
+    private profileService: ProfileService;
 
     constructor(props: PropsComponent, templator: Templator) {
         super(props, templator, new ModalAddUserTemplate());
+        this.profileService = ProfileService.getInstance();
+        this.onInit();
+    }
+
+    public onInit(): void {
+        const userListComponent = new ChatUserListComponent({ 'root': [], 'md': this }, this.templator);
+        userListComponent.getEventEmitter().on('user-list-selected', this.addUser.bind(this))
+        this.setProps({ 'userList': userListComponent });
     }
 
     public prerenderChildrens(): void {
-        if (this.getProps().field) {
-            this.renderToSelector([new FormFieldComponent({ 'root': this.getProps().field }, this.templator)], '.modal__section .modal__content');
+        if (this.childrens.length === 0 && this.getProps().field) {
+            const fieldComponent = new FormFieldComponent({ 'root': this.getProps().field }, this.templator);
+            const field = fieldComponent.getElement().querySelector('.form-field__input');
+            if (field) {
+                field.addEventListener('keyup', (e) => { this.searchUser(e.target as HTMLInputElement) });
+            }
+
+            this.renderToSelector([fieldComponent], '.modal__section .modal__content-field');
+        }
+
+        if (this.getProps().userList) {
+            this.renderToSelector([this.getProps().userList], '.modal__section .modal__content_with_scroll');
         }
         this.afterRenderChildrens();
     }
@@ -36,11 +57,20 @@ export class ModalAddUserComponent extends BaseComponent {
         }
     }
 
-    public add(): void {
-
+    public addUser(id: number): void {
+        this.toggle();
+        console.log(id)
     }
 
-    public drawUsers(): void {
-
+    public searchUser(input: HTMLInputElement): void {
+        if (input.value.length > 0) {
+            this.profileService.search(input.value).then(
+                response => {
+                    this.getProps().userList.setProps({ 'root': response });
+                }
+            )
+        } else {
+            this.getProps().userList.setProps({ 'root': [] });
+        }
     }
 }

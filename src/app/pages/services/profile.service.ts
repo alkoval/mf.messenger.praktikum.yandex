@@ -1,11 +1,13 @@
 import { UserRequest } from "../../core/api/interfaces/user-request.js";
 import { UserResponse } from "../../core/api/interfaces/user-response.js";
+import { FindUserRequest } from "../../core/api/interfaces/find-user-request.js";
 import { ChangePasswordRequest } from "../../core/api/interfaces/change-password-request.js";
 import { UserPasswordAPI } from "../../core/api/user-password-api.js";
 import { UserProfileAPI } from "../../core/api/user-profile-api.js";
 import { NotifyService } from "../../core/services/notify.service.js";
 import { Profile } from "../../shared/shared.models.js";
 import { UserAPI } from "../../core/api/user-api.js";
+import { UserSearchAPI } from "../../core/api/user-search-api.js";
 import { UserProfileAvatarAPI } from "../../core/api/user-profile-avatar-api.js";
 import { EventBus } from "../../core/event-bus/event-bus.js";
 import { APP_DEFAULT_IMAGE, APP_HOST } from "../../shared/const/constants.js";
@@ -26,6 +28,7 @@ export class ProfileService implements OnInit {
     private userProfileAvatarAPI: UserProfileAvatarAPI;
     private userPasswordAPI: UserPasswordAPI;
     private userAPI: UserAPI;
+    private userSearchAPI: UserSearchAPI;
 
     constructor() {
         this.eventBus = new EventBus();
@@ -36,6 +39,7 @@ export class ProfileService implements OnInit {
         this.userProfileAvatarAPI = new UserProfileAvatarAPI();
         this.userPasswordAPI = new UserPasswordAPI();
         this.userAPI = new UserAPI();
+        this.userSearchAPI = new UserSearchAPI();
         this.onInit();
     }
 
@@ -144,5 +148,23 @@ export class ProfileService implements OnInit {
         profile.avatar = userResponse.avatar ? `${APP_HOST}/${userResponse.avatar}` : APP_DEFAULT_IMAGE;
 
         return profile;
+    }
+
+    public search(login: string): Promise<unknown> {
+        const find: FindUserRequest = {
+            login: login
+        }
+        return this.userSearchAPI.request(find).then(
+            response => {
+                if (response) {
+                    const profiles = [];
+                    const res: UserResponse[] = JSON.parse(response as string);
+                    for (let user of res) {
+                        profiles.push(this.userResToProfile(user));
+                    }
+                    return profiles;
+                }
+            }
+        )
     }
 }

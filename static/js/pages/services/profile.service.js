@@ -3,6 +3,7 @@ import { UserProfileAPI } from "../../core/api/user-profile-api.js";
 import { NotifyService } from "../../core/services/notify.service.js";
 import { Profile } from "../../shared/shared.models.js";
 import { UserAPI } from "../../core/api/user-api.js";
+import { UserSearchAPI } from "../../core/api/user-search-api.js";
 import { UserProfileAvatarAPI } from "../../core/api/user-profile-avatar-api.js";
 import { EventBus } from "../../core/event-bus/event-bus.js";
 import { APP_DEFAULT_IMAGE, APP_HOST } from "../../shared/const/constants.js";
@@ -21,6 +22,7 @@ export class ProfileService {
         this.userProfileAvatarAPI = new UserProfileAvatarAPI();
         this.userPasswordAPI = new UserPasswordAPI();
         this.userAPI = new UserAPI();
+        this.userSearchAPI = new UserSearchAPI();
         this.onInit();
     }
     static getInstance() {
@@ -109,6 +111,21 @@ export class ProfileService {
         profile.phone = userResponse.phone;
         profile.avatar = userResponse.avatar ? `${APP_HOST}/${userResponse.avatar}` : APP_DEFAULT_IMAGE;
         return profile;
+    }
+    search(login) {
+        const find = {
+            login: login
+        };
+        return this.userSearchAPI.request(find).then(response => {
+            if (response) {
+                const profiles = [];
+                const res = JSON.parse(response);
+                for (let user of res) {
+                    profiles.push(this.userResToProfile(user));
+                }
+                return profiles;
+            }
+        });
     }
 }
 //# sourceMappingURL=profile.service.js.map

@@ -27,7 +27,7 @@ export class ChatPageComponent extends BaseComponent implements OnInit {
 
     public onInit(): void {
         this.setProps({
-            'mdAddUser': new ModalAddUserComponent({ 'root': '', 'field': new FormField('text', 'userName', 'Имя пользователя', '', '') }, this.templator),
+            'mdAddUser': new ModalAddUserComponent({ 'root': '', 'field': new FormField('text', 'userName', 'Логин пользователя', '', '') }, this.templator),
             'mdDelUser': new ModalDelUserComponent({ 'root': '' }, this.templator),
             'mdNewDialog': new ModalNewDialogComponent({ 'root': '', 'field': new FormField('text', 'dialogName', 'Имя диалога', 'Некорректное значение', 'word') }, this.templator),
             'chatDialogsList': new ChatDialogListComponent({ 'root': '', 'dialogs': [] }, this.templator),
@@ -57,9 +57,9 @@ export class ChatPageComponent extends BaseComponent implements OnInit {
     }
 
     public subscribe(): void {
-        const mdAddUser = this.getElement().querySelectorAll('.chat__toolbar .chat__link')[0];
-        if (mdAddUser) {
-            mdAddUser.addEventListener('click', () => { this.mdAddUserShow() });
+        const mdNewDialog = this.getElement().querySelectorAll('.chat__toolbar .chat__link')[0];
+        if (mdNewDialog) {
+            mdNewDialog.addEventListener('click', () => { this.showMdAddNewDialog() });
         }
         const profileLink = this.getElement().querySelectorAll('.chat__toolbar .chat__link')[1];
         if (profileLink) {
@@ -74,7 +74,7 @@ export class ChatPageComponent extends BaseComponent implements OnInit {
         }
     }
 
-    public mdAddUserShow(): void {
-        this.getProps().mdAddUser.toggle();
+    public showMdAddNewDialog(): void {
+        this.getProps().mdNewDialog.toggle();
     }
 }

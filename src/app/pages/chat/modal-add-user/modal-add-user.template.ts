@@ -25,11 +25,9 @@ export class ModalAddUserTemplate implements ComponentTemplate {
                         <span class="modal__title">Добавить пользователя</span>
                         <span class="modal__close"><i class="fas fa-times"></i></close>
                     </div>
-                    <div class="modal__section">
-                        <div class="modal__content"></div>                           
-                    </div>
-                    <div class="modal__section">
-                        <button class="modal__button modal__button_bg_dark-green" type="button">Добавить</button>
+                    <div class="modal__section modal__section_column">
+                        <div class="modal__content modal__content-field"></div>  
+                        <div class="modal__content modal__content_with_scroll w-100"></div>                         
                     </div>
                 </form>
             </div>

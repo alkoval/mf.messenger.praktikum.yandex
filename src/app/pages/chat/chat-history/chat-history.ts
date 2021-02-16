@@ -71,10 +71,12 @@ export class ChatHistoryComponent extends BaseComponent implements OnInit {
     }
 
     public showMdAddUser(): void {
+        this.toggleModalDialog()
         this.getProps().mdAddUser.toggle();
     }
 
     public showMdDelUser(): void {
+        this.toggleModalDialog()
         this.getProps().mdDelUser.toggle();
     }
 

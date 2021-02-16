@@ -10,7 +10,9 @@
 
 @import url(../common.blocks/modal/modal.css);
 @import url(../common.blocks/modal/__section/modal__section.css);
+@import url(../common.blocks/modal/__section/_column/modal__section_column.css);
 @import url(../common.blocks/modal/__content/modal__content.css);
+@import url(../common.blocks/modal/__content/_with_scroll/modal__content_with_scroll.css);
 @import url(../common.blocks/modal/__text/modal__text.css);
 @import url(../common.blocks/modal/__text/_display_none/modal__text_display_none.css);
 @import url(../common.blocks/modal/__text/_bg_red/modal__text_bg_red.css);
