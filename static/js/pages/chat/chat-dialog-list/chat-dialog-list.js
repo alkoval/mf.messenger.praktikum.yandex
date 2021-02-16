@@ -10,6 +10,7 @@ export class ChatDialogListComponent extends BaseComponent {
     }
     onInit() {
         this.chatService.subscribe().on(CHAT_EVENTS.DIALOGS_RELOAD, this.reloadDialogs.bind(this));
+        this.chatService.subscribe().on(CHAT_EVENTS.DIALOG_FILTERED, this.reloadDialogs.bind(this));
         this.chatService.subscribe().on(CHAT_EVENTS.DIALOG_SELECTED, this.selected.bind(this));
     }
     prerenderChildrens() {

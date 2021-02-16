@@ -10,8 +10,8 @@ export class ChatUserListComponent extends BaseComponent {
             item.addEventListener('click', (e) => { this.selected(e.target); });
         }
     }
-    selected(user) {
-        const id = user.getAttribute('data-id');
+    selected(elem) {
+        const id = elem.getAttribute('data-id');
         if (id) {
             this.getEventEmitter().emit('user-list-selected', id);
         }

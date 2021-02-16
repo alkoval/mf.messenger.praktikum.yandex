@@ -50,6 +50,10 @@ export class ChatPageComponent extends BaseComponent {
         if (profileLink) {
             profileLink.addEventListener('click', () => { this.router.go('/profile'); });
         }
+        const filter = this.getElement().querySelector('.chat__toolbar .single-field__input');
+        if (filter) {
+            filter.addEventListener('keyup', (e) => { this.filter(e.target); });
+        }
     }
     updateProfile(profile) {
         if (profile !== null) {
@@ -59,6 +63,9 @@ export class ChatPageComponent extends BaseComponent {
     }
     showMdAddNewDialog() {
         this.getProps().mdNewDialog.toggle();
+    }
+    filter(input) {
+        this.chatService.filteredDialogs(input.value);
     }
 }
 //# sourceMappingURL=chat.js.map

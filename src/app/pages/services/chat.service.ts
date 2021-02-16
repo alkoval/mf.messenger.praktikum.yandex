@@ -11,13 +11,15 @@ import { ProfileService } from "./profile.service.js";
 
 export enum CHAT_EVENTS {
     DIALOGS_RELOAD = 'dialogs-reload',
-    DIALOG_SELECTED = 'dialog-selected'
+    DIALOG_SELECTED = 'dialog-selected',
+    DIALOG_FILTERED = 'dialog-filtered',
 }
 
 export class ChatService {
     private static instance: ChatService;
     private eventBus: EventBus;
     private dialogs: ChatDialog[];
+    private dialogsFiltered: ChatDialog[];
     private selectedDialog: ChatDialog | null;
     private notifyService: NotifyService;
     private profileService: ProfileService;
@@ -27,6 +29,7 @@ export class ChatService {
     constructor() {
         this.eventBus = new EventBus();
         this.dialogs = [];
+        this.dialogsFiltered = [];
         this.notifyService = NotifyService.getInstance();
         this.profileService = ProfileService.getInstance();
         this.chatAPI = new ChatAPI();
@@ -51,8 +54,13 @@ export class ChatService {
         this.eventBus.emit(CHAT_EVENTS.DIALOGS_RELOAD, this.dialogs);
     }
 
-    public getDialog(): void {
-        //this.chatAPI.request
+    public filteredDialogs(filter: string): void {
+        if (filter.length > 0) {
+            const filtered = this.dialogs.filter(d => d.title.startsWith(filter));
+            this.eventBus.emit(CHAT_EVENTS.DIALOG_FILTERED, filtered);
+        } else {
+            this.eventBus.emit(CHAT_EVENTS.DIALOG_FILTERED, this.dialogs);
+        }
     }
 
     public loadDialogs(): Promise<unknown> {
@@ -124,12 +132,11 @@ export class ChatService {
         if (!exist) {
             const data: UsersRequest = {
                 chatId: this.selectedDialog!.id,
-                users: []
+                users: [id]
             };
             for (let profile of this.selectedDialog!.profiles) {
                 data.users.push(profile.id);
             }
-            data.users.push(id);
             this.chatUsersAPI.updadate(data).then(
                 response => {
                     let res: string = response as string;
@@ -141,11 +148,33 @@ export class ChatService {
         }
     }
 
+    public delUserFromDialog(ids: number[]): void {
+        const data: UsersRequest = {
+            chatId: this.selectedDialog!.id,
+            users: ids
+        };
+        this.chatUsersAPI.delete(data).then(
+            response => {
+                let res: string = response as string;
+                if (res.toLowerCase() === 'ok') {
+                    this.setUsersDialog(data.chatId);
+                }
+            }
+        )
+    }
+
+    public getProfilesForDelete(): Profile[] {
+        let profiles: Profile[] = [];
+        if (this.profileService.getProfile() !== null && this.selectedDialog !== null) {
+            profiles = this.selectedDialog.profiles.filter(p => p.id !== this.profileService.getProfile()!.id);
+        }
+        return profiles;
+    }
+
     private setUsersDialog(id: number): Promise<unknown> {
         return this.chatUsersAPI.request(id).then(
             response => {
                 if (response) {
-                    console.log(response)
                     let users: UserResponse[] = JSON.parse(response as string);
                     const profiles: Profile[] = [];
                     for (let user of users) {

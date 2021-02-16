@@ -12,5 +12,11 @@ export class ChatUsersAPI {
         };
         return this.httpService.put('users', options);
     }
+    delete(body) {
+        let options = {
+            body: JSON.stringify(body)
+        };
+        return this.httpService.delete('users', options);
+    }
 }
 //# sourceMappingURL=chat-users-api.js.map

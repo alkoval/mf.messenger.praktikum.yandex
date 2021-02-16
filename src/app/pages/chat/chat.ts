@@ -65,6 +65,10 @@ export class ChatPageComponent extends BaseComponent implements OnInit {
         if (profileLink) {
             profileLink.addEventListener('click', () => { this.router.go('/profile') });
         }
+        const filter = this.getElement().querySelector('.chat__toolbar .single-field__input');
+        if (filter) {
+            filter.addEventListener('keyup', (e) => { this.filter(e!.target as HTMLInputElement) });
+        }
     }
 
     public updateProfile(profile: Profile | null): void {
@@ -76,5 +80,9 @@ export class ChatPageComponent extends BaseComponent implements OnInit {
 
     public showMdAddNewDialog(): void {
         this.getProps().mdNewDialog.toggle();
+    }
+
+    public filter(input: HTMLInputElement): void {
+        this.chatService.filteredDialogs(input.value);
     }
 }

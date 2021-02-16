@@ -19,4 +19,11 @@ export class ChatUsersAPI {
         }
         return this.httpService.put('users', options);
     }
+
+    public delete(body: UsersRequest): Promise<unknown> {
+        let options: HttpRequestOptions = {
+            body: JSON.stringify(body)
+        }
+        return this.httpService.delete('users', options);
+    }
 }

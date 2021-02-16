@@ -13,12 +13,13 @@ export class ChatUserListComponent extends BaseComponent {
     public subscribeOnChildrens(): void {
         const items = this.getElement().querySelectorAll('.list__text');
         for (let item of items) {
+            //@ts-ignore
             item.addEventListener('click', (e) => { this.selected(e.target as HTMLElement) })
         }
     }
 
-    public selected(user: HTMLElement): void {
-        const id = user.getAttribute('data-id');
+    public selected(elem: HTMLElement): void {
+        const id = elem.getAttribute('data-id');
         if (id) {
             this.getEventEmitter().emit('user-list-selected', id);
         }

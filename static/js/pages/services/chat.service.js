@@ -9,11 +9,13 @@ export var CHAT_EVENTS;
 (function (CHAT_EVENTS) {
     CHAT_EVENTS["DIALOGS_RELOAD"] = "dialogs-reload";
     CHAT_EVENTS["DIALOG_SELECTED"] = "dialog-selected";
+    CHAT_EVENTS["DIALOG_FILTERED"] = "dialog-filtered";
 })(CHAT_EVENTS || (CHAT_EVENTS = {}));
 export class ChatService {
     constructor() {
         this.eventBus = new EventBus();
         this.dialogs = [];
+        this.dialogsFiltered = [];
         this.notifyService = NotifyService.getInstance();
         this.profileService = ProfileService.getInstance();
         this.chatAPI = new ChatAPI();
@@ -33,7 +35,14 @@ export class ChatService {
         this.dialogs = dialogs;
         this.eventBus.emit(CHAT_EVENTS.DIALOGS_RELOAD, this.dialogs);
     }
-    getDialog() {
+    filteredDialogs(filter) {
+        if (filter.length > 0) {
+            const filtered = this.dialogs.filter(d => d.title.startsWith(filter));
+            this.eventBus.emit(CHAT_EVENTS.DIALOG_FILTERED, filtered);
+        }
+        else {
+            this.eventBus.emit(CHAT_EVENTS.DIALOG_FILTERED, this.dialogs);
+        }
     }
     loadDialogs() {
         return this.chatAPI.request().then(response => {
@@ -85,12 +94,11 @@ export class ChatService {
         if (!exist) {
             const data = {
                 chatId: this.selectedDialog.id,
-                users: []
+                users: [id]
             };
             for (let profile of this.selectedDialog.profiles) {
                 data.users.push(profile.id);
             }
-            data.users.push(id);
             this.chatUsersAPI.updadate(data).then(response => {
                 let res = response;
                 if (res.toLowerCase() === 'ok') {
@@ -99,10 +107,28 @@ export class ChatService {
             });
         }
     }
+    delUserFromDialog(ids) {
+        const data = {
+            chatId: this.selectedDialog.id,
+            users: ids
+        };
+        this.chatUsersAPI.delete(data).then(response => {
+            let res = response;
+            if (res.toLowerCase() === 'ok') {
+                this.setUsersDialog(data.chatId);
+            }
+        });
+    }
+    getProfilesForDelete() {
+        let profiles = [];
+        if (this.profileService.getProfile() !== null && this.selectedDialog !== null) {
+            profiles = this.selectedDialog.profiles.filter(p => p.id !== this.profileService.getProfile().id);
+        }
+        return profiles;
+    }
     setUsersDialog(id) {
         return this.chatUsersAPI.request(id).then(response => {
             if (response) {
-                console.log(response);
                 let users = JSON.parse(response);
                 const profiles = [];
                 for (let user of users) {

@@ -18,10 +18,10 @@ export class ModalDelUserTemplate {
                         <span class="modal__close"><i class="fas fa-times"></i></close>
                     </div>
                     <div class="modal__section">
-                        <div class="modal__content"></div>                           
+                        <div class="modal__content modal__content_with_scroll w-100"></div>                           
                     </div>
                     <div class="modal__section">
-                        <button class="modal__button modal__button_bg_dark-green" type="button">Добавить</button>
+                        <button class="modal__button modal__button_bg_dark-green" type="button">Удалить</button>
                     </div>
                 </form>
             </div>
