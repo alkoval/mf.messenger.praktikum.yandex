@@ -1,0 +1,5 @@
+.chat__text-column {
+  width: 175px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px; }

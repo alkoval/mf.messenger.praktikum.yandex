@@ -1,0 +1,7 @@
+.history__button_type_round {
+  border-radius: 50%; }
+
+.history__button_type_round:active {
+  outline: 0;
+  background-color: #1EB980;
+  color: #33333D; }

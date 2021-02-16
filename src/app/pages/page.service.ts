@@ -21,7 +21,6 @@ export class PageService {
     }
 
     public render(page: Component): void {
-        console.log('pageservice.render')
         const root = document.querySelector(this.selector);
         if (root != null) {
             root.innerHTML = '';

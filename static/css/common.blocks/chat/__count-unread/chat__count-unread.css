@@ -1,0 +1,10 @@
+.chat__count-unread {
+  background-color: #045d56;
+  height: 20px;
+  width: 20px;
+  color: #fff;
+  font-size: 0.8rem;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  margin: auto; }

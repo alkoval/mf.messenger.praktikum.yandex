@@ -1,0 +1,15 @@
+.modal__button_bg_dark-green {
+  background-color: #045d56;
+  color: #fff;
+  font-size: 1rem;
+  background-position: center;
+  transition: background 0.8s; }
+
+.modal__button_bg_dark-green:hover {
+  cursor: pointer;
+  background: #2a7d76 radial-gradient(circle, transparent 1%, #2a7d76 1%) center/15000%; }
+
+.modal__button_bg_dark-green:active {
+  background-color: #44948e;
+  background-size: 100%;
+  transition: background 0s; }

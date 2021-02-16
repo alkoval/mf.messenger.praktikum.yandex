@@ -1,0 +1,8 @@
+.history__message_type_image {
+  position: relative;
+  color: #fff;
+  width: 320px; }
+
+.history__message_type_image > img {
+  width: 320px;
+  border-radius: 5px; }

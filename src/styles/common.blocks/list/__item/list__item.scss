@@ -1,0 +1,12 @@
+.list__item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  cursor: pointer;
+  line-height: 2rem;
+  text-align: center;
+}
+
+.list__item:hover {
+    background-color: #373740;
+}

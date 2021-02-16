@@ -1,0 +1,7 @@
+.history__time {
+  color: #adadad;
+  font-size: 0.7rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-left: 5px; }

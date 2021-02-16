@@ -1,0 +1,19 @@
+.profile__back {
+  margin: auto;
+  background-color: #045d56;
+  color: #fff;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__back:active {
+  background-color: #1eb980;
+  color: #33333d;
+}

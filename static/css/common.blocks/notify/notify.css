@@ -1,0 +1,9 @@
+.notify {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #adadad;
+  background-color: #373740;
+  padding: 25px;
+  border-radius: 5px; }
