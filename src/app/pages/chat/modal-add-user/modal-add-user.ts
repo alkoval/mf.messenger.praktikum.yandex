@@ -1,11 +1,11 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { FormFieldComponent } from '../../../shared/components/form-field/form-field.js';
-import { OnInit, PropsComponent } from '../../../shared/shared.interfaces.js';
-import { ChatService } from '../../services/chat.service.js';
-import { ProfileService } from '../../services/profile.service.js';
-import { ChatUserListComponent } from '../chat-user-list/chat-user-list.js';
-import { ModalAddUserTemplate } from './modal-add-user.template.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { Templator } from '../../../core/core'
+import { FormFieldComponent } from '../../../shared/components/form-field/form-field'
+import { OnInit, PropsComponent } from '../../../shared/shared.interfaces'
+import { ChatService } from '../../services/chat.service'
+import { ProfileService } from '../../services/profile.service'
+import { ChatUserListComponent } from '../chat-user-list/chat-user-list'
+import { ModalAddUserTemplate } from './modal-add-user.template'
 
 export class ModalAddUserComponent extends BaseComponent implements OnInit {
     private profileService: ProfileService;

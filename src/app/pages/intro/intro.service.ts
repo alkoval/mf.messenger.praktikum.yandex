@@ -1,5 +1,5 @@
-import { NavService } from "../../core/core.js";
-import { NavItem } from "../../shared/interfaces/nav-item.js";
+import { NavService } from "../../core/core"
+import { NavItem } from "../../shared/interfaces/nav-item"
 
 export class IntroService {
     private navService: NavService;

@@ -1,6 +1,6 @@
-import { NotifyComponent } from "../../shared/components/notify/notify.js";
-import { Notify } from "../../shared/interfaces/notify.js";
-import { Templator } from "../core.js";
+import { NotifyComponent } from "../../shared/components/notify/notify"
+import { Notify } from "../../shared/interfaces/notify"
+import { Templator } from "../core"
 
 export class NotifyService {
     private static instance: NotifyService;

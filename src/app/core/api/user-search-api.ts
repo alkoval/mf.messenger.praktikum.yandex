@@ -1,6 +1,6 @@
-import { HttpRequestOptions } from "../../shared/shared.interfaces.js";
-import { HttpService } from "../core.js";
-import { FindUserRequest } from "./interfaces/find-user-request.js";
+import { HttpRequestOptions } from "../../shared/shared.interfaces"
+import { HttpService } from "../core"
+import { FindUserRequest } from "./interfaces/find-user-request"
 
 export class UserSearchAPI {
     private httpService: HttpService;

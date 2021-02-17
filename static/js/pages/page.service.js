@@ -13,7 +13,6 @@ export class PageService {
         this.selector = selector;
     }
     render(page) {
-        console.log('pageservice.render');
         const root = document.querySelector(this.selector);
         if (root != null) {
             root.innerHTML = '';

@@ -1,8 +1,8 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { PropsComponent } from '../../interfaces/props-component.js';
-import { Button } from '../../models/button.js';
-import { ButtonTemplate } from './button.template.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import Templator from '../../../core/services/templator.service'
+import { PropsComponent } from '../../interfaces/props-component'
+import { Button } from '../../models/button'
+import { ButtonTemplate } from './button.template'
 
 export class ButtonComponent extends BaseComponent {
 

@@ -1,5 +1,5 @@
-import { EVENTS } from '../core/base-component/base-component.js';
-import { Component } from '../shared/interfaces/component.js';
+import { EVENTS } from '../core/base-component/base-component'
+import { Component } from '../shared/interfaces/component'
 export class PageService {
     private static instance: PageService;
     private selector: string;

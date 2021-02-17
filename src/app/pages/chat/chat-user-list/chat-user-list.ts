@@ -1,7 +1,7 @@
-import { BaseComponent } from "../../../core/base-component/base-component.js";
-import { Templator } from "../../../core/core.js";
-import { PropsComponent } from "../../../shared/shared.interfaces.js";
-import { ChatUserListTemplate } from "./chat-user-list.template.js";
+import { BaseComponent } from "../../../core/base-component/base-component"
+import { Templator } from "../../../core/core"
+import { PropsComponent } from "../../../shared/shared.interfaces"
+import { ChatUserListTemplate } from "./chat-user-list.template"
 
 
 export class ChatUserListComponent extends BaseComponent {

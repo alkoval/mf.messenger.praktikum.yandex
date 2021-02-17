@@ -1,13 +1,13 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { PropsComponent } from '../../interfaces/props-component.js';
-import { FormCardTemplate } from './form-card.template.js';
-import { FormFieldComponent } from '../form-field/form-field.js';
-import { FormCard } from '../../models/form-card.js';
-import { ButtonComponent } from '../button/button.js';
-import { Button, BUTTON_STYLE } from '../../models/button.js';
-import { TextLink } from '../../models/text-link.js';
-import { TextLinkComponent } from '../text-link/text-link.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { Templator } from '../../../core/core'
+import { PropsComponent } from '../../interfaces/props-component'
+import { FormCardTemplate } from './form-card.template'
+import { FormFieldComponent } from '../form-field/form-field'
+import { FormCard } from '../../models/form-card'
+import { ButtonComponent } from '../button/button'
+import { Button, BUTTON_STYLE } from '../../models/button'
+import { TextLink } from '../../models/text-link'
+import { TextLinkComponent } from '../text-link/text-link'
 
 export class FormCardComponent extends BaseComponent {
 

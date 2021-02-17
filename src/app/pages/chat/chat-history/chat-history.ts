@@ -1,9 +1,9 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { OnInit, PropsComponent } from '../../../shared/shared.interfaces.js';
-import { ChatDialog } from '../../../shared/shared.models.js';
-import { ChatService, CHAT_EVENTS } from '../../services/chat.service.js';
-import { ChatHistoryTemplate } from './chat-history.template.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { Templator } from '../../../core/core'
+import { OnInit, PropsComponent } from '../../../shared/shared.interfaces'
+import { ChatDialog } from '../../../shared/shared.models'
+import { ChatService, CHAT_EVENTS } from '../../services/chat.service'
+import { ChatHistoryTemplate } from './chat-history.template'
 
 export class ChatHistoryComponent extends BaseComponent implements OnInit {
     private chatService: ChatService;

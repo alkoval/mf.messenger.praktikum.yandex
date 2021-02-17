@@ -1,7 +1,7 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { PropsComponent } from '../../interfaces/props-component.js';
-import { ProfileGroupTextTemplate } from './profile-group-text.template.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { Templator } from '../../../core/core'
+import { PropsComponent } from '../../interfaces/props-component'
+import { ProfileGroupTextTemplate } from './profile-group-text.template'
 
 export class ProfileGroupTextComponent extends BaseComponent {
 

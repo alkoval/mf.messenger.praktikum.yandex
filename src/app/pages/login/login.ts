@@ -1,13 +1,13 @@
-import { BaseComponent } from '../../core/base-component/base-component.js';
-import { Templator, FormValidationService } from '../../core/core.js';
-import { LoginPageTemplate } from './login.template.js';
-import { FormCardComponent } from '../../shared/components/form-card/form-card.js';
-import { PropsComponent } from '../../shared/interfaces/props-component.js';
-import { FormField, FormCard } from '../../shared/shared.models.js';
-import { AuthService } from '../../core/core.js';
-import { Router } from '../../core/router/router.js';
-import { ProfileService } from '../services/profile.service.js';
-import { UserResponse } from '../../core/api/interfaces/user-response.js';
+import { BaseComponent } from '../../core/base-component/base-component'
+import { Templator, FormValidationService } from '../../core/core'
+import { LoginPageTemplate } from './login.template'
+import { FormCardComponent } from '../../shared/components/form-card/form-card'
+import { PropsComponent } from '../../shared/interfaces/props-component'
+import { FormField, FormCard } from '../../shared/shared.models'
+import { AuthService } from '../../core/core'
+import { Router } from '../../core/router/router'
+import { ProfileService } from '../services/profile.service'
+import { UserResponse } from '../../core/api/interfaces/user-response'
 
 export class LoginPageComponent extends BaseComponent {
     private formComponent: BaseComponent | null;

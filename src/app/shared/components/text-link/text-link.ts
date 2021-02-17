@@ -1,9 +1,9 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { Router } from '../../../core/router/router.js';
-import { PropsComponent } from '../../interfaces/props-component.js';
-import { TextLink } from '../../models/text-link.js';
-import { TextLinkTemplate } from './text-link.template.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { Templator } from '../../../core/core'
+import { Router } from '../../../core/router/router'
+import { PropsComponent } from '../../interfaces/props-component'
+import { TextLink } from '../../models/text-link'
+import { TextLinkTemplate } from './text-link.template'
 
 export class TextLinkComponent extends BaseComponent {
     private router: Router;

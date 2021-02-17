@@ -1,5 +1,5 @@
-import { NavItem } from "../../shared/interfaces/nav-item.js";
-import Route from "./route.js";
+import { NavItem } from "../../shared/interfaces/nav-item"
+import Route from "./route"
 
 export class Router {
     private static instance: Router;

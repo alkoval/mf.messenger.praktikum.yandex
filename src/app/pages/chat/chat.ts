@@ -1,16 +1,16 @@
-import { BaseComponent } from '../../core/base-component/base-component.js';
-import { Templator } from '../../core/core.js';
-import { OnInit, PropsComponent } from '../../shared/shared.interfaces.js';
-import { ChatPageTemplate } from './chat.template.js';
-import { ChatHistoryComponent } from './chat-history/chat-history.js';
-import { Router } from '../../core/router/router.js';
-import { ChatService } from '../services/chat.service.js';
-import { ProfileService, PROFILE_EVENTS } from '../services/profile.service.js';
-import { ModalNewDialogComponent } from './modal-new-dialog/modal-new-dialog.js';
-import { ModalAddUserComponent } from './modal-add-user/modal-add-user.js';
-import { ModalDelUserComponent } from './modal-del-user/modal-del-user.js';
-import { ChatDialogListComponent } from './chat-dialog-list/chat-dialog-list.js';
-import { FormField, Profile } from '../../shared/shared.models.js';
+import { BaseComponent } from '../../core/base-component/base-component'
+import { Templator } from '../../core/core'
+import { OnInit, PropsComponent } from '../../shared/shared.interfaces'
+import { ChatPageTemplate } from './chat.template'
+import { ChatHistoryComponent } from './chat-history/chat-history'
+import { Router } from '../../core/router/router'
+import { ChatService } from '../services/chat.service'
+import { ProfileService, PROFILE_EVENTS } from '../services/profile.service'
+import { ModalNewDialogComponent } from './modal-new-dialog/modal-new-dialog'
+import { ModalAddUserComponent } from './modal-add-user/modal-add-user'
+import { ModalDelUserComponent } from './modal-del-user/modal-del-user'
+import { ChatDialogListComponent } from './chat-dialog-list/chat-dialog-list'
+import { FormField, Profile } from '../../shared/shared.models'
 
 export class ChatPageComponent extends BaseComponent implements OnInit {
     private profileService: ProfileService;

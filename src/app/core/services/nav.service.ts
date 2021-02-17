@@ -1,13 +1,13 @@
-import { ChangePasswordPageComponent } from '../../pages/change-password/change-password.js';
-import { ChangeProfilePageComponent } from '../../pages/change-profile/change-profile.js';
-import { ChatPageComponent } from '../../pages/chat/chat.js';
-import { Error404PageComponent } from '../../pages/error-404/error-404.js';
-import { LoginPageComponent } from '../../pages/login/login.js';
-import { ProfilePageComponent } from '../../pages/profile/profile.js';
-import { SignUpPageComponent } from '../../pages/signup/signup.js';
-import { NavItem } from '../../shared/interfaces/nav-item.js';
-import { Router } from '../router/router.js';
-import { GUARDS } from './guard.service.js';
+import { ChangePasswordPageComponent } from '../../pages/change-password/change-password'
+import { ChangeProfilePageComponent } from '../../pages/change-profile/change-profile'
+import { ChatPageComponent } from '../../pages/chat/chat'
+import { Error404PageComponent } from '../../pages/error-404/error-404'
+import { LoginPageComponent } from '../../pages/login/login'
+import { ProfilePageComponent } from '../../pages/profile/profile'
+import { SignUpPageComponent } from '../../pages/signup/signup'
+import { NavItem } from '../../shared/interfaces/nav-item'
+import { Router } from '../router/router'
+import { GUARDS } from './guard.service'
 
 export default class NavService {
     private static instance: NavService;

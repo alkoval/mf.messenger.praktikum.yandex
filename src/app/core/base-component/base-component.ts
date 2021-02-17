@@ -1,6 +1,6 @@
-import { EventBus } from '../event-bus/event-bus.js';
-import { Component, PropsComponent, ComponentTemplate } from '../../shared/shared.interfaces.js';
-import Templator from '../services/templator.service.js';
+import { EventBus } from '../event-bus/event-bus'
+import { Component, PropsComponent, ComponentTemplate } from '../../shared/shared.interfaces'
+import Templator from '../services/templator.service'
 
 export enum EVENTS {
     INIT = "init",

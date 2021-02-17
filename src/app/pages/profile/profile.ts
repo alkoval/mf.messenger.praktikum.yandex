@@ -1,11 +1,11 @@
-import { BaseComponent } from '../../core/base-component/base-component.js';
-import { AuthService, Templator } from '../../core/core.js';
-import { Router } from '../../core/router/router.js';
-import { ProfileGroupTextComponent } from '../../shared/components/profile-group-text/profile-group-text.js';
-import { OnInit, PropsComponent } from '../../shared/shared.interfaces.js';
-import { FormField, Profile } from '../../shared/shared.models.js';
-import { ProfileService, PROFILE_EVENTS } from '../services/profile.service.js';
-import { ProfilePageTemplate } from './profile.template.js';
+import { BaseComponent } from '../../core/base-component/base-component'
+import { AuthService, Templator } from '../../core/core'
+import { Router } from '../../core/router/router'
+import { ProfileGroupTextComponent } from '../../shared/components/profile-group-text/profile-group-text'
+import { OnInit, PropsComponent } from '../../shared/shared.interfaces'
+import { FormField, Profile } from '../../shared/shared.models'
+import { ProfileService, PROFILE_EVENTS } from '../services/profile.service'
+import { ProfilePageTemplate } from './profile.template'
 
 
 export class ProfilePageComponent extends BaseComponent implements OnInit {

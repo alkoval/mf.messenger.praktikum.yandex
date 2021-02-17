@@ -1,13 +1,13 @@
-import { BaseComponent } from '../../core/base-component/base-component.js';
-import { Templator } from '../../core/core.js';
-import { ProfileGroupInputComponent } from '../../shared/components/profile-group-input/profile-group-input.js';
-import { PropsComponent } from '../../shared/shared.interfaces.js';
-import { FormField, Button, BUTTON_STYLE } from '../../shared/shared.models.js';
-import { ChangePasswordPageTemplate } from './change-password.template.js';
-import FormValidationService from '../../core/services/form-validation.service.js';
-import { ButtonComponent } from '../../shared/components/button/button.js';
-import { ProfileService } from '../services/profile.service.js';
-import { Router } from '../../core/router/router.js';
+import { BaseComponent } from '../../core/base-component/base-component'
+import { Templator } from '../../core/core'
+import { ProfileGroupInputComponent } from '../../shared/components/profile-group-input/profile-group-input'
+import { PropsComponent } from '../../shared/shared.interfaces'
+import { FormField, Button, BUTTON_STYLE } from '../../shared/shared.models'
+import { ChangePasswordPageTemplate } from './change-password.template'
+import FormValidationService from '../../core/services/form-validation.service'
+import { ButtonComponent } from '../../shared/components/button/button'
+import { ProfileService } from '../services/profile.service'
+import { Router } from '../../core/router/router'
 
 export class ChangePasswordPageComponent extends BaseComponent {
     private formValidationService: FormValidationService;

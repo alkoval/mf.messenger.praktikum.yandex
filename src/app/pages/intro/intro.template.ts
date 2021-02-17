@@ -1,4 +1,4 @@
-import { ComponentTemplate } from '../../shared/interfaces/component-template.js';
+import { ComponentTemplate } from '../../shared/interfaces/component-template'
 
 export class IntroPageTemplate implements ComponentTemplate {
     private tag: string;

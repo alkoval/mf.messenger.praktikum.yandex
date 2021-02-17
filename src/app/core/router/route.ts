@@ -1,7 +1,7 @@
-import { PageService } from "../../pages/page.service.js";
-import { Component } from "../../shared/interfaces/component.js";
-import { ComponentConstructor } from "../../shared/interfaces/component-contstructor.js";
-import Templator from "../services/templator.service.js";
+import { PageService } from "../../pages/page.service"
+import { Component } from "../../shared/interfaces/component"
+import { ComponentConstructor } from "../../shared/interfaces/component-contstructor"
+import Templator from "../services/templator.service"
 
 export default class Route {
     private path: string;

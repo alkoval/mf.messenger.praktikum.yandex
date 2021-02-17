@@ -1,13 +1,13 @@
-import { BaseComponent } from '../../core/base-component/base-component.js';
-import { Templator } from '../../core/core.js';
-import { ProfileGroupInputComponent } from '../../shared/components/profile-group-input/profile-group-input.js';
-import { PropsComponent, OnInit } from '../../shared/shared.interfaces.js';
-import { Profile, FormField, Button, BUTTON_STYLE } from '../../shared/shared.models.js';
-import { ChangeProfilePageTemplate } from './change-profile.template.js';
-import FormValidationService from '../../core/services/form-validation.service.js';
-import { ButtonComponent } from '../../shared/components/button/button.js';
-import { ProfileService, PROFILE_EVENTS } from '../services/profile.service.js';
-import { Router } from '../../core/router/router.js';
+import { BaseComponent } from '../../core/base-component/base-component'
+import { Templator } from '../../core/core'
+import { ProfileGroupInputComponent } from '../../shared/components/profile-group-input/profile-group-input'
+import { PropsComponent, OnInit } from '../../shared/shared.interfaces'
+import { Profile, FormField, Button, BUTTON_STYLE } from '../../shared/shared.models'
+import { ChangeProfilePageTemplate } from './change-profile.template'
+import FormValidationService from '../../core/services/form-validation.service'
+import { ButtonComponent } from '../../shared/components/button/button'
+import { ProfileService, PROFILE_EVENTS } from '../services/profile.service'
+import { Router } from '../../core/router/router'
 
 export class ChangeProfilePageComponent extends BaseComponent implements OnInit {
     private formValidationService: FormValidationService;

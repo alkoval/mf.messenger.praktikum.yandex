@@ -1,9 +1,9 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { PropsComponent } from '../../../shared/interfaces/props-component.js';
-import { ChatDialog } from '../../../shared/models/chat-dialog.js';
-import { ChatService } from '../../services/chat.service.js';
-import { ChatDialogTemplate } from './chat-dialog.template.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { Templator } from '../../../core/core'
+import { PropsComponent } from '../../../shared/interfaces/props-component'
+import { ChatDialog } from '../../../shared/models/chat-dialog'
+import { ChatService } from '../../services/chat.service'
+import { ChatDialogTemplate } from './chat-dialog.template'
 
 export class ChatDialogComponent extends BaseComponent {
     private chatService: ChatService;

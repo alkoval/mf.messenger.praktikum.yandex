@@ -1,6 +1,6 @@
-import { HttpRequestOptions } from "../../shared/shared.interfaces.js";
-import { HttpService } from "../core.js";
-import { SignUpRequest } from "./interfaces/signup-request.js";
+import { HttpRequestOptions } from "../../shared/shared.interfaces"
+import { HttpService } from "../core"
+import { SignUpRequest } from "./interfaces/signup-request"
 
 export class AuthSignUpAPI {
     private httpService: HttpService;

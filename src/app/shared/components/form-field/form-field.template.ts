@@ -1,4 +1,4 @@
-import { ComponentTemplate } from '../../interfaces/component-template.js';
+import { ComponentTemplate } from '../../interfaces/component-template'
 
 export class FormFieldTemplate implements ComponentTemplate {
     private tag: string;

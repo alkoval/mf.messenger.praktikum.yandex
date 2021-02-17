@@ -1,8 +1,8 @@
-import { PropsComponent } from '../../shared/interfaces/props-component.js';
-import { NavItem } from '../../shared/interfaces/nav-item.js';
-import { ChatDialog } from '../../shared/models/chat-dialog.js';
-import { HistoryMessage } from '../../shared/interfaces/history-message.js';
-import { Profile } from '../../shared/models/profile.js';
+import { PropsComponent } from '../../shared/interfaces/props-component'
+import { NavItem } from '../../shared/interfaces/nav-item'
+import { ChatDialog } from '../../shared/models/chat-dialog'
+import { HistoryMessage } from '../../shared/interfaces/history-message'
+import { Profile } from '../../shared/models/profile'
 
 export class MockupData implements PropsComponent {
     private static instance: MockupData;

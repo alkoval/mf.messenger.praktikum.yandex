@@ -1,7 +1,7 @@
-import { HttpRequestOptions } from "../../shared/shared.interfaces.js";
-import { HttpService } from "../core.js";
-import { ChatDeleteRequest } from "./interfaces/chat-delete-request.js";
-import { CreateChatRequest } from "./interfaces/create-chat-request.js";
+import { HttpRequestOptions } from "../../shared/shared.interfaces"
+import { HttpService } from "../core"
+import { ChatDeleteRequest } from "./interfaces/chat-delete-request"
+import { CreateChatRequest } from "./interfaces/create-chat-request"
 
 export class ChatAPI {
     private httpService: HttpService;

@@ -1,9 +1,9 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { FormValidationService, Templator } from '../../../core/core.js';
-import { FormFieldComponent } from '../../../shared/components/form-field/form-field.js';
-import { PropsComponent } from '../../../shared/shared.interfaces.js';
-import { ChatService } from '../../services/chat.service.js';
-import { ModalNewDialogTemplate } from './modal-new-dialogtemplate.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { FormValidationService, Templator } from '../../../core/core'
+import { FormFieldComponent } from '../../../shared/components/form-field/form-field'
+import { PropsComponent } from '../../../shared/shared.interfaces'
+import { ChatService } from '../../services/chat.service'
+import { ModalNewDialogTemplate } from './modal-new-dialogtemplate'
 
 export class ModalNewDialogComponent extends BaseComponent {
     private chatService: ChatService;

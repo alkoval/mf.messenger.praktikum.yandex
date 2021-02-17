@@ -1,13 +1,13 @@
-import { AuthSignInAPI } from "../api/auth-signin-api.js";
-import { AuthSignUpAPI } from "../api/auth-signup-api.js";
-import { AuthUserAPI } from "../api/auth-user-api.js";
-import { AuthLogoutAPI } from "../api/auth-logout-api.js";
-import { Profile } from "../../shared/shared.models.js";
-import { SignInRequest } from "../api/interfaces/signin-request.js";
-import { SignUpRequest } from "../api/interfaces/signup-request.js";
-import { SignUpResponse } from "../api/interfaces/signup-response.js";
-import { NotifyService } from "./notify.service.js";
-import { UserResponse } from "../api/interfaces/user-response.js";
+import { AuthSignInAPI } from "../api/auth-signin-api"
+import { AuthSignUpAPI } from "../api/auth-signup-api"
+import { AuthUserAPI } from "../api/auth-user-api"
+import { AuthLogoutAPI } from "../api/auth-logout-api"
+import { Profile } from "../../shared/shared.models"
+import { SignInRequest } from "../api/interfaces/signin-request"
+import { SignUpRequest } from "../api/interfaces/signup-request"
+import { SignUpResponse } from "../api/interfaces/signup-response"
+import { NotifyService } from "./notify.service"
+import { UserResponse } from "../api/interfaces/user-response"
 
 export class AuthService {
     private static instance: AuthService;

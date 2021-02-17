@@ -1,11 +1,11 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { MockupData } from '../../../core/mockup/mockup-data.js';
-import { OnInit, PropsComponent } from '../../../shared/shared.interfaces.js';
-import { ChatService } from '../../services/chat.service.js';
-import { ChatHistoryTemplate } from '../chat-history/chat-history.template.js';
-import { HistoryImgMessageComponent } from '../history-img-message/history-img-message.js';
-import { HistoryTextMessageComponent } from '../history-text-message/history-text-message.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { Templator } from '../../../core/core'
+import { MockupData } from '../../../core/mockup/mockup-data'
+import { OnInit, PropsComponent } from '../../../shared/shared.interfaces'
+import { ChatService } from '../../services/chat.service'
+import { ChatHistoryTemplate } from '../chat-history/chat-history.template'
+import { HistoryImgMessageComponent } from '../history-img-message/history-img-message'
+import { HistoryTextMessageComponent } from '../history-text-message/history-text-message'
 
 export class ChatHistoryComponent extends BaseComponent implements OnInit {
     private chatService: ChatService;

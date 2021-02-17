@@ -1,4 +1,4 @@
-import { ComponentTemplate } from '../../shared/interfaces/component-template.js';
+import { ComponentTemplate } from '../../shared/interfaces/component-template'
 
 export class Error404PageTemplate implements ComponentTemplate {
     private tag: string;

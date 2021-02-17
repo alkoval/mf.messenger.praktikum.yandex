@@ -1,8 +1,8 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { Notify } from '../../interfaces/notify.js';
-import { PropsComponent } from '../../interfaces/props-component.js';
-import { NotifyTemplate } from './notify.template.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { Templator } from '../../../core/core'
+import { Notify } from '../../interfaces/notify'
+import { PropsComponent } from '../../interfaces/props-component'
+import { NotifyTemplate } from './notify.template'
 
 export class NotifyComponent extends BaseComponent {
 

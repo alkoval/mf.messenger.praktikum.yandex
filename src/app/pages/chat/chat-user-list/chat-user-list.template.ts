@@ -1,4 +1,4 @@
-import { ComponentTemplate } from "../../../shared/shared.interfaces.js";
+import { ComponentTemplate } from "../../../shared/shared.interfaces"
 
 export class ChatUserListTemplate implements ComponentTemplate {
     private tag: string;

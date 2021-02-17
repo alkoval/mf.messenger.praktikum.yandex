@@ -1,6 +1,6 @@
-import { HttpRequestOptions } from "../../shared/shared.interfaces.js";
-import { HttpService } from "../core.js";
-import { UserRequest } from "./interfaces/user-request.js";
+import { HttpRequestOptions } from "../../shared/shared.interfaces"
+import { HttpService } from "../core"
+import { UserRequest } from "./interfaces/user-request"
 
 export class UserProfileAPI {
     private httpService: HttpService;

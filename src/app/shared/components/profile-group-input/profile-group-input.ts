@@ -1,8 +1,8 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { FormValidationService, Templator } from '../../../core/core.js';
-import { PropsComponent } from '../../interfaces/props-component.js';
-import { FormField } from '../../models/form-field.js';
-import { ProfileGroupInputTemplate } from './profile-group-input.template.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { FormValidationService, Templator } from '../../../core/core'
+import { PropsComponent } from '../../interfaces/props-component'
+import { FormField } from '../../models/form-field'
+import { ProfileGroupInputTemplate } from './profile-group-input.template'
 
 export class ProfileGroupInputComponent extends BaseComponent {
     private formField: FormField;

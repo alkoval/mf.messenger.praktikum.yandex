@@ -1,13 +1,13 @@
-import { ChatAPI } from "../../core/api/chat-api.js";
-import { ChatUsersAPI } from "../../core/api/chat-users-api.js";
-import { ChatsResponse } from "../../core/api/interfaces/chats-response.js";
-import { UserResponse } from "../../core/api/interfaces/user-response.js";
-import { UsersRequest } from "../../core/api/interfaces/users-request.js";
-import { EventBus } from "../../core/event-bus/event-bus.js";
-import { NotifyService } from "../../core/services/notify.service.js";
-import { APP_DEFAULT_IMAGE, APP_HOST } from "../../shared/const/constants.js";
-import { ChatDialog, Profile } from "../../shared/shared.models.js";
-import { ProfileService } from "./profile.service.js";
+import { ChatAPI } from "../../core/api/chat-api"
+import { ChatUsersAPI } from "../../core/api/chat-users-api"
+import { ChatsResponse } from "../../core/api/interfaces/chats-response"
+import { UserResponse } from "../../core/api/interfaces/user-response"
+import { UsersRequest } from "../../core/api/interfaces/users-request"
+import { EventBus } from "../../core/event-bus/event-bus"
+import { NotifyService } from "../../core/services/notify.service"
+import { APP_DEFAULT_IMAGE, APP_HOST } from "../../shared/const/constants"
+import { ChatDialog, Profile } from "../../shared/shared.models"
+import { ProfileService } from "./profile.service"
 
 export enum CHAT_EVENTS {
     DIALOGS_RELOAD = 'dialogs-reload',
@@ -19,7 +19,6 @@ export class ChatService {
     private static instance: ChatService;
     private eventBus: EventBus;
     private dialogs: ChatDialog[];
-    private dialogsFiltered: ChatDialog[];
     private selectedDialog: ChatDialog | null;
     private notifyService: NotifyService;
     private profileService: ProfileService;
@@ -29,7 +28,6 @@ export class ChatService {
     constructor() {
         this.eventBus = new EventBus();
         this.dialogs = [];
-        this.dialogsFiltered = [];
         this.notifyService = NotifyService.getInstance();
         this.profileService = ProfileService.getInstance();
         this.chatAPI = new ChatAPI();

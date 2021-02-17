@@ -1,9 +1,9 @@
-import { BaseComponent } from '../../core/base-component/base-component.js';
-import { Templator } from '../../core/core.js';
-import { IntroService } from './intro.service.js';
-import { IntroPageTemplate } from './intro.template.js';
-import { PropsComponent, OnInit } from '../../shared/shared.interfaces.js';
-import { Router } from '../../core/router/router.js';
+import { BaseComponent } from '../../core/base-component/base-component'
+import { Templator } from '../../core/core'
+import { IntroService } from './intro.service'
+import { IntroPageTemplate } from './intro.template'
+import { PropsComponent, OnInit } from '../../shared/shared.interfaces'
+import { Router } from '../../core/router/router'
 
 export class IntroPageComponent extends BaseComponent implements OnInit {
     private introService: IntroService;

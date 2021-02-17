@@ -1,7 +1,7 @@
-import { BaseComponent } from '../../core/base-component/base-component.js';
-import { Templator } from '../../core/core.js';
-import { PropsComponent } from '../../shared/interfaces/props-component.js';
-import { Error404PageTemplate } from './error-404.template.js';
+import { BaseComponent } from '../../core/base-component/base-component'
+import { Templator } from '../../core/core'
+import { PropsComponent } from '../../shared/interfaces/props-component'
+import { Error404PageTemplate } from './error-404.template'
 
 export class Error404PageComponent extends BaseComponent {
 

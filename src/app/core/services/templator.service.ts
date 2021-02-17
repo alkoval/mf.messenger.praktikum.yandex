@@ -3,7 +3,6 @@ export default class Templator {
     private hb: any;
 
     constructor() {
-        // @ts-ignore: Не уверен, что это хорошая идея
         this.hb = Handlebars;
     }
 

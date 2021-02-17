@@ -1,6 +1,6 @@
-import { HttpRequestOptions } from "../../shared/shared.interfaces.js";
-import { HttpService } from "../core.js";
-import { ChangePasswordRequest } from "./interfaces/change-password-request.js";
+import { HttpRequestOptions } from "../../shared/shared.interfaces"
+import { HttpService } from "../core"
+import { ChangePasswordRequest } from "./interfaces/change-password-request"
 
 export class UserPasswordAPI {
     private httpService: HttpService;

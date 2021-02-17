@@ -1,7 +1,7 @@
-import { Router } from './core/router/router.js';
-import { NavService } from './core/core.js';
-import { PageService } from './pages/page.service.js';
-import { NotifyService } from './core/services/notify.service.js';
+import { Router } from './core/router/router';
+import { NavService } from './core/core';
+import { PageService } from './pages/page.service';
+import { NotifyService } from './core/services/notify.service';
 
 export class App {
     private router: Router;

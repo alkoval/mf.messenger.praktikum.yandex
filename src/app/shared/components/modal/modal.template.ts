@@ -1,4 +1,4 @@
-import { ComponentTemplate } from '../../interfaces/component-template.js';
+import { ComponentTemplate } from '../../interfaces/component-template'
 
 export class ModalTemplate implements ComponentTemplate {
     private tag: string;

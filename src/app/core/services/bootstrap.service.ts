@@ -1,7 +1,7 @@
-import { ChatDialog } from '../../shared/models/chat-dialog.js';
-import { MockupData } from '../mockup/mockup-data.js';
-import { HistoryTextMessage } from '../../shared/models/history-text-message.js';
-import { HistoryImgMessage } from '../../shared/models/history-img-message.js';
+import { ChatDialog } from '../../shared/models/chat-dialog'
+import { MockupData } from '../mockup/mockup-data'
+import { HistoryTextMessage } from '../../shared/models/history-text-message'
+import { HistoryImgMessage } from '../../shared/models/history-img-message'
 
 export default class BootstrapService {
     public mockupData: MockupData;

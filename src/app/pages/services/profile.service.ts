@@ -1,18 +1,18 @@
-import { UserRequest } from "../../core/api/interfaces/user-request.js";
-import { UserResponse } from "../../core/api/interfaces/user-response.js";
-import { FindUserRequest } from "../../core/api/interfaces/find-user-request.js";
-import { ChangePasswordRequest } from "../../core/api/interfaces/change-password-request.js";
-import { UserPasswordAPI } from "../../core/api/user-password-api.js";
-import { UserProfileAPI } from "../../core/api/user-profile-api.js";
-import { NotifyService } from "../../core/services/notify.service.js";
-import { Profile } from "../../shared/shared.models.js";
-import { UserAPI } from "../../core/api/user-api.js";
-import { UserSearchAPI } from "../../core/api/user-search-api.js";
-import { UserProfileAvatarAPI } from "../../core/api/user-profile-avatar-api.js";
-import { EventBus } from "../../core/event-bus/event-bus.js";
-import { APP_DEFAULT_IMAGE, APP_HOST } from "../../shared/const/constants.js";
-import { AuthService } from "../../core/core.js";
-import { OnInit } from "../../shared/shared.interfaces.js";
+import { UserRequest } from "../../core/api/interfaces/user-request"
+import { UserResponse } from "../../core/api/interfaces/user-response"
+import { FindUserRequest } from "../../core/api/interfaces/find-user-request"
+import { ChangePasswordRequest } from "../../core/api/interfaces/change-password-request"
+import { UserPasswordAPI } from "../../core/api/user-password-api"
+import { UserProfileAPI } from "../../core/api/user-profile-api"
+import { NotifyService } from "../../core/services/notify.service"
+import { Profile } from "../../shared/shared.models"
+import { UserAPI } from "../../core/api/user-api"
+import { UserSearchAPI } from "../../core/api/user-search-api"
+import { UserProfileAvatarAPI } from "../../core/api/user-profile-avatar-api"
+import { EventBus } from "../../core/event-bus/event-bus"
+import { APP_DEFAULT_IMAGE, APP_HOST } from "../../shared/const/constants"
+import { AuthService } from "../../core/core"
+import { OnInit } from "../../shared/shared.interfaces"
 
 export enum PROFILE_EVENTS {
     PROFILE_UPDATE = 'profile-update',

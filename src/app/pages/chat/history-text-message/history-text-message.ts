@@ -1,8 +1,8 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { PropsComponent } from '../../../shared/interfaces/props-component.js';
-import { HistoryTextMessage } from '../../../shared/models/history-text-message.js';
-import { HistoryTextMessageTemplate } from './history-text-message.template.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { Templator } from '../../../core/core'
+import { PropsComponent } from '../../../shared/interfaces/props-component'
+import { HistoryTextMessage } from '../../../shared/models/history-text-message'
+import { HistoryTextMessageTemplate } from './history-text-message.template'
 
 export class HistoryTextMessageComponent extends BaseComponent {
 

@@ -1,9 +1,9 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { OnInit, PropsComponent } from '../../../shared/shared.interfaces.js';
-import { ChatService } from '../../services/chat.service.js';
-import { ChatUserListComponent } from '../chat-user-list/chat-user-list.js';
-import { ModalDelUserTemplate } from './modal-del-user.template.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { Templator } from '../../../core/core'
+import { OnInit, PropsComponent } from '../../../shared/shared.interfaces'
+import { ChatService } from '../../services/chat.service'
+import { ChatUserListComponent } from '../chat-user-list/chat-user-list'
+import { ModalDelUserTemplate } from './modal-del-user.template'
 
 export class ModalDelUserComponent extends BaseComponent implements OnInit {
     private chatService: ChatService;

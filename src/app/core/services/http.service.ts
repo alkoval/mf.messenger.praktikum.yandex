@@ -1,6 +1,6 @@
-import { APP_HOST } from "../../shared/const/constants.js";
-import { HttpRequestOptions } from "../../shared/interfaces/http-request-options.js";
-import { XhrHeader } from "../../shared/interfaces/xhr-header.js";
+import { APP_HOST } from "../../shared/const/constants"
+import { HttpRequestOptions } from "../../shared/interfaces/http-request-options"
+import { XhrHeader } from "../../shared/interfaces/xhr-header"
 
 export enum METHODS {
     GET = "GET",

@@ -1,11 +1,11 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { PropsComponent } from '../../../shared/interfaces/props-component.js';
-import { OnInit } from '../../../shared/shared.interfaces.js';
-import { ChatDialog } from '../../../shared/shared.models.js';
-import { ChatService, CHAT_EVENTS } from '../../services/chat.service.js';
-import { ChatDialogComponent } from '../chat-dialog/chat-dialog.js';
-import { ChatDialogListTemplate } from './chat-dialog-list.template.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { Templator } from '../../../core/core'
+import { PropsComponent } from '../../../shared/interfaces/props-component'
+import { OnInit } from '../../../shared/shared.interfaces'
+import { ChatDialog } from '../../../shared/shared.models'
+import { ChatService, CHAT_EVENTS } from '../../services/chat.service'
+import { ChatDialogComponent } from '../chat-dialog/chat-dialog'
+import { ChatDialogListTemplate } from './chat-dialog-list.template'
 
 export class ChatDialogListComponent extends BaseComponent implements OnInit {
     private chatService: ChatService;

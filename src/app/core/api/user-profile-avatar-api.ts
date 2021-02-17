@@ -1,5 +1,5 @@
-import { HttpRequestOptions, XhrHeader } from "../../shared/shared.interfaces.js";
-import { HttpService } from "../core.js";
+import { HttpRequestOptions, XhrHeader } from "../../shared/shared.interfaces"
+import { HttpService } from "../core"
 
 export class UserProfileAvatarAPI {
     private httpService: HttpService;

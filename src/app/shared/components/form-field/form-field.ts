@@ -1,9 +1,9 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { PropsComponent } from '../../interfaces/props-component.js';
-import { FormField } from '../../models/form-field.js';
-import { FormFieldTemplate } from './form-field.template.js';
-import FormValidationService from '../../../core/services/form-validation.service.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { Templator } from '../../../core/core'
+import { PropsComponent } from '../../interfaces/props-component'
+import { FormField } from '../../models/form-field'
+import { FormFieldTemplate } from './form-field.template'
+import FormValidationService from '../../../core/services/form-validation.service'
 
 export class FormFieldComponent extends BaseComponent {
     private formField: FormField;

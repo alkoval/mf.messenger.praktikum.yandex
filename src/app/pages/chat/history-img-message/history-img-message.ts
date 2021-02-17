@@ -1,7 +1,7 @@
-import { BaseComponent } from '../../../core/base-component/base-component.js';
-import { Templator } from '../../../core/core.js';
-import { PropsComponent } from '../../../shared/interfaces/props-component.js';
-import { HistoryImgMessageTemplate } from './history-img-message.template.js';
+import { BaseComponent } from '../../../core/base-component/base-component'
+import { Templator } from '../../../core/core'
+import { PropsComponent } from '../../../shared/interfaces/props-component'
+import { HistoryImgMessageTemplate } from './history-img-message.template'
 
 export class HistoryImgMessageComponent extends BaseComponent {
 

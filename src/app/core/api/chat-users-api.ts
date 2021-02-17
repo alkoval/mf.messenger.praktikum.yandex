@@ -1,6 +1,6 @@
-import { HttpRequestOptions } from "../../shared/shared.interfaces.js";
-import { HttpService } from "../core.js";
-import { UsersRequest } from "./interfaces/users-request.js";
+import { HttpRequestOptions } from "../../shared/shared.interfaces"
+import { HttpService } from "../core"
+import { UsersRequest } from "./interfaces/users-request"
 
 export class ChatUsersAPI {
     private httpService: HttpService;

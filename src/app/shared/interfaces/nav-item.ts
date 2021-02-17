@@ -1,4 +1,4 @@
-import { ComponentConstructor } from "./component-contstructor.js";
+import { ComponentConstructor } from "./component-contstructor"
 
 export interface NavItem {
     text: string;

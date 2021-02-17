@@ -15,7 +15,6 @@ export class ChatService {
     constructor() {
         this.eventBus = new EventBus();
         this.dialogs = [];
-        this.dialogsFiltered = [];
         this.notifyService = NotifyService.getInstance();
         this.profileService = ProfileService.getInstance();
         this.chatAPI = new ChatAPI();

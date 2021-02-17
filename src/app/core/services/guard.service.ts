@@ -1,4 +1,4 @@
-import { ProfileService } from "../../pages/services/profile.service.js";
+import { ProfileService } from "../../pages/services/profile.service"
 
 export enum GUARDS {
     PROFILE = "profile"

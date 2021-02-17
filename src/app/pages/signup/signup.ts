@@ -1,12 +1,12 @@
-import { BaseComponent } from '../../core/base-component/base-component.js';
-import { AuthService, Templator } from '../../core/core.js';
-import { PropsComponent } from '../../shared/shared.interfaces.js';
-import { SignUpPageTemplate } from './signup.template.js';
-import { FormCardComponent } from '../../shared/components/form-card/form-card.js';
-import { FormCard, FormField, Profile } from '../../shared/shared.models.js';
-import FormValidationService from '../../core/services/form-validation.service.js';
-import { Router } from '../../core/router/router.js';
-import { ProfileService } from '../services/profile.service.js';
+import { BaseComponent } from '../../core/base-component/base-component'
+import { AuthService, Templator } from '../../core/core'
+import { PropsComponent } from '../../shared/shared.interfaces'
+import { SignUpPageTemplate } from './signup.template'
+import { FormCardComponent } from '../../shared/components/form-card/form-card'
+import { FormCard, FormField, Profile } from '../../shared/shared.models'
+import FormValidationService from '../../core/services/form-validation.service'
+import { Router } from '../../core/router/router'
+import { ProfileService } from '../services/profile.service'
 
 export class SignUpPageComponent extends BaseComponent {
     private formComponent: BaseComponent | null;

@@ -12,5 +12,7 @@
     "noUnusedParameters": true,
     "alwaysStrict": true,
     "strictNullChecks": true
-  }
+  },
+  "include": ["src/**/*", "node_modules/handlebars/types"],
+  "exclude": ["test/**/*.spec.ts"]
 }

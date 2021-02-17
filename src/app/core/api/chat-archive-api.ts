@@ -1,4 +1,4 @@
-import { HttpService } from "../core.js";
+import { HttpService } from "../core"
 
 export class ChatArchiveAPI {
     private httpService: HttpService;
