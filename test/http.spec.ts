@@ -1,13 +1,34 @@
-import { JSDOM } from "../node_modules/jsdom";
 import * as chai from 'chai';
+import sinon from 'sinon';
 
-import HttpService from '../src/app/core/services/http.service'
+import HttpService, { METHODS } from '../src/app/core/services/http.service';
 
-const dom = new JSDOM(`<!DOCTYPE html><head></head><body><div class="chatapp"></div></body>`, {
-    url: "https://localhost:8080/"
+const httpService = new HttpService('');
+let server;
+
+describe("Test HTTP module", () => {
+    before(() => {
+        global.XMLHttpRequest = sinon.useFakeXMLHttpRequest();
+        server = sinon.fakeServer.create();
+    });
+    after(() => {
+        server.restore();
+    });
+
+    it("Test HTTP module: GET", () => {
+        httpService.get("/test", null, {});
+        chai.expect(server.requests[0].method).to.equal(METHODS.GET);
+    });
+    it("Test HTTP module: POST", () => {
+        httpService.post("/test2", {});
+        chai.expect(server.requests[1].method).to.equal(METHODS.POST);
+    });
+    it("should send request type PUT", () => {
+        httpService.put("/test2", {});
+        chai.expect(server.requests[2].method).to.equal(METHODS.PUT);
+    })
+    it("should send request type DELETE", () => {
+        httpService.delete("/test3", {});
+        chai.expect(server.requests[3].method).to.equal(METHODS.DELETE);
+    });
 });
-
-global.window = dom.window;
-global.document = dom.window.document;
-
-const httpService = new HttpService()
