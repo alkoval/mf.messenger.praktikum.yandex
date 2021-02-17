@@ -4,8 +4,8 @@ import * as chai from 'chai';
 import { NavItem } from "../src/app/shared/shared.interfaces";
 import { Error404PageComponent } from "../src/app/pages/error-404/error-404";
 
-const dom = new JSDOM(`<!DOCTYPE html><head></head><body><div id="root"></div></body>`, {
-    url: "https://example.org/"
+const dom = new JSDOM(`<!DOCTYPE html><head></head><body><div class="chatapp"></div></body>`, {
+    url: "https://localhost:8080/"
 });
 
 global.window = dom.window;
@@ -36,7 +36,6 @@ describe("Router method: forward", () => {
     router.back();
     router.forward();
     it("Test Router method: forward", () => {
-        cLog('window.location.pathname   ' + window.location.pathname);
         chai.expect(window.location.pathname).to.equal('/test2');
     });
 });
