@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js localhost 4000",
     "build": "tsc -p .",
-    "scss": "node-sass src/styles -o static/css"
+    "scss": "node-sass src/styles/app.scss static/css/app.css"
   },
   "repository": {
     "type": "git",

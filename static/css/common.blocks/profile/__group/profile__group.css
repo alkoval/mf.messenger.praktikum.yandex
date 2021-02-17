@@ -1,8 +1,0 @@
-.profile__group {
-  border-bottom: 1px solid #adadad;
-  width: 100%;
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between; }

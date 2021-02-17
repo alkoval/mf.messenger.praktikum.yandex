@@ -1,9 +1,0 @@
-.profile__button {
-  width: 280px;
-  height: 37px;
-  border-radius: 5px;
-  margin: auto;
-  border: 1px solid transparent; }
-
-.profile__button:focus {
-  outline: 0; }
