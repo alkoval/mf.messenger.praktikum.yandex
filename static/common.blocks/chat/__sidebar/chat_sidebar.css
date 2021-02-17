@@ -1,7 +1,0 @@
-.chat__sidebar {
-  width: 310px;
-  background-color: #373740;
-  border-right: 1px solid #26282f;
-  display: flex;
-  flex-direction: column;
-}

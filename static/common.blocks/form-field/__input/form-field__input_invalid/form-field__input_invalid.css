@@ -1,7 +1,0 @@
-.form-field__input_invalid {
-    /*...*/
-}
-
-.form-field__input_invalid ~ .form-field__error {
-  display: block;
-}
