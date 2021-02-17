@@ -5,7 +5,7 @@ export class Router {
     private static instance: Router;
     private routes: Route[];
     private currentRoute: Route | null;
-    private history: History;
+    public history: History;
 
     private constructor() {
         this.routes = [];
@@ -53,16 +53,16 @@ export class Router {
 
 
     public go(path: string): void {
-        this.history.pushState({}, "", path);
-        this._onRoute(path);
+        window.history.pushState({}, "", path);
+        //this._onRoute(path);
     }
 
     public back(): void {
-        this.history.back()
+        window.history.back()
     }
 
     public forward(): void {
-        this.history.forward()
+        window.history.forward()
     }
 
     public getRoute(path: string): Route | undefined {
