@@ -1,3 +1,4 @@
+import { APP_HOST } from "../../shared/const/constants";
 import { HttpRequestOptions } from "../../shared/shared.interfaces"
 import { HttpService } from "../core"
 import { ChatDeleteRequest } from "./interfaces/chat-delete-request"
@@ -7,7 +8,7 @@ export class ChatAPI {
     private httpService: HttpService;
 
     constructor() {
-        this.httpService = new HttpService('api/v2/chats');
+        this.httpService = new HttpService(`${APP_HOST}/api/v2/chats`);
     }
 
     public request(): Promise<unknown> {

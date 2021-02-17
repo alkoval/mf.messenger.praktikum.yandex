@@ -1,6 +1,7 @@
 import { JSDOM } from "../node_modules/jsdom";
 import * as chai from 'chai';
 
+import { Router } from "../src/app/core/router/router";
 import { NavItem } from "../src/app/shared/shared.interfaces";
 import { Error404PageComponent } from "../src/app/pages/error-404/error-404";
 
@@ -11,7 +12,6 @@ const dom = new JSDOM(`<!DOCTYPE html><head></head><body><div class="chatapp"></
 global.window = dom.window;
 global.document = dom.window.document;
 
-import { Router } from "../src/app/core/router/router";
 const router = Router.getInstance();
 const routes: NavItem[] = [
     { text: 'Путь 1', icon: 'far fa-file list__icon', path: '/test1', component: Error404PageComponent, guard: null },

@@ -1,4 +1,3 @@
-import { APP_HOST } from "../../shared/const/constants"
 import { HttpRequestOptions } from "../../shared/interfaces/http-request-options"
 import { XhrHeader } from "../../shared/interfaces/xhr-header"
 
@@ -17,7 +16,7 @@ export default class HttpService {
     protected defaultHeaders: XhrHeader;
 
     constructor(path: string) {
-        this.host = `${APP_HOST}/${path}`;
+        this.host = path;
         this.defaultMethod = METHODS.GET;
         this.defaultTimeout = 5000;
         this.defaultHeaders = {
