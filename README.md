@@ -1,4 +1,4 @@
-# [ChatApp](https://cranky-kalam-8c08d4.netlify.app/index.html)
+# [ChatApp](https://cranky-kalam-8c08d4.netlify.app/)
 
 ![npm](https://img.shields.io/npm/v/npm)
 ![Netlify](https://img.shields.io/netlify/2bf9eb43-1995-44c0-869f-8b8b5fa15f26)
