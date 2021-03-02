@@ -1,3 +1,4 @@
+import '../styles/app.scss';
 import { Router } from './core/router/router';
 import { NavService } from './core/core';
 import { PageService } from './pages/page.service';

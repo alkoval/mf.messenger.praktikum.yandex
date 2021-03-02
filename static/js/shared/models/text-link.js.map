@@ -1,1 +1,0 @@
-{"version":3,"file":"text-link.js","sourceRoot":"","sources":["../../../../src/app/shared/models/text-link.ts"],"names":[],"mappings":"AAAA,MAAM,OAAO,QAAQ;IAKjB,YAAY,IAAY,EAAE,QAAgB,EAAE,IAAY;QACpD,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC;QACjB,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;QACzB,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC;IACrB,CAAC;CACJ"}

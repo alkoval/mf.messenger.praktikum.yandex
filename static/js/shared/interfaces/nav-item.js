@@ -1,2 +1,0 @@
-export {};
-//# sourceMappingURL=nav-item.js.map
