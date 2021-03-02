@@ -20,6 +20,7 @@ export class HistoryTextMessageTemplate implements ComponentTemplate {
     public getContent(): string {
         return `
                 <div>
+                    {{#if isLeft}}<span class="history__user-name">{{userName}}</span>{{/if}}
                     <p>{{message}}</p>
                 </div>
                 <div class="history__time">

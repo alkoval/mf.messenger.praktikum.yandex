@@ -122,6 +122,17 @@ export abstract class BaseComponent implements Component {
         }
     }
 
+    public renderToSelectorTop(childrens: BaseComponent[], selector: string): void {
+        if (childrens.length > 0) {
+            const root = this.elem.querySelector(selector);
+            if (root !== null) {
+                for (let child of childrens) {
+                    root.prepend(child.getContent());
+                }
+            }
+        }
+    }
+
     public renderToRoot(childrens: BaseComponent[]): void {
         for (let child of childrens) {
             this.getElement().appendChild(child.getContent());

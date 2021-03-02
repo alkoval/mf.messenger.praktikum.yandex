@@ -1,13 +1,13 @@
-import { ChatAPI } from "../../core/api/chat-api"
-import { ChatUsersAPI } from "../../core/api/chat-users-api"
-import { ChatsResponse } from "../../core/api/interfaces/chats-response"
-import { UserResponse } from "../../core/api/interfaces/user-response"
-import { UsersRequest } from "../../core/api/interfaces/users-request"
-import { EventBus } from "../../core/event-bus/event-bus"
-import { NotifyService } from "../../core/services/notify.service"
-import { APP_DEFAULT_IMAGE, APP_HOST } from "../../shared/const/constants"
-import { ChatDialog, Profile } from "../../shared/shared.models"
-import { ProfileService } from "./profile.service"
+import { ChatAPI } from "../../core/api/chat-api";
+import { ChatUsersAPI } from "../../core/api/chat-users-api";
+import { ChatsResponse } from "../../core/api/interfaces/chats-response";
+import { UserResponse } from "../../core/api/interfaces/user-response";
+import { UsersRequest } from "../../core/api/interfaces/users-request";
+import { EventBus } from "../../core/event-bus/event-bus";
+import { NotifyService } from "../../core/services/notify.service";
+import { APP_DEFAULT_IMAGE, APP_HOST } from "../../shared/const/constants";
+import { ChatDialog, Profile } from "../../shared/shared.models";
+import { ProfileService } from "./profile.service";
 
 export enum CHAT_EVENTS {
     DIALOGS_RELOAD = 'dialogs-reload',

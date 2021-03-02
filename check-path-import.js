@@ -14,11 +14,16 @@ files.then((filePaths) => {
   console.log('filePaths.length ' + filePaths.length)
   filePaths.forEach((filepath) => {
     fs.readFile(filepath, "utf8", (err, data) => {
-      if (!data.match(/import .* from/g)) {
+      if (!data.match(/import|export .* from/g)) {
         return;
       }
       let newData = data.replace(
         /(import .* from\s+['"])(.*)(?=['"])/g,
+        "$1$2.js"
+      );
+      //console.log(newData)
+      newData = newData.replace(
+        /(export .* from\s+['"])(.*)(?=['"])/g,
         "$1$2.js"
       );
       if (err) throw err;

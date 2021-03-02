@@ -97,6 +97,16 @@ export class BaseComponent {
             }
         }
     }
+    renderToSelectorTop(childrens, selector) {
+        if (childrens.length > 0) {
+            const root = this.elem.querySelector(selector);
+            if (root !== null) {
+                for (let child of childrens) {
+                    root.prepend(child.getContent());
+                }
+            }
+        }
+    }
     renderToRoot(childrens) {
         for (let child of childrens) {
             this.getElement().appendChild(child.getContent());

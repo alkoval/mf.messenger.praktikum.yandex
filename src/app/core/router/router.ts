@@ -53,16 +53,16 @@ export class Router {
 
 
     public go(path: string): void {
-        window.history.pushState({}, "", path);
-        //this._onRoute(path);
+        this.history.pushState({}, "", path);
+        this._onRoute(path);
     }
 
     public back(): void {
-        window.history.back()
+        this.history.back()
     }
 
     public forward(): void {
-        window.history.forward()
+        this.history.forward()
     }
 
     public getRoute(path: string): Route | undefined {

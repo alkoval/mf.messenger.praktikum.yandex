@@ -12,6 +12,7 @@ export class HistoryTextMessageTemplate {
     getContent() {
         return `
                 <div>
+                    {{#if isLeft}}<span class="history__user-name">{{userName}}</span>{{/if}}
                     <p>{{message}}</p>
                 </div>
                 <div class="history__time">

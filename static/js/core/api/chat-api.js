@@ -1,7 +1,8 @@
+import { APP_HOST } from "../../shared/const/constants.js";
 import { HttpService } from "../core.js";
 export class ChatAPI {
     constructor() {
-        this.httpService = new HttpService('api/v2/chats');
+        this.httpService = new HttpService(`${APP_HOST}/api/v2/chats`);
     }
     request() {
         return this.httpService.get('', null, {});

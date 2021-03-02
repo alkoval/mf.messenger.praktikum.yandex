@@ -1,5 +1,5 @@
-import { HttpRequestOptions } from "../../shared/interfaces/http-request-options"
-import { XhrHeader } from "../../shared/interfaces/xhr-header"
+import { HttpRequestOptions } from "../../shared/interfaces/http-request-options";
+import { XhrHeader } from "../../shared/interfaces/xhr-header";
 
 export enum METHODS {
     GET = "GET",
@@ -23,6 +23,10 @@ export default class HttpService {
             'Accept': 'application/json, text/javascript, text/plain',
             'Content-Type': 'application/json',
         };
+    }
+
+    public setHost(path: string): void {
+        this.host = path;
     }
 
     public get(url: string, queryParams: any | null, options: HttpRequestOptions): Promise<unknown> {

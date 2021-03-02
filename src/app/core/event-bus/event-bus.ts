@@ -12,7 +12,7 @@ export class EventBus {
         this.listeners.get(event)?.push(callback);
     }
 
-    off<T>(event: string, callback: T) {
+    public off<T>(event: string, callback: T): void {
         if (this.listeners.has(event)) {
             this.listeners.set(event, this.listeners.get(event)!.filter(
                 listener => listener !== callback
@@ -20,7 +20,7 @@ export class EventBus {
         }
     }
 
-    emit<T>(event: string, ...args: T[]) {
+    public emit<T>(event: string, ...args: T[]): void {
         if (this.listeners.has(event)) {
             this.listeners.get(event)!.forEach(function (listener) {
                 listener(...args);

@@ -5,7 +5,7 @@ export class HistoryTextMessageComponent extends BaseComponent {
         super(props, templator, new HistoryTextMessageTemplate());
     }
     render() {
-        if (this.getProps().root.from !== 0) {
+        if (this.getProps().root.isLeft) {
             this.getElement().classList.add('history__message_position_left');
         }
         else {

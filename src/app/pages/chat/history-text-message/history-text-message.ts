@@ -11,7 +11,7 @@ export class HistoryTextMessageComponent extends BaseComponent {
     }
 
     public render(): string {
-        if ((this.getProps().root as HistoryTextMessage).from !== 0) {
+        if ((this.getProps().root as HistoryTextMessage).isLeft) {
             this.getElement().classList.add('history__message_position_left');
         } else {
             this.getElement().classList.add('history__message_position_right');

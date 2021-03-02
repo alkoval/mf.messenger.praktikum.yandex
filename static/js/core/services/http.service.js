@@ -1,4 +1,3 @@
-import { APP_HOST } from "../../shared/const/constants.js";
 export var METHODS;
 (function (METHODS) {
     METHODS["GET"] = "GET";
@@ -9,13 +8,16 @@ export var METHODS;
 })(METHODS || (METHODS = {}));
 export default class HttpService {
     constructor(path) {
-        this.host = `${APP_HOST}/${path}`;
+        this.host = path;
         this.defaultMethod = METHODS.GET;
         this.defaultTimeout = 5000;
         this.defaultHeaders = {
             'Accept': 'application/json, text/javascript, text/plain',
             'Content-Type': 'application/json',
         };
+    }
+    setHost(path) {
+        this.host = path;
     }
     get(url, queryParams, options) {
         if (queryParams !== null) {
