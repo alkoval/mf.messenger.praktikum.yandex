@@ -1,4 +1,4 @@
 export interface UsersRequest {
-    users: number[],
-    chatId: number
+  users: number[];
+  chatId: number;
 }

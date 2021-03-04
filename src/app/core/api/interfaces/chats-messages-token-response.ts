@@ -1,3 +1,3 @@
 export interface ChatsMessagesTokenResponse {
-    token: string;
+  token: string;
 }

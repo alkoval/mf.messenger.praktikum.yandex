@@ -1,24 +1,24 @@
-import { ComponentTemplate } from '../../../shared/interfaces/component-template'
+import { ComponentTemplate } from "../../../shared/interfaces/component-template";
 
 export class ChatHistoryTemplate implements ComponentTemplate {
-    private tag: string;
-    private cssClass: string;
+  private tag: string;
+  private cssClass: string;
 
-    constructor() {
-        this.tag = 'div';
-        this.cssClass = 'history';
-    }
+  constructor() {
+    this.tag = "div";
+    this.cssClass = "history";
+  }
 
-    public getTag(): string {
-        return this.tag;
-    }
+  public getTag(): string {
+    return this.tag;
+  }
 
-    public getCssClass(): string {
-        return this.cssClass;
-    }
+  public getCssClass(): string {
+    return this.cssClass;
+  }
 
-    public getContent(): string {
-        return `
+  public getContent(): string {
+    return `
             {{#if title}}
                 <div class="history__header">
                     <div class="history__avatar-column">
@@ -76,12 +76,14 @@ export class ChatHistoryTemplate implements ComponentTemplate {
                     </div>
                     <div class="history__input-column">
                         <div class="single-field">
-                            <input class="single-field__input fas" type="text" id="message" placeholder="Сообщение"
+                            <input class="single-field__input fas" 
+                            type="text" id="message" placeholder="Сообщение"
                                 required>
                         </div>
                     </div>
                     <div class="history__button-column">
-                        <button class="history__button history__button_type_round history__button_bg_dark-green">
+                        <button class="history__button 
+                        history__button_type_round history__button_bg_dark-green">
                             <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
@@ -92,5 +94,5 @@ export class ChatHistoryTemplate implements ComponentTemplate {
                 </div>
             {{/if}}
         `;
-    }
+  }
 }

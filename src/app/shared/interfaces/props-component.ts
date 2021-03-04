@@ -1,3 +1,3 @@
 export interface PropsComponent {
-    [key: string]: any;
+  [key: string]: unknown;
 }

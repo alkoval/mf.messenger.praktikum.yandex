@@ -1,3 +1,3 @@
-export const APP_HOST: string = 'https://ya-praktikum.tech';
-export const APP_WS_HOST: string = 'wss://ya-praktikum.tech';
-export const APP_DEFAULT_IMAGE: string = 'https://i.imgur.com/HnSqZIY.png';
+export const APP_HOST = "https://ya-praktikum.tech";
+export const APP_WS_HOST = "wss://ya-praktikum.tech";
+export const APP_DEFAULT_IMAGE = "https://i.imgur.com/HnSqZIY.png";

@@ -1,24 +1,24 @@
-import { ComponentTemplate } from '../../../shared/interfaces/component-template'
+import { ComponentTemplate } from "../../../shared/interfaces/component-template";
 
 export class HistoryTextMessageTemplate implements ComponentTemplate {
-    private tag: string;
-    private cssClass: string;
+  private tag: string;
+  private cssClass: string;
 
-    constructor() {
-        this.tag = 'div';
-        this.cssClass = 'history__message history__message_type_text';
-    }
+  constructor() {
+    this.tag = "div";
+    this.cssClass = "history__message history__message_type_text";
+  }
 
-    public getTag(): string {
-        return this.tag;
-    }
+  public getTag(): string {
+    return this.tag;
+  }
 
-    public getCssClass(): string {
-        return this.cssClass;
-    }
+  public getCssClass(): string {
+    return this.cssClass;
+  }
 
-    public getContent(): string {
-        return `
+  public getContent(): string {
+    return `
                 <div>
                     {{#if isLeft}}<span class="history__user-name">{{userName}}</span>{{/if}}
                     <p>{{message}}</p>
@@ -27,5 +27,5 @@ export class HistoryTextMessageTemplate implements ComponentTemplate {
                     <time>{{shortTime}}</time>
                 </div>
         `;
-    }
+  }
 }

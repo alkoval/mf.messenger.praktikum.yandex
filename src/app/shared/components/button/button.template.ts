@@ -1,25 +1,25 @@
-import { ComponentTemplate } from '../../interfaces/component-template'
+import { ComponentTemplate } from "../../interfaces/component-template";
 
 export class ButtonTemplate implements ComponentTemplate {
-    private tag: string;
-    private cssClass: string;
+  private tag: string;
+  private cssClass: string;
 
-    constructor() {
-        this.tag = 'button';
-        this.cssClass = 'card__button';
-    }
+  constructor() {
+    this.tag = "button";
+    this.cssClass = "card__button";
+  }
 
-    public getTag(): string {
-        return this.tag;
-    }
+  public getTag(): string {
+    return this.tag;
+  }
 
-    public getCssClass(): string {
-        return this.cssClass;
-    }
+  public getCssClass(): string {
+    return this.cssClass;
+  }
 
-    public getContent(): string {
-        return `
+  public getContent(): string {
+    return `
             {{text}}
         `;
-    }
+  }
 }

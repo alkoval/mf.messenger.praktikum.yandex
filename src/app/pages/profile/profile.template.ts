@@ -1,24 +1,24 @@
-import { ComponentTemplate } from '../../shared/interfaces/component-template'
+import { ComponentTemplate } from "../../shared/interfaces/component-template";
 
 export class ProfilePageTemplate implements ComponentTemplate {
-    private tag: string;
-    private cssClass: string;
+  private tag: string;
+  private cssClass: string;
 
-    constructor() {
-        this.tag = 'div';
-        this.cssClass = 'profile';
-    }
+  constructor() {
+    this.tag = "div";
+    this.cssClass = "profile";
+  }
 
-    public getTag(): string {
-        return this.tag;
-    }
+  public getTag(): string {
+    return this.tag;
+  }
 
-    public getCssClass(): string {
-        return this.cssClass;
-    }
+  public getCssClass(): string {
+    return this.cssClass;
+  }
 
-    public getContent(): string {
-        return `
+  public getContent(): string {
+    return `
             <div class="blackout" id="mdFileUpload">
                 <div class="modal modal_state_show">
                     <form class="modal__content">
@@ -34,7 +34,8 @@ export class ProfilePageTemplate implements ComponentTemplate {
                             </div>
                         </div>
                         <div class="modal__section">
-                            <button class="modal__button modal__button_bg_dark-green" type="button">Поменять</button>
+                            <button 
+                            class="modal__button modal__button_bg_dark-green" type="button">Поменять</button>
                         </div>
                         <div class="modal__section">
                             <span class="modal__text modal__text_bg_red modal__text_display_none"></span>
@@ -60,17 +61,23 @@ export class ProfilePageTemplate implements ComponentTemplate {
                     </ul>
                     <ul class="profile__section profile__footer">
                         <li class="profile__group">
-                            <span class="profile__group-text profile__group-text_color_dark-green profile__group-link">Изменить данные</span>
+                            <span 
+                            class="profile__group-text 
+                            profile__group-text_color_dark-green profile__group-link">Изменить данные</span>
                         </li>
                         <li class="profile__group">
-                            <span class="profile__group-text profile__group-text_color_dark-green profile__group-link">Изменить пароль</span>
+                            <span 
+                            class="profile__group-text 
+                            profile__group-text_color_dark-green profile__group-link">Изменить пароль</span>
                         </li>
                         <li class="profile__group profile__group_border_null">
-                            <span class="profile__group-text profile__group-text_color_red profile__group-link">Выйти</span>
+                            <span 
+                            class="profile__group-text 
+                            profile__group-text_color_red profile__group-link">Выйти</span>
                         </li>
                     </ul>
                 </div>
             </div>
         `;
-    }
+  }
 }
