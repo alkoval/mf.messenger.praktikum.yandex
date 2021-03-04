@@ -21,10 +21,12 @@ export class PageService {
   }
 
   public render(page: Component): void {
-    const root = document.querySelector(this.selector);
-    if (root !== null) {
-      root.innerHTML = "";
-      root.appendChild(page.getContent());
+    if (this.selector.length > 0) {
+      const root = document.querySelector(this.selector);
+      if (root !== null) {
+        root.innerHTML = "";
+        root.appendChild(page.getContent());
+      }
     }
   }
 

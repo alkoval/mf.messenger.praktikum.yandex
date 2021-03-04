@@ -8,7 +8,7 @@
     "build": "tsc -p .",
     "checkPathImport": "node check-path-import.js",
     "scss": "node-sass src/styles/app.scss dist/css/app.css",
-    "test": "./node_modules/.bin/mocha",
+    "test": "./node_modules/.bin/mocha -r test/babel-register.js -r test/dom-mock.ts",
     "webpack": "node ./node_modules/webpack/bin/webpack.js",
     "lint": "node_modules/.bin/eslint . --fix"
   },
@@ -47,6 +47,7 @@
     "express": "^4.17.1",
     "filehound": "^1.17.4",
     "jsdom": "^16.4.0",
+    "jsdom-global": "^3.0.2",
     "mini-css-extract-plugin": "^1.3.9",
     "mocha": "^8.3.0",
     "node-sass": "^5.0.0",
@@ -56,6 +57,7 @@
     "sass-loader": "^11.0.1",
     "sinon": "^9.2.4",
     "ts-loader": "^8.0.17",
+    "ts-node": "^9.1.1",
     "typescript": "^4.1.3",
     "webpack": "^5.24.2",
     "webpack-cli": "^4.5.0"
