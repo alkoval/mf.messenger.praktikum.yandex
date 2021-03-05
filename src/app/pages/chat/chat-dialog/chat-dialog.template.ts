@@ -1,24 +1,24 @@
-import { ComponentTemplate } from '../../../shared/interfaces/component-template'
+import { ComponentTemplate } from "../../../shared/interfaces/component-template";
 
 export class ChatDialogTemplate implements ComponentTemplate {
-    private tag: string;
-    private cssClass: string;
+  private tag: string;
+  private cssClass: string;
 
-    constructor() {
-        this.tag = 'div';
-        this.cssClass = 'chat__dialog';
-    }
+  constructor() {
+    this.tag = "div";
+    this.cssClass = "chat__dialog";
+  }
 
-    public getTag(): string {
-        return this.tag;
-    }
+  public getTag(): string {
+    return this.tag;
+  }
 
-    public getCssClass(): string {
-        return this.cssClass;
-    }
+  public getCssClass(): string {
+    return this.cssClass;
+  }
 
-    public getContent(): string {
-        return `
+  public getContent(): string {
+    return `
             <div class="chat__avatar-column">
                 <img class="chat__avatar" src="{{avatar}}">
             </div>
@@ -33,5 +33,5 @@ export class ChatDialogTemplate implements ComponentTemplate {
                 {{/if}}                
             </div>
         `;
-    }
+  }
 }

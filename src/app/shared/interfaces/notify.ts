@@ -1,4 +1,4 @@
 export interface Notify {
-    message: string;
-    time: number;
+  message: string;
+  time: number;
 }

@@ -1,10 +1,10 @@
-export { Button, BUTTON_STYLE } from './models/button'
-export { ChatDialog } from './models/chat-dialog'
-export { FormCard } from './models/form-card'
-export { FormField } from './models/form-field'
-export { HistoryImgMessage } from './models/history-img-message'
-export { HistoryTextMessage } from './models/history-text-message'
-export { Profile } from './models/profile'
-export { ShortProfile } from './models/short-profile'
-export { TextLink } from './models/text-link'
-export { User } from './models/user'
+export { Button, BUTTON_STYLE } from "./models/button";
+export { ChatDialog } from "./models/chat-dialog";
+export { FormCard } from "./models/form-card";
+export { FormField } from "./models/form-field";
+export { HistoryImgMessage } from "./models/history-img-message";
+export { HistoryTextMessage } from "./models/history-text-message";
+export { Profile } from "./models/profile";
+export { ShortProfile } from "./models/short-profile";
+export { TextLink } from "./models/text-link";
+export { User } from "./models/user";

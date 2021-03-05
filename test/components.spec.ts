@@ -1,7 +1,5 @@
-import { JSDOM } from "../node_modules/jsdom";
 import * as chai from 'chai';
 import chaiDom from "chai-dom";
-import Handlebars from "../node_modules/handlebars/dist/handlebars";
 
 import Templator from "../src/app/core/services/templator.service";
 import { ButtonComponent } from "../src/app/shared/components/button/button";
@@ -16,11 +14,6 @@ import { ProfileGroupInputComponent } from "../src/app/shared/components/profile
 import { TextLinkComponent } from "../src/app/shared/components/text-link/text-link";
 
 chai.use(chaiDom);
-const dom = new JSDOM(`<!DOCTYPE html><body><div id="root"></div></body>`);
-
-global.window = dom.window;
-global.document = dom.window.document;
-global.Handlebars = Handlebars;
 
 const templator = Templator.getInstance();
 

@@ -1,24 +1,24 @@
-import { ComponentTemplate } from '../../shared/interfaces/component-template'
+import { ComponentTemplate } from "../../shared/interfaces/component-template";
 
 export class ChangePasswordPageTemplate implements ComponentTemplate {
-    private tag: string;
-    private cssClass: string;
+  private tag: string;
+  private cssClass: string;
 
-    constructor() {
-        this.tag = 'div';
-        this.cssClass = 'profile';
-    }
+  constructor() {
+    this.tag = "div";
+    this.cssClass = "profile";
+  }
 
-    public getTag(): string {
-        return this.tag;
-    }
+  public getTag(): string {
+    return this.tag;
+  }
 
-    public getCssClass(): string {
-        return this.cssClass;
-    }
+  public getCssClass(): string {
+    return this.cssClass;
+  }
 
-    public getContent(): string {
-        return `
+  public getContent(): string {
+    return `
             <div class="profile__sidebar">
                 <span class="profile__back"><i class="fas fa-arrow-left"></i></span>
             </div>
@@ -29,5 +29,5 @@ export class ChangePasswordPageTemplate implements ComponentTemplate {
                 </div>
             </div>
         `;
-    }
+  }
 }

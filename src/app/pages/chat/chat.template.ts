@@ -1,24 +1,24 @@
-import { ComponentTemplate } from '../../shared/interfaces/component-template'
+import { ComponentTemplate } from "../../shared/interfaces/component-template";
 
 export class ChatPageTemplate implements ComponentTemplate {
-    private tag: string;
-    private cssClass: string;
+  private tag: string;
+  private cssClass: string;
 
-    constructor() {
-        this.tag = 'div';
-        this.cssClass = 'chat';
-    }
+  constructor() {
+    this.tag = "div";
+    this.cssClass = "chat";
+  }
 
-    public getTag(): string {
-        return this.tag;
-    }
+  public getTag(): string {
+    return this.tag;
+  }
 
-    public getCssClass(): string {
-        return this.cssClass;
-    }
+  public getCssClass(): string {
+    return this.cssClass;
+  }
 
-    public getContent(): string {
-        return `
+  public getContent(): string {
+    return `
             <div class="chat__sidebar">
                 <div class="chat__toolbar chat__toolbar_content_right chat__toolbar_content_center">
                     <span class="chat__link"><i class="fas fa-comment-alt"></i></span>
@@ -26,12 +26,13 @@ export class ChatPageTemplate implements ComponentTemplate {
                 </div>
                 <div class="chat__toolbar chat__toolbar_content_center">
                     <div class="single-field">
-                        <input class="single-field__input fas" type="text" id="search" placeholder="&#xf002; Поиск"
+                        <input 
+                        class="single-field__input fas" type="text" id="search" placeholder="&#xf002; Поиск"
                             required>
                     </div>
                 </div>
             </div>
             <div class="chat__content"></div>           
         `;
-    }
+  }
 }

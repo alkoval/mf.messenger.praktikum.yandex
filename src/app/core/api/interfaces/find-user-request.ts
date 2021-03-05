@@ -1,3 +1,3 @@
 export interface FindUserRequest {
-    login: string;
+  login: string;
 }

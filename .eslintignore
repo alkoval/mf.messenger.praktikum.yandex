@@ -1,0 +1,8 @@
+/dist
+/node_modules
+/src/assets
+/test
+*.json
+*.config.js
+check-path-import.js
+server.js
