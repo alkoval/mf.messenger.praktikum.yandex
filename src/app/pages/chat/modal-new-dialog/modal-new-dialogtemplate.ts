@@ -1,24 +1,24 @@
-import { ComponentTemplate } from '../../../shared/interfaces/component-template'
+import { ComponentTemplate } from "../../../shared/interfaces/component-template";
 
 export class ModalNewDialogTemplate implements ComponentTemplate {
-    private tag: string;
-    private cssClass: string;
+  private tag: string;
+  private cssClass: string;
 
-    constructor() {
-        this.tag = 'div';
-        this.cssClass = 'blackout';
-    }
+  constructor() {
+    this.tag = "div";
+    this.cssClass = "blackout";
+  }
 
-    public getTag(): string {
-        return this.tag;
-    }
+  public getTag(): string {
+    return this.tag;
+  }
 
-    public getCssClass(): string {
-        return this.cssClass;
-    }
+  public getCssClass(): string {
+    return this.cssClass;
+  }
 
-    public getContent(): string {
-        return `
+  public getContent(): string {
+    return `
             <div class="modal modal_state_show">
                 <form class="modal__content">
                     <div class="modal__section">
@@ -29,10 +29,11 @@ export class ModalNewDialogTemplate implements ComponentTemplate {
                         <div class="modal__content"></div>                           
                     </div>
                     <div class="modal__section">
-                        <button class="modal__button modal__button_bg_dark-green" type="button">Добавить</button>
+                        <button 
+                        class="modal__button modal__button_bg_dark-green" type="button">Добавить</button>
                     </div>
                 </form>
             </div>
         `;
-    }
+  }
 }

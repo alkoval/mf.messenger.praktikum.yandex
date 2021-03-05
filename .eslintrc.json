@@ -1,0 +1,21 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": [
+    "xo",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "max-params": 0,
+    "max-len": [2, 110],
+    "@typescript-eslint/no-unused-vars": 2,
+    "no-mixed-spaces-and-tabs": 0,
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "no-explicit-any": "off",
+    "no-empty-function": ["error", { "allow": ["functions"] }],
+    "camelcase": "off"
+  }
+}

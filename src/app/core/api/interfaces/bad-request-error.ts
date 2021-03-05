@@ -1,4 +1,4 @@
 export interface BadRequestError {
-    message: string;
-    body: any
+  message: string;
+  body: unknown;
 }
