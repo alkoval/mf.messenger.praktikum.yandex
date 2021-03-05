@@ -10,7 +10,13 @@
     "scss": "node-sass src/styles/app.scss dist/css/app.css",
     "test": "./node_modules/.bin/mocha -r test/babel-register.js -r test/dom-mock.ts",
     "webpack": "node ./node_modules/webpack/bin/webpack.js",
-    "lint": "node_modules/.bin/eslint . --fix"
+    "lint": "node_modules/.bin/eslint . --fix",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test"
+    }
   },
   "repository": {
     "type": "git",

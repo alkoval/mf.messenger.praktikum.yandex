@@ -23,6 +23,7 @@ export class App {
     this.pageService.setSelector(".chatapp");
     this.notifyService.setSelector(".chatapp");
     this.router.start();
+    //...
   }
 }
 
