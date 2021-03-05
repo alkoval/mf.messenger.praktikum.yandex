@@ -1,6 +1,7 @@
 import { HistoryMessage } from "../interfaces/history-message";
 
 export class HistoryTextMessage implements HistoryMessage {
+  public id: number;
   public chatDialogId: number;
   public type: string;
   public message: string;
@@ -12,15 +13,16 @@ export class HistoryTextMessage implements HistoryMessage {
   public isLeft: boolean;
 
   constructor(
-    chatDialogId: number,
+    id: number,
     type: string,
     message: string,
     from: number,
     unread: boolean,
     time: Date,
-    userName: string
+    userName: string,
+    dialogId: number
   ) {
-    this.chatDialogId = chatDialogId;
+    this.id = id;
     this.type = type;
     this.message = message;
     this.from = from;
@@ -29,5 +31,6 @@ export class HistoryTextMessage implements HistoryMessage {
     this.shortTime = time.getHours() + ":" + time.getMinutes();
     this.isLeft = true;
     this.userName = userName;
+    this.chatDialogId = dialogId;
   }
 }

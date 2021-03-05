@@ -13,6 +13,7 @@ export class ChatHistoryComponent extends BaseComponent implements OnInit {
   private chatService: ChatService;
   private messageService: MessageService;
   private message: HTMLInputElement | null;
+  private lastMessage: number;
 
   constructor(props: PropsComponent, templator: Templator) {
     super(props, templator, new ChatHistoryTemplate());
@@ -20,6 +21,7 @@ export class ChatHistoryComponent extends BaseComponent implements OnInit {
     this.messageService = MessageService.getInstance();
     this.profileService = ProfileService.getInstance();
     this.message = null;
+    this.lastMessage = 0;
     this.onInit();
   }
 
@@ -89,6 +91,15 @@ export class ChatHistoryComponent extends BaseComponent implements OnInit {
     this.message = this.getElement().querySelector(
       ".history__input-column .single-field__input"
     ) as HTMLInputElement;
+
+    const historyBoard = this.getElement().querySelector(".history__board");
+    if (historyBoard) {
+      historyBoard.addEventListener("scroll", () => {
+        if (historyBoard.scrollTop === 0) {
+          this.messageService.getArchive(this.lastMessage);
+        }
+      });
+    }
   }
 
   public toggleModalDialog(): void {
@@ -144,6 +155,7 @@ export class ChatHistoryComponent extends BaseComponent implements OnInit {
         this.templator
       );
       this.renderToSelectorTop([component], ".history__board");
+      this.lastMessage = item.id;
     }
   }
 
@@ -158,6 +170,7 @@ export class ChatHistoryComponent extends BaseComponent implements OnInit {
     );
     this.renderToSelector([component], ".history__board");
     component.getElement().scrollIntoView();
+    this.lastMessage = data.id;
   }
 
   public deleteSelected(): void {

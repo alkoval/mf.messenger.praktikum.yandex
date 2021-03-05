@@ -87,6 +87,7 @@ export class MessageService {
     // eslint-disable-next-line no-negated-condition
     if (!Array.isArray(data)) {
       if (data.type === "message") {
+        const chatId = this.chatService.getSelectedDialog()!.id;
         const profile = this.chatService
           .getSelectedDialog()
           ?.profiles.find((e) => e.id === data.userId);
@@ -97,7 +98,8 @@ export class MessageService {
           data.userId,
           false,
           new Date(data.time),
-          profile ? profile.name : ""
+          profile ? profile.name : "",
+          chatId
         );
         this.eventBus.emit(MESSAGE_EVENTS.NEW_MESSAGE, msg);
       }
@@ -115,7 +117,8 @@ export class MessageService {
             item.user_id,
             false,
             new Date(item.time),
-            profile ? profile.name : ""
+            profile ? profile.name : "",
+            item.chat_id
           )
         );
       }

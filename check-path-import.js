@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const files = FileHound.create()
-  .paths(__dirname + "/static/js")
+  .paths(__dirname + "/dist/js")
   .discard("node_modules")
   .ext("js")
   .find();
