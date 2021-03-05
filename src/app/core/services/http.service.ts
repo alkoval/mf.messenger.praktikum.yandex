@@ -43,23 +43,23 @@ export default class HttpService {
       }
     }
 
-    return this.request(url, { ...options, method: METHODS.GET });
+    return this.request(url, { ...options, method: "GET" });
   }
 
   public post(url: string, options: HttpRequestOptions): Promise<unknown> {
-    return this.request(url, { ...options, method: METHODS.POST });
+    return this.request(url, { ...options, method: "POST" });
   }
 
   public put(url: string, options: HttpRequestOptions): Promise<unknown> {
-    return this.request(url, { ...options, method: METHODS.PUT });
+    return this.request(url, { ...options, method: "PUT" });
   }
 
   public patch(url: string, options: HttpRequestOptions): Promise<unknown> {
-    return this.request(url, { ...options, method: METHODS.PATCH });
+    return this.request(url, { ...options, method: "PATCH" });
   }
 
   public delete(url: string, options: HttpRequestOptions): Promise<unknown> {
-    return this.request(url, { ...options, method: METHODS.DELETE });
+    return this.request(url, { ...options, method: "DELETE" });
   }
 
   private prepareQueryParams(params: any = {}): string {
@@ -88,7 +88,7 @@ export default class HttpService {
       xhr.timeout = timeout;
 
       xhr.onload = function () {
-        if (this.status === 200 || this.status === 400 || this.status === 409) {
+        if (this.status > 199 && this.status < 300) {
           resolve(xhr.response);
         } else {
           reject(

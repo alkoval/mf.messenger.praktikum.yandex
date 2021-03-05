@@ -34,9 +34,9 @@ export class AuthService {
   }
 
   public login(login: string, password: string): Promise<unknown> {
-    const request: SignInRequest = { login: login, password: password };
+    const data: SignInRequest = { login: login, password: password };
 
-    return this.authSignInAPI.request(request).then((response) => {
+    return this.authSignInAPI.request(data).then((response) => {
       const res: string = response as string;
       if (res.toLowerCase() === "ok") {
         return true;
