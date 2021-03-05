@@ -88,7 +88,11 @@ export default class HttpService {
       xhr.timeout = timeout;
 
       xhr.onload = function () {
-        if ((this.status > 199 && this.status < 300) || this.status === 400 || this.status === 409) {
+        if (
+          (this.status > 199 && this.status < 300) ||
+          this.status === 400 ||
+          this.status === 409
+        ) {
           resolve(xhr.response);
         } else {
           reject(
